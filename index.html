@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Brtyr · Phase one tap-through</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#1a1c2e;
+  --bg2:#2a2d44;
+  --card:#34384f;
+  --border:#3f4460;
+  --lime:#e2ff50;
+  --lime2:#c8e040;
+  --text:#fff;
+  --dim:#b8bcd0;
+  --faint:#8a8fa3;
+  --on:#1a1c2e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:Inter,system-ui,sans-serif;
+  background:#12141f;
+  color:var(--text);
+  min-height:100vh;
+}
+.shell{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:18px 16px 28px}
+.banner{
+  width:min(420px,100%);
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 14px;
+  margin-bottom:14px;
+  font-size:12px;
+  color:var(--dim);
+  line-height:1.45;
+}
+.banner strong{color:var(--lime);font-weight:700}
+.phone{
+  width:min(390px,100%);
+  height:min(812px, calc(100vh - 120px));
+  min-height:640px;
+  background:var(--bg);
+  border:4px solid #3a3f5c;
+  border-radius:36px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 24px 70px rgba(0,0,0,.45);
+  display:flex;flex-direction:column;
+}
+.status{
+  height:44px;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 22px 0;font-size:12px;font-weight:700;flex-shrink:0;
+}
+.progress{display:flex;gap:5px;padding:0 16px 8px;flex-shrink:0}
+.progress i{flex:1;height:3px;border-radius:99px;background:#3a3f5c}
+.progress i.on{background:var(--lime)}
+.screen{display:none;flex:1;flex-direction:column;overflow:hidden;min-height:0}
+.screen.on{display:flex}
+.body{flex:1;overflow-y:auto;padding:8px 18px 18px;-webkit-overflow-scrolling:touch}
+.foot{padding:10px 18px 22px;flex-shrink:0;background:linear-gradient(to top,var(--bg) 70%,transparent)}
+.logo{display:block;width:92px;height:92px;object-fit:contain;margin:8px auto 6px}
+.kicker{color:var(--lime);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;text-align:center;margin-bottom:8px}
+h1{font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1.15;margin:0 0 10px}
+h2{font-size:20px;font-weight:800;letter-spacing:-.02em;margin:0 0 8px}
+p{color:var(--dim);font-size:14px;line-height:1.5}
+.center{text-align:center}
+.muted{color:var(--faint);font-size:12px;line-height:1.45}
+.steps{margin:16px 0;padding:0;list-style:none}
+.steps li{
+  display:flex;gap:10px;align-items:flex-start;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:13px;color:var(--text);
+}
+.steps b{color:var(--lime);min-width:18px}
+.btn{
+  width:100%;border:0;border-radius:28px;padding:14px 16px;
+  font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;
+}
+.btn.primary{background:linear-gradient(135deg,var(--lime),var(--lime2));color:var(--on)}
+.btn.ghost{background:transparent;color:var(--lime);border:2px solid var(--lime);margin-top:8px}
+.btn:active{transform:scale(.98)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+label{display:block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:10px 0 6px}
+input,textarea,select{
+  width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:12px;
+  color:var(--text);padding:12px 14px;font-size:15px;font-family:inherit;
+}
+input:focus,textarea:focus{outline:none;border-color:var(--lime)}
+.check{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-size:13px;color:var(--dim)}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--lime)}
+.legal{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;font-size:13px;color:var(--dim);line-height:1.55;white-space:pre-wrap}
+.otp{display:flex;gap:10px;justify-content:center;margin:22px 0}
+.otp input{width:52px;height:56px;text-align:center;font-size:22px;font-weight:800;padding:0}
+.cats{display:grid;gap:10px;margin-top:12px}
+.cat{
+  height:86px;border-radius:14px;overflow:hidden;position:relative;
+  display:flex;align-items:flex-end;padding:12px 14px;
+  background:linear-gradient(135deg,#3a3f5c,#2a2d44);cursor:pointer;
+}
+.cat span{font-size:15px;font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  border:1px solid var(--border);background:var(--bg2);color:var(--dim);
+  border-radius:99px;padding:7px 10px;font-size:11px;font-weight:700;cursor:pointer;
+}
+.chip.on{background:var(--lime);color:var(--on);border-color:var(--lime)}
+.locked{
+  background:var(--bg2);border:1px solid var(--border);border-radius:14px;
+  padding:12px 14px;display:flex;align-items:baseline;gap:8px;margin:6px 0 4px;
+}
+.locked .n{font-size:32px;font-weight:800;color:var(--lime)}
+.locked .u{font-size:16px;font-weight:800;color:var(--lime)}
+.preview{
+  background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;margin-top:14px;
+}
+.preview .pk{color:var(--lime);font-size:10px;font-weight:800;letter-spacing:.1em;margin-bottom:6px}
+.preview h3{font-size:18px;margin-bottom:4px}
+.preview .meta{font-size:12px;color:var(--faint);margin-top:2px}
+.preview .price{color:var(--lime);font-size:22px;font-weight:800;margin:10px 0 6px}
+.preview .footn{font-size:11px;color:var(--faint);line-height:1.4;margin-top:8px}
+.toggle{display:flex;justify-content:space-between;align-items:center;margin:12px 0 4px}
+.switch{background:#3a3f5c;border-radius:99px;width:48px;height:28px;position:relative;cursor:pointer}
+.switch.on{background:var(--lime)}
+.switch i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .15s}
+.switch.on i{left:23px;background:var(--on)}
+.topbar{display:flex;align-items:center;gap:8px;padding:4px 0 10px}
+.topbar .back{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--lime);cursor:pointer;font-size:20px}
+.topbar .t{flex:1;text-align:center;font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--lime)}
+.home-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.home-head img{width:42px;height:42px;object-fit:contain}
+.done-box{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:16px;margin-top:10px}
+.done-box ol{margin:10px 0 0 18px;color:var(--dim);font-size:13px;line-height:1.55}
+@media (max-width:768px){
+  .shell{padding:0}
+  .banner{display:none}
+  .phone{width:100%;height:100vh;min-height:100vh;border:0;border-radius:0;box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="banner">
+    <strong>For Raquel:</strong> open this on your iPhone and tap Next. This is a click-through only. The live app is not changed until you say this order is right.
+  </div>
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>brtyr</span><span>100%</span></div>
+    <div class="progress" id="progress"></div>
+
+    <section class="screen on" data-screen="start">
+      <div class="body">
+        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr"/>
+        <div class="kicker">Phase one</div>
+        <h1 class="center">Tap through this order</h1>
+        <p class="center">From your last note: CP brief, then sign up, then Terms on the next page.</p>
+        <ol class="steps">
+          <li><b>1</b> CP brief</li>
+          <li><b>2</b> Sign up (first, last, email, password)</li>
+          <li><b>3</b> Terms and Privacy on the next page</li>
+          <li><b>4</b> Then Home and Create offer (duration fills CP)</li>
+        </ol>
+        <p class="muted center">At the end, reply yes if this order is right, or tell us which screen to move.</p>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('welcome')">Start</button></div>
+    </section>
+
+    <section class="screen" data-screen="welcome">
+      <div class="body" style="display:flex;flex-direction:column;justify-content:space-between;min-height:100%">
+        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:120px;height:120px;margin-top:48px"/>
+        <div>
+          <div class="kicker">Marketplace</div>
+          <h1 class="center">Make time for what matters.</h1>
+          <p class="center">Book with Community Points. Offer your service. Same account.</p>
+        </div>
+      </div>
+      <div class="foot">
+        <button class="btn primary" onclick="go('brief')">See how CP works</button>
+        <button class="btn ghost" onclick="go('signup')">I already know, sign up</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="brief">
+      <div class="body">
+        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:72px;height:72px"/>
+        <div class="kicker">CP brief</div>
+        <h2>Book with Community Points</h2>
+        <p>Brtyr uses two balances in one wallet.</p>
+        <div class="steps" style="margin-top:14px">
+          <li><b>CP</b> Community Points. Earned after a completed trade. Pending during the session, then Earned.</li>
+          <li><b>TC</b> Top-up Credits. Purchased if you need more booking power.</li>
+        </div>
+        <p>When you set a session length, CP fills in from the platform schedule. You do not type a custom price.</p>
+        <p class="muted" style="margin-top:12px">Example: 30 min = 100 CP · 1.5 hours = 200 CP · 5–6 hours = 650 CP</p>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('signup')">Continue to sign up</button></div>
+    </section>
+
+    <section class="screen" data-screen="signup">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('brief')">‹</div><div class="t">CREATE ACCOUNT</div><div style="width:32px"></div></div>
+        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:64px;height:64px"/>
+        <p class="center muted">First name, last name, email, password. Then Terms on the next page.</p>
+        <div class="row2">
+          <div><label>First name</label><input id="first" placeholder="Raquel"/></div>
+          <div><label>Last name</label><input id="last" placeholder="Rodriguez"/></div>
+        </div>
+        <label>Email</label>
+        <input id="email" type="email" placeholder="you@email.com"/>
+        <label>Password</label>
+        <input id="password" type="password" placeholder="Create a password"/>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="nextSignup()">Continue</button></div>
+    </section>
+
+    <section class="screen" data-screen="terms">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('signup')">‹</div><div class="t">TERMS AND PRIVACY</div><div style="width:32px"></div></div>
+        <div class="kicker" style="text-align:left">Next page</div>
+        <h2>Agree, then submit</h2>
+        <div class="legal">By creating a Brtyr account you agree to use the app as a service-exchange community.
+
+Bookings use Community Points (CP) and Top-up Credits (TC). They are in-app currency only. They have no cash value and cannot be withdrawn.
+
+CP is awarded after a service is completed and confirmed. During a session, CP shows as Pending. After completion it shows as Earned.
+
+Keep booking, chat, and reviews in the app.
+
+We use the details you provide to show your profile, match by city / zip, and keep the wallet ledger. We do not sell your personal data.</div>
+        <label class="check"><input type="checkbox" id="agree"/> I agree to the Terms of Use and Privacy Statement</label>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="submitTerms()">Agree and submit</button></div>
+    </section>
+
+    <section class="screen" data-screen="otp">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('terms')">‹</div><div class="t">VERIFY</div><div style="width:32px"></div></div>
+        <h2>Enter the code</h2>
+        <p>For this tap-through, use <strong style="color:var(--lime)">1234</strong>.</p>
+        <div class="otp">
+          <input maxlength="1" inputmode="numeric" oninput="otpJump(this,0)"/>
+          <input maxlength="1" inputmode="numeric" oninput="otpJump(this,1)"/>
+          <input maxlength="1" inputmode="numeric" oninput="otpJump(this,2)"/>
+          <input maxlength="1" inputmode="numeric" oninput="otpJump(this,3)"/>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('home')">Verify</button></div>
+    </section>
+
+    <section class="screen" data-screen="home">
+      <div class="body">
+        <div class="home-head">
+          <div style="width:36px"></div>
+          <img src="brtyr-logo-clear.png" alt="brtyr"/>
+          <div style="width:36px"></div>
+        </div>
+        <div class="kicker" style="text-align:left">Home</div>
+        <h2>Browse sectors</h2>
+        <p>Beauty, Fitness, Wellness, Business Affiliates.</p>
+        <div class="cats">
+          <div class="cat"><span>Beauty</span></div>
+          <div class="cat"><span>Fitness</span></div>
+          <div class="cat"><span>Wellness</span></div>
+          <div class="cat"><span>Business Affiliates</span></div>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('offer')">Set up a provider offer</button></div>
+    </section>
+
+    <section class="screen" data-screen="offer">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">SET UP A PROVIDER OFFER</div><div style="width:32px"></div></div>
+        <div class="kicker" style="text-align:left">Service management</div>
+        <p>Pick a duration. CP fills in from the platform schedule.</p>
+        <p class="muted" style="margin:8px 0 12px">Pricing currency: CP</p>
+        <label>Offer or service name</label>
+        <input id="offerName" value="Hot stone massage" oninput="syncPreview()"/>
+        <label>Service category</label>
+        <div class="chips" id="cats"></div>
+        <label>Duration</label>
+        <p class="muted">Tap a length. CP updates automatically.</p>
+        <div class="chips" id="durs" style="margin-top:8px"></div>
+        <label>CP price (locked)</label>
+        <div class="locked"><span class="n" id="cpN">200</span><span class="u">CP</span></div>
+        <p class="muted" id="cpLabel">Over 1 hour up to 1.5 hours</p>
+        <label>Availability</label>
+        <div class="chips" id="avails"></div>
+        <div class="toggle">
+          <label style="margin:0">Active status · visible to members</label>
+          <div class="switch on" id="activeSw" onclick="toggleActive()"><i></i></div>
+        </div>
+        <label>Short description</label>
+        <textarea id="notes" rows="3" oninput="syncPreview()">A restorative massage using smooth, heated stones to ease deep muscle tension.</textarea>
+        <div class="preview">
+          <div class="pk">Live preview · Offer summary</div>
+          <h3 id="pvTitle">Hot stone massage</h3>
+          <div class="meta" id="pvMeta">Provider · Wellness</div>
+          <div class="meta" id="pvAvail">Flexible · By appointment</div>
+          <div class="meta" id="pvDur">1.5 hours · Active</div>
+          <div class="price" id="pvPrice">200 CP</div>
+          <div class="meta" id="pvNotes">A restorative massage using smooth, heated stones to ease deep muscle tension.</div>
+          <div class="footn">CP pricing and provider availability are displayed to members when the offer is active.</div>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('done')">Save offer</button></div>
+    </section>
+
+    <section class="screen" data-screen="done">
+      <div class="body">
+        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr"/>
+        <div class="kicker">That’s the path</div>
+        <h2 class="center">Does this order match what you want?</h2>
+        <div class="done-box">
+          <p>You just walked:</p>
+          <ol>
+            <li>CP brief</li>
+            <li>Sign up (name, email, password)</li>
+            <li>Terms and Privacy on the next page</li>
+            <li>Home, then Create offer with locked CP</li>
+          </ol>
+        </div>
+        <p class="muted" style="margin-top:16px">Reply to Gaurav: <strong style="color:var(--text)">yes</strong> if this is right, or tell him which screen to move. We will only then change the iPhone app.</p>
+      </div>
+      <div class="foot">
+        <button class="btn primary" onclick="go('start')">Start again</button>
+      </div>
+    </section>
+  </div>
+</div>
+<script>
+const ORDER=['start','welcome','brief','signup','terms','otp','home','offer','done'];
+const BRACKETS=[
+  {id:'30m', label:'Up to 30 minutes', duration:'30 minutes', cp:100},
+  {id:'1h', label:'Over 30 minutes up to 1 hour', duration:'1 hour', cp:150},
+  {id:'1.5h', label:'Over 1 hour up to 1.5 hours', duration:'1.5 hours', cp:200},
+  {id:'2h', label:'Over 1.5 hours up to 2 hours', duration:'2 hours', cp:250},
+  {id:'2.5h', label:'Over 2 hours up to 2.5 hours', duration:'2.5 hours', cp:300},
+  {id:'3h', label:'Over 2.5 hours up to 3 hours', duration:'3 hours', cp:350},
+  {id:'4h', label:'Over 3 hours up to 4 hours', duration:'4 hours', cp:400},
+  {id:'4.5h', label:'Over 4 hours up to 4.5 hours', duration:'4.5 hours', cp:450},
+  {id:'5h', label:'Over 4.5 hours up to 5 hours', duration:'5 hours', cp:550},
+  {id:'6h', label:'Over 5 hours up to 6 hours', duration:'6 hours', cp:650},
+  {id:'7h', label:'Over 6 hours up to 7 hours', duration:'7 hours', cp:750},
+  {id:'8h', label:'Over 7 hours up to 8 hours', duration:'8 hours', cp:850},
+  {id:'9h', label:'Over 8 hours up to 9 hours', duration:'9 hours', cp:950},
+  {id:'10h', label:'Over 9 hours up to 10 hours', duration:'10 hours', cp:1050},
+];
+const SECTORS=['Beauty','Fitness','Wellness','Business Affiliates'];
+const AVAILS=['Weekdays · 9:00 AM–5:00 PM','Weekends · 10:00 AM–4:00 PM','Flexible · By appointment','Evenings · 5:00 PM–9:00 PM'];
+let bracketId='1.5h', category='Wellness', availability='Flexible · By appointment', active=true;
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.dataset.screen===id));
+  const i=ORDER.indexOf(id);
+  document.getElementById('progress').innerHTML=ORDER.map((_,n)=>`<i class="${n<=i?'on':''}"></i>`).join('');
+  document.querySelector('.phone .screen.on .body')?.scrollTo(0,0);
+}
+function nextSignup(){
+  const first=document.getElementById('first').value.trim();
+  const last=document.getElementById('last').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const password=document.getElementById('password').value.trim();
+  if(!first||!last||!email||!password){alert('Please fill first name, last name, email, and password.');return;}
+  go('terms');
+}
+function submitTerms(){
+  if(!document.getElementById('agree').checked){alert('Please agree to Terms and Privacy to continue.');return;}
+  go('otp');
+}
+function otpJump(el,i){
+  el.value=el.value.replace(/\D/g,'').slice(0,1);
+  const boxes=[...document.querySelectorAll('.otp input')];
+  if(el.value && boxes[i+1]) boxes[i+1].focus();
+}
+function chips(el, items, getLabel, isOn, onPick){
+  el.innerHTML=items.map((item,idx)=>{
+    const label=getLabel(item);
+    return `<button type="button" class="chip ${isOn(item)?'on':''}" data-i="${idx}">${label}</button>`;
+  }).join('');
+  el.querySelectorAll('.chip').forEach((btn,idx)=>{
+    btn.onclick=()=>{onPick(items[idx]); renderOffer();}
+  });
+}
+function toggleActive(){active=!active;renderOffer();}
+function syncPreview(){renderOffer(false);}
+function renderOffer(rebuild=true){
+  const b=BRACKETS.find(x=>x.id===bracketId);
+  const name=document.getElementById('offerName').value||'Your offer name';
+  const notes=document.getElementById('notes').value;
+  const first=document.getElementById('first').value.trim()||'Provider';
+  document.getElementById('cpN').textContent=b.cp;
+  document.getElementById('cpLabel').textContent=b.label;
+  document.getElementById('pvTitle').textContent=name;
+  document.getElementById('pvMeta').textContent=first+' · '+category;
+  document.getElementById('pvAvail').textContent=availability;
+  document.getElementById('pvDur').textContent=b.duration+' · '+(active?'Active':'Hidden');
+  document.getElementById('pvPrice').textContent=b.cp+' CP';
+  document.getElementById('pvNotes').textContent=notes;
+  document.getElementById('activeSw').classList.toggle('on', active);
+  if(!rebuild) return;
+  chips(document.getElementById('cats'), SECTORS, s=>s, s=>s===category, s=>category=s);
+  chips(document.getElementById('durs'), BRACKETS, s=>s.duration, s=>s.id===bracketId, s=>bracketId=s.id);
+  chips(document.getElementById('avails'), AVAILS, s=>s, s=>s===availability, s=>availability=s);
+}
+go('start');
+renderOffer();
+</script>
+</body>
+</html>
