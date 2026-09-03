@@ -128,7 +128,7 @@ body{
   padding:18px 26px 0;font-size:12px;font-weight:700;flex-shrink:0;position:relative;z-index:12;
 }
 .status .icons{display:flex;align-items:center;gap:6px;font-size:11px}
-.progress{display:flex;gap:4px;padding:4px 18px 8px;flex-shrink:0}
+.progress{display:flex;gap:3px;padding:4px 18px 8px;flex-shrink:0}
 .progress i{flex:1;height:3px;border-radius:99px;background:#3a3f5c}
 .progress i.on{background:var(--lime)}
 .screen{display:none;flex:1;flex-direction:column;min-height:0;overflow:hidden}
@@ -238,6 +238,101 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
 .home-head img{width:42px;height:42px;object-fit:contain}
 .done-box{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:16px;margin-top:10px}
 .done-box ol{margin:10px 0 0 18px;color:var(--dim);font-size:13px;line-height:1.55}
+.tabs{display:flex;gap:6px;margin:0 0 10px}
+.tab{
+  flex:1;border:1px solid var(--border);background:transparent;color:var(--faint);
+  border-radius:16px;padding:8px 4px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;
+}
+.tab.on{border-color:var(--lime);background:rgba(226,255,80,.14);color:var(--lime)}
+.tab.done{border-color:#4ade80;color:#4ade80}
+.req{color:var(--lime);font-weight:800}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 12px}
+.photo{
+  aspect-ratio:1;border-radius:14px;border:1px dashed var(--border);
+  background:var(--bg2) center/cover no-repeat;color:var(--faint);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:11px;font-weight:700;cursor:pointer;padding:6px;
+}
+.photo.on{border-style:solid;border-color:var(--lime)}
+.photo.bio{grid-column:1 / -1;aspect-ratio:2.4;border-radius:16px}
+.dd{position:relative;margin-bottom:10px}
+.dd-btn{
+  width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:12px;
+  color:var(--text);padding:12px 14px;font-size:14px;font-family:inherit;
+  display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;
+}
+.dd.open .dd-btn{border-color:var(--lime)}
+.dd-list{
+  display:none;margin-top:6px;background:var(--card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+}
+.dd.open .dd-list{display:block}
+.dd-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 14px;border-bottom:1px solid var(--border);cursor:pointer;font-size:14px;
+}
+.dd-item:last-child{border-bottom:0}
+.dd-item.on{color:var(--lime)}
+.dd-item span{color:var(--faint);font-size:16px}
+.dd-item.on span{color:var(--lime)}
+.ham{
+  width:36px;height:36px;border:0;background:transparent;cursor:pointer;
+  display:flex;flex-direction:column;justify-content:center;gap:5px;padding:8px;
+}
+.ham i{display:block;height:2px;background:var(--lime);border-radius:99px}
+.drawer{
+  display:none;position:absolute;inset:0;z-index:40;
+}
+.drawer.on{display:block}
+.drawer .dim{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.drawer .panel{
+  position:absolute;left:0;top:0;bottom:0;width:78%;
+  background:var(--bg2);padding:64px 18px 24px;
+  box-shadow:12px 0 40px rgba(0,0,0,.4);
+}
+.drawer .who{font-size:18px;font-weight:800;margin-bottom:4px}
+.drawer .role{color:var(--faint);font-size:13px;margin-bottom:16px}
+.view-as{
+  width:100%;border:1px solid var(--lime);background:transparent;color:var(--lime);
+  border-radius:20px;padding:10px 12px;font-weight:700;font-size:13px;
+  cursor:pointer;font-family:inherit;margin-bottom:18px;
+}
+.ditem{
+  display:block;width:100%;text-align:left;border:0;background:transparent;
+  color:#fff;font-weight:700;font-size:15px;padding:12px 0;cursor:pointer;font-family:inherit;
+}
+.pcard{
+  display:flex;gap:12px;align-items:center;background:var(--card);
+  border-radius:18px;padding:12px;margin-bottom:10px;
+}
+.av{
+  width:52px;height:52px;border-radius:26px;background:var(--lime);color:var(--on);
+  display:flex;align-items:center;justify-content:center;font-weight:800;
+}
+.pcard b{display:block;font-size:15px}
+.pcard .meta{font-size:12px;color:var(--faint);margin-top:2px}
+.zipbar{display:flex;gap:8px;margin:10px 0 14px}
+.zipbar input{flex:1}
+.zipbar button{
+  border:0;border-radius:12px;background:var(--lime);color:var(--on);
+  font-weight:800;padding:0 14px;cursor:pointer;font-family:inherit;
+}
+.wcard{
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
+  padding:14px;margin-bottom:12px;
+}
+.wcard h3{font-size:16px;margin-bottom:6px}
+.wrow{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.wrow:last-child{border-bottom:0}
+.wrow b{color:var(--lime)}
+.hint-box{
+  background:rgba(226,255,80,.08);border:1px solid rgba(226,255,80,.28);
+  border-radius:12px;padding:10px 12px;font-size:12px;color:var(--dim);margin:8px 0 12px;line-height:1.45;
+}
+.upload{
+  width:100%;border:1px dashed var(--border);background:var(--bg2);color:var(--lime);
+  border-radius:14px;padding:16px;font-weight:700;cursor:pointer;font-family:inherit;margin:8px 0 12px;
+}
 @media (max-width:1100px){
   .stage{flex-direction:column;justify-content:flex-start}
   .notes{width:min(408px,100%)}
@@ -264,7 +359,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
 <body>
 <div class="shell">
   <div class="banner">
-    <strong>For Raquel:</strong> tap through the phone. The card on the left explains each screen. This is a click-through only. The live app is not changed until you say this order is right.
+    <strong>For Raquel:</strong> this tap-through now follows your NEW BUSINESS note. Provider details come first. No Provider / Trade tab on create account. The live app is unchanged until you say this order is right.
   </div>
   <div class="stage">
     <aside class="notes" id="notes">
@@ -290,14 +385,15 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
     <section class="screen on" data-screen="start">
       <div class="body">
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr"/>
-        <div class="kicker">Phase one</div>
-        <h1 class="center">Tap through this order</h1>
-        <p class="center">From your last note: CP brief, then sign up, then Terms on the next page.</p>
+        <div class="kicker">NEW BUSINESS</div>
+        <h1 class="center">Provider details first</h1>
+        <p class="center">Same path as your last note. No Provider / Trade tab on create account. Switch later in the menu.</p>
         <ol class="steps">
-          <li><b>1</b> CP brief</li>
-          <li><b>2</b> Sign up (first, last, email, password)</li>
-          <li><b>3</b> Terms and Privacy on the next page</li>
-          <li><b>4</b> Then Home and Create offer (duration fills CP)</li>
+          <li><b>1</b> Splash and login (logo stays above the keyboard)</li>
+          <li><b>2</b> Create account tabs: Terms → Sign up → Provider details</li>
+          <li><b>3</b> Verify phone, then set up offer and bio</li>
+          <li><b>4</b> Home menu: View as Provider / View as Trade</li>
+          <li><b>5</b> Find providers by zip · Wallet CP / TC explained</li>
         </ol>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('welcome')">Start</button></div>
@@ -308,56 +404,42 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
         <div class="welcome-dim">
           <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:120px;height:120px"/>
           <div>
-            <div class="kicker">Marketplace</div>
+            <div class="kicker">Splash</div>
             <h1 class="center">Make time for what matters.</h1>
             <p class="center">Book with Community Points. Offer your service. Same account.</p>
           </div>
         </div>
       </div>
       <div class="foot">
-        <button class="btn primary" onclick="go('brief')">See how CP works</button>
-        <button class="btn ghost" onclick="go('signup')">I already know, sign up</button>
+        <button class="btn primary" onclick="go('signupStart')">Sign up</button>
+        <button class="btn ghost" onclick="go('login')">Log in</button>
       </div>
     </section>
 
-    <section class="screen" data-screen="brief">
+    <section class="screen" data-screen="login">
       <div class="body">
+        <div class="topbar"><div class="back" onclick="go('welcome')">‹</div><div class="t">LOG IN</div><div style="width:32px"></div></div>
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:72px;height:72px"/>
-        <div class="kicker">CP brief</div>
-        <h2>Book with Community Points</h2>
-        <p>Brtyr uses two balances in one wallet.</p>
-        <div class="steps" style="margin-top:14px">
-          <li><b>CP</b> Community Points. Earned after a completed trade. Pending during the session, then Earned.</li>
-          <li><b>TC</b> Top-up Credits. Purchased if you need more booking power.</li>
-        </div>
-        <p>When you set a session length, CP fills in from the platform schedule. You do not type a custom price.</p>
-        <p class="muted" style="margin-top:12px">Example: 30 min = 100 CP · 1.5 hours = 200 CP · 5–6 hours = 650 CP</p>
-      </div>
-      <div class="foot"><button class="btn primary" onclick="go('signup')">Continue to sign up</button></div>
-    </section>
-
-    <section class="screen" data-screen="signup">
-      <div class="body">
-        <div class="topbar"><div class="back" onclick="go('brief')">‹</div><div class="t">CREATE ACCOUNT</div><div style="width:32px"></div></div>
-        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:64px;height:64px"/>
-        <p class="center muted">First name, last name, email, password. Then Terms on the next page.</p>
-        <div class="row2">
-          <div><label>First name</label><input id="first" placeholder="Raquel"/></div>
-          <div><label>Last name</label><input id="last" placeholder="Rodriguez"/></div>
-        </div>
-        <label>Email</label>
-        <input id="email" type="email" placeholder="you@email.com"/>
+        <p class="center muted">Welcome back. The Log in button stays pinned so the keyboard cannot cover it.</p>
+        <label>Phone number</label>
+        <input id="loginPhone" type="tel" placeholder="+1 (555) 000-0000" inputmode="tel"/>
         <label>Password</label>
-        <input id="password" type="password" placeholder="Create a password"/>
+        <input id="loginPass" type="password" placeholder="••••••••"/>
+        <p class="muted" style="margin-top:10px">Demo: any phone works. OTP is 1234.</p>
       </div>
-      <div class="foot"><button class="btn primary" onclick="nextSignup()">Continue</button></div>
+      <div class="foot">
+        <button class="btn primary" onclick="go('home')">Log in</button>
+        <button class="btn ghost" onclick="go('signupStart')">Create account</button>
+      </div>
     </section>
 
     <section class="screen" data-screen="terms">
       <div class="body">
-        <div class="topbar"><div class="back" onclick="go('signup')">‹</div><div class="t">TERMS AND PRIVACY</div><div style="width:32px"></div></div>
-        <div class="kicker" style="text-align:left">Next page</div>
-        <h2>Agree, then submit</h2>
+        <div class="topbar"><div class="back" onclick="go('welcome')">‹</div><div class="t">CREATE ACCOUNT</div><div style="width:32px"></div></div>
+        <div class="tabs" data-tabs="terms"></div>
+        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:64px;height:64px"/>
+        <div class="kicker" style="text-align:left">Tab 1 · Agree here</div>
+        <h2>Terms and Privacy</h2>
         <div class="legal">By creating a Brtyr account you agree to use the app as a service-exchange community.
 
 Bookings use Community Points (CP) and Top-up Credits (TC). They are in-app currency only. They have no cash value and cannot be withdrawn.
@@ -369,55 +451,111 @@ Keep booking, chat, and reviews in the app.
 We use the details you provide to show your profile, match by city / zip, and keep the wallet ledger. We do not sell your personal data.</div>
         <label class="check"><input type="checkbox" id="agree"/> I agree to the Terms of Use and Privacy Statement</label>
       </div>
-      <div class="foot"><button class="btn primary" onclick="submitTerms()">Agree and submit</button></div>
+      <div class="foot"><button class="btn primary" onclick="submitTerms()">Agree and continue</button></div>
+    </section>
+
+    <section class="screen" data-screen="signup">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('terms')">‹</div><div class="t">CREATE ACCOUNT</div><div style="width:32px"></div></div>
+        <div class="tabs" data-tabs="signup"></div>
+        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:56px;height:56px"/>
+        <p class="center muted">First name and last name are separate. Provider / Trade is not on this page. Switch later in the menu.</p>
+        <div class="row2">
+          <div><label>First name</label><input id="first" placeholder="Raquel"/></div>
+          <div><label>Last name</label><input id="last" placeholder="Rodriguez"/></div>
+        </div>
+        <label>Email</label>
+        <input id="email" type="email" placeholder="you@email.com"/>
+        <label>Phone number <span class="req">· verify next</span></label>
+        <input id="phone" type="tel" placeholder="+1 (555) 000-0000" inputmode="tel"/>
+        <label>Password</label>
+        <input id="password" type="password" placeholder="Create a password"/>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="nextSignup()">Continue to provider details</button></div>
+    </section>
+
+    <section class="screen" data-screen="details">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('signup')">‹</div><div class="t">PROVIDER DETAILS</div><div style="width:32px"></div></div>
+        <div class="tabs" data-tabs="details"></div>
+        <p class="muted">Admin page. Members see this when your offer is active.</p>
+        <label>Social media URL <span class="req">required</span></label>
+        <input id="social" placeholder="https://instagram.com/you" autocapitalize="none"/>
+        <label>Recommended business URL <span class="muted">optional</span></label>
+        <input id="business" placeholder="https://yourstudio.com" autocapitalize="none"/>
+        <label>Additional professional URL <span class="muted">optional</span></label>
+        <input id="proUrl" placeholder="https://linkedin.com/in/you" autocapitalize="none"/>
+        <label>Bio photo</label>
+        <div class="photo bio" id="bioPhoto" onclick="togglePhoto('bio')">Tap to upload bio photo</div>
+        <label>Profile photos <span class="muted">up to 3</span></label>
+        <div class="photos">
+          <div class="photo" id="photo1" onclick="togglePhoto('1')">Photo 1</div>
+          <div class="photo" id="photo2" onclick="togglePhoto('2')">Photo 2</div>
+          <div class="photo" id="photo3" onclick="togglePhoto('3')">Photo 3</div>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="nextDetails()">Next · Zip and About Me</button></div>
+    </section>
+
+    <section class="screen" data-screen="about">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('details')">‹</div><div class="t">PROVIDER DETAILS</div><div style="width:32px"></div></div>
+        <div class="tabs" data-tabs="details"></div>
+        <div class="kicker" style="text-align:left">Next page</div>
+        <h2>Zip and About Me</h2>
+        <label>Zip code <span class="req">required</span></label>
+        <input id="zip" inputmode="numeric" placeholder="33101" value="33101"/>
+        <p class="muted">Used so members can find you in an area. City and zip only — not your street.</p>
+        <label>About Me</label>
+        <textarea id="aboutMe" rows="5" placeholder="Share your audience or what you hope to grow.">I help busy women stay strong. I want to grow a local trade circle in Miami.</textarea>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="nextAbout()">Next · Certificate and sector</button></div>
+    </section>
+
+    <section class="screen" data-screen="cert">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('about')">‹</div><div class="t">PROVIDER DETAILS</div><div style="width:32px"></div></div>
+        <div class="tabs" data-tabs="details"></div>
+        <div class="kicker" style="text-align:left">Next page</div>
+        <h2>Certificate and sector</h2>
+        <p class="muted">Certificate is optional now. Required later before a listing goes live.</p>
+        <button class="upload" id="certBtn" type="button" onclick="pickCert()">Certificate file · optional · tap to attach</button>
+        <label>Professional sector <span class="req">one or more</span></label>
+        <p class="muted">Arrow dropdown. Choose Beauty, Fitness, Wellness, and / or Business Affiliates.</p>
+        <div class="dd" id="sectorDd">
+          <button type="button" class="dd-btn" onclick="toggleDd()">
+            <span id="sectorLabel">Select sector</span>
+            <span>▾</span>
+          </button>
+          <div class="dd-list" id="sectorList"></div>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="nextCert()">Continue to verify phone</button></div>
     </section>
 
     <section class="screen" data-screen="otp">
       <div class="body">
-        <div class="topbar"><div class="back" onclick="go('terms')">‹</div><div class="t">VERIFY</div><div style="width:32px"></div></div>
+        <div class="topbar"><div class="back" onclick="go('cert')">‹</div><div class="t">VERIFY PHONE</div><div style="width:32px"></div></div>
+        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:64px;height:64px"/>
         <h2>Enter the code</h2>
-        <p>For this tap-through, use <strong style="color:var(--lime)">1234</strong>.</p>
+        <p>We sent a code to your phone. For this tap-through, use <strong style="color:var(--lime)">1234</strong>.</p>
         <div class="otp">
           <input maxlength="1" inputmode="numeric" oninput="otpJump(this,0)"/>
           <input maxlength="1" inputmode="numeric" oninput="otpJump(this,1)"/>
           <input maxlength="1" inputmode="numeric" oninput="otpJump(this,2)"/>
           <input maxlength="1" inputmode="numeric" oninput="otpJump(this,3)"/>
         </div>
+        <p class="muted">Next screen is set up offer and bio — not Home.</p>
       </div>
-      <div class="foot"><button class="btn primary" onclick="go('home')">Verify</button></div>
-    </section>
-
-    <section class="screen" data-screen="home">
-      <div class="body">
-        <div class="home-head">
-          <div style="width:36px"></div>
-          <img src="brtyr-logo-clear.png" alt="brtyr"/>
-          <div style="width:36px"></div>
-        </div>
-        <div class="kicker" style="text-align:left">Home</div>
-        <h2>Browse sectors</h2>
-        <p>Tap a photo to open that sector.</p>
-        <button class="featured" type="button" onclick="alert('Featured providers: members who pay Elite or Premium get higher placement here.')">Featured providers →</button>
-        <div id="homeCats"></div>
-      </div>
-      <div class="foot"><button class="btn primary" onclick="go('offer')">Set up a provider offer</button></div>
-    </section>
-
-    <section class="screen" data-screen="subs">
-      <div class="body">
-        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t" id="subTitle">SECTOR</div><div style="width:32px"></div></div>
-        <p class="muted">Tap a service to see providers in the live app.</p>
-        <div id="subList"></div>
-      </div>
-      <div class="foot"><button class="btn primary" onclick="go('offer')">Continue to create offer</button></div>
+      <div class="foot"><button class="btn primary" onclick="verifyPhone()">Verify</button></div>
     </section>
 
     <section class="screen" data-screen="offer">
       <div class="body">
-        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">SET UP A PROVIDER OFFER</div><div style="width:32px"></div></div>
-        <div class="kicker" style="text-align:left">Service management</div>
-        <p>Pick a duration. CP fills in from the platform schedule.</p>
-        <p class="muted" style="margin:8px 0 12px">Pricing currency: CP</p>
+        <div class="topbar"><div class="back" onclick="go('otp')">‹</div><div class="t">SET UP OFFER AND BIO</div><div style="width:32px"></div></div>
+        <div class="kicker" style="text-align:left">After phone verify</div>
+        <p>Your bio is already saved. Name the service, pick a duration, and CP fills in from the platform schedule.</p>
+        <p class="muted" style="margin:8px 0 12px">Pricing currency: CP · you do not type a custom price</p>
         <label>Offer or service name</label>
         <input id="offerName" value="Hot stone massage" oninput="syncPreview()"/>
         <label>Service category</label>
@@ -434,7 +572,7 @@ We use the details you provide to show your profile, match by city / zip, and ke
           <label style="margin:0">Active status · visible to members</label>
           <div class="switch on" id="activeSw" onclick="toggleActive()"><i></i></div>
         </div>
-        <label>Short description</label>
+        <label>Short description / bio for this offer</label>
         <textarea id="notesField" rows="3" oninput="syncPreview()">A restorative massage using smooth, heated stones to ease deep muscle tension.</textarea>
         <div class="preview">
           <div class="pk">Live preview · Offer summary</div>
@@ -447,27 +585,107 @@ We use the details you provide to show your profile, match by city / zip, and ke
           <div class="footn">CP pricing and provider availability are displayed to members when the offer is active.</div>
         </div>
       </div>
-      <div class="foot"><button class="btn primary" onclick="go('done')">Save offer</button></div>
+      <div class="foot"><button class="btn primary" onclick="go('home')">Save offer and go Home</button></div>
+    </section>
+
+    <section class="screen" data-screen="home">
+      <div class="body">
+        <div class="home-head">
+          <button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button>
+          <img src="brtyr-logo-clear.png" alt="brtyr"/>
+          <div style="width:36px"></div>
+        </div>
+        <p class="muted" id="homeRole">Viewing as Provider · switch in the menu</p>
+        <p class="muted" id="homeZip">Showing providers near zip 33101</p>
+        <h2>Browse sectors</h2>
+        <button class="featured" type="button" onclick="go('find')">Find providers by zip →</button>
+        <div id="homeCats"></div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('find')">Find providers by zip</button></div>
+    </section>
+
+    <section class="screen" data-screen="subs">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t" id="subTitle">SECTOR</div><div style="width:32px"></div></div>
+        <p class="muted">Tap a service, then filter providers by zip.</p>
+        <div id="subList"></div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('find')">View providers by zip</button></div>
+    </section>
+
+    <section class="screen" data-screen="find">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">FIND PROVIDERS</div><div style="width:32px"></div></div>
+        <h2>View by zip</h2>
+        <p>Defaults to the zip from signup. Change it to look in another area. City and zip only — not the street.</p>
+        <div class="zipbar">
+          <input id="findZip" inputmode="numeric" placeholder="Zip code" oninput="renderFind()"/>
+          <button type="button" onclick="renderFind()">Filter</button>
+        </div>
+        <p class="muted" id="findHint"></p>
+        <div id="findList"></div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('wallet')">Wallet · CP and TC explained</button></div>
+    </section>
+
+    <section class="screen" data-screen="wallet">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('find')">‹</div><div class="t">WALLET</div><div style="width:32px"></div></div>
+        <h2>CP explained</h2>
+        <div class="wcard">
+          <p>Community Points are earned after a service is completed. Duration selects the CP. Same table for every member.</p>
+          <div class="wrow"><span>Up to 30 min</span><b>100 CP</b></div>
+          <div class="wrow"><span>Over 30 min – 1 hr</span><b>150 CP</b></div>
+          <div class="wrow"><span>Over 1 – 1.5 hr</span><b>200 CP</b></div>
+          <div class="wrow"><span>Over 5 – 6 hr</span><b>650 CP</b></div>
+          <p class="muted" style="margin-top:8px">Pending during the session. Earned after both sides confirm. Providers do not type a custom price.</p>
+        </div>
+        <h2>TC explained</h2>
+        <div class="wcard">
+          <p>Top-up Credits are purchased if you need more booking power. They never expire. Bookings spend CP first, then TC.</p>
+          <div class="wrow"><span>25 TC</span><b>$12</b></div>
+          <div class="wrow"><span>50 TC</span><b>$22</b></div>
+          <div class="wrow"><span>100 TC</span><b>$42</b></div>
+          <div class="wrow"><span>250 TC</span><b>$100</b></div>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('done')">Finish this path</button></div>
     </section>
 
     <section class="screen" data-screen="done">
       <div class="body">
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr"/>
         <div class="kicker">That’s the path</div>
-        <h2 class="center">Does this order match what you want?</h2>
+        <h2 class="center">Does this match NEW BUSINESS?</h2>
         <div class="done-box">
           <p>You just walked:</p>
           <ol>
-            <li>CP brief</li>
-            <li>Sign up (name, email, password)</li>
-            <li>Terms and Privacy on the next page</li>
-            <li>Home, tap a sector, then Create offer with locked CP</li>
+            <li>Splash + login (logo, keyboard-safe button)</li>
+            <li>Create account tabs: Terms → Sign up (first / last) → Provider details</li>
+            <li>Photos, two extra URLs, zip, About Me, optional cert, sector dropdown</li>
+            <li>Verify phone → set up offer and bio (duration fills CP)</li>
+            <li>Menu: View as Provider / View as Trade</li>
+            <li>Find by zip · Wallet CP / TC explained</li>
           </ol>
         </div>
         <p class="muted" style="margin-top:16px">Reply to Gaurav: <strong style="color:var(--text)">yes</strong> if this is right, or tell him which screen to move.</p>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('start')">Start again</button></div>
     </section>
+
+          <div class="drawer" id="drawer">
+            <div class="dim" onclick="closeMenu()"></div>
+            <div class="panel">
+              <div class="who" id="menuName">Raquel Rodriguez</div>
+              <div class="role" id="menuRole">Provider · Elite</div>
+              <button class="view-as" id="viewAsBtn" type="button" onclick="switchView()"></button>
+              <button class="ditem" type="button" onclick="closeMenu()">Home</button>
+              <button class="ditem" type="button" onclick="closeMenu();go('find')">Find providers</button>
+              <button class="ditem" type="button" onclick="closeMenu();go('wallet')">Wallet</button>
+              <button class="ditem" type="button" onclick="closeMenu();go('offer')">My Offers</button>
+              <button class="ditem" type="button" onclick="alert('Demo only. The live app is not changed.')">Log out</button>
+            </div>
+          </div>
           <div class="home-ind"></div>
         </div>
       </div>
@@ -475,18 +693,23 @@ We use the details you provide to show your profile, match by city / zip, and ke
   </div>
 </div>
 <script>
-const ORDER=['start','welcome','brief','signup','terms','otp','home','offer','done'];
+const ORDER=['start','welcome','terms','signup','details','about','cert','otp','offer','home','find','wallet','done'];
 const NOTES={
-  start:{tag:'1 · Map', title:'Phase one map', about:'This is not an app screen. It shows the order we will walk: CP brief, then sign up, then Terms on the next page.', does:'Lets you confirm the path before we change the iPhone build.'},
-  welcome:{tag:'2 · Welcome', title:'Welcome / splash', about:'First branded screen after the intro. Same logo and salon photo as the phone app.', does:'New members tap Sign up. Returning members tap Log in (skipped in this short path).'},
-  brief:{tag:'3 · CP brief', title:'How CP works', about:'Short explanation of Community Points and Top-up Credits, from your last note, before the account form.', does:'Teaches the wallet in one page so signup is not a surprise.'},
-  signup:{tag:'4 · Sign up', title:'Create account', about:'Collects first name, last name, email, and password. No Terms on this page.', does:'Creates the account, then moves to Terms on the next page.'},
-  terms:{tag:'5 · Terms', title:'Terms and Privacy', about:'This is the next page after sign up, as you asked. Agree, then submit.', does:'Locks in Terms of Use and Privacy before the member enters the app.'},
-  otp:{tag:'6 · Verify', title:'One-time code', about:'Confirms the email or phone. For this tap-through the code is 1234.', does:'Stops fake accounts. After verify, the member lands on Home.'},
-  home:{tag:'7 · Home', title:'Browse sectors', about:'Same four photo cards as the phone app: Beauty, Fitness, Wellness, Business Affiliates. Tap a card.', does:'Opens that sector so the member can pick a service and find a provider.'},
-  subs:{tag:'7b · Sector', title:'Services in this sector', about:'After a sector tap, this list shows the services inside it. Same photos as the phone app.', does:'A tap here opens the provider list in the live app. In this tap-through, continue to Create offer.'},
-  offer:{tag:'8 · Provider', title:'Set up a provider offer', about:'The provider names the service, picks duration, and sees CP fill in from the platform table. Live preview sits on the same page.', does:'Saves the offer. Members see CP and availability only when Active is on.'},
-  done:{tag:'9 · Confirm', title:'Is this the order?', about:'End of the tap-through. Nothing is written to the iPhone app yet.', does:'Reply yes if this path is right, or tell Gaurav which screen to move.'}
+  start:{tag:'1 · Map', title:'Provider details first', about:'This is not an app screen. It shows the NEW BUSINESS order: Terms, then signup, then provider admin. No Provider / Trade tab on create account.', does:'Lets you confirm the path before we change the iPhone build.'},
+  welcome:{tag:'2 · Splash', title:'Splash / Welcome', about:'First branded screen. Logo on the salon photo, same as the phone app.', does:'New members tap Sign up. Returning members tap Log in.'},
+  login:{tag:'3 · Login', title:'Log in', about:'Logo on the page. Phone and password. The lime button stays at the bottom so the keyboard cannot cover Log in.', does:'Returning members enter the app. Create account is one tap away.'},
+  terms:{tag:'4 · Terms tab', title:'Agree to Terms and Privacy', about:'First create-account tab, as you asked. Agree here before signing up.', does:'Locks in Terms of Use and Privacy Statement.'},
+  signup:{tag:'5 · Sign up tab', title:'Create account', about:'First name and last name are split. Email, phone, password. No Provider / Trade toggle.', does:'Creates the account, then opens provider details.'},
+  details:{tag:'6 · Details', title:'Provider details · photos and URLs', about:'Social URL is required. Business URL and a second professional URL are optional. Bio photo plus up to 3 profile photos.', does:'Builds the public provider profile (admin page).'},
+  about:{tag:'7 · Next', title:'Zip and About Me', about:'Next page after photos. Zip is required so members can find you in an area. About Me is where you share your audience or what you hope to grow.', does:'Saves location at city / zip level only.'},
+  cert:{tag:'8 · Next', title:'Certificate and sector', about:'Certificate upload is optional on this page, required later before a listing goes live. Sector is one arrow dropdown. Choose one or more.', does:'Beauty, Fitness, Wellness, Business Affiliates.'},
+  otp:{tag:'9 · Verify', title:'Verify phone', about:'Confirms the phone from signup. Demo code is 1234.', does:'After verify, the next page is set up offer and bio — not Home.'},
+  offer:{tag:'10 · Offer + bio', title:'Set up offer and bio', about:'The page after phone verify. Duration select auto-fills locked CP from the platform table.', does:'Saves the first offer. Members see it when Active is on.'},
+  home:{tag:'11 · Home', title:'Home and menu', about:'Menu is the same, with View as Provider and View as Trade. No role tab on signup.', does:'Calendar, Availability, and My Offers show in Provider view.'},
+  subs:{tag:'11b · Sector', title:'Services in this sector', about:'After a sector tap, this list shows the services inside it.', does:'Continue to the zip-filtered provider list.'},
+  find:{tag:'12 · Zip', title:'Find providers by zip', about:'Defaults to the zip from signup. Type another zip to look in a different area. Street address stays hidden.', does:'Answers your question: yes, browse and filter by zip.'},
+  wallet:{tag:'13 · Wallet', title:'CP and TC explained', about:'Wallet copy for the developer screens you asked for. CP from duration. TC from paid packs.', does:'Same numbers as the 8.2 schedule and top-up table.'},
+  done:{tag:'14 · Confirm', title:'Is this the order?', about:'End of the tap-through. Nothing is written to the iPhone app yet.', does:'Reply yes if this path is right, or tell Gaurav which screen to move.'}
 };
 const CATEGORIES=[
   {id:'cat-beauty', title:'BEAUTY', subtitle:'Hair, makeup, nails', image:'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'},
@@ -530,7 +753,23 @@ const BRACKETS=[
 ];
 const SECTORS=['Beauty','Fitness','Wellness','Business Affiliates'];
 const AVAILS=['Weekdays · 9:00 AM–5:00 PM','Weekends · 10:00 AM–4:00 PM','Flexible · By appointment','Evenings · 5:00 PM–9:00 PM'];
+const PEOPLE=[
+  {name:'Raquel Rodriguez', title:'Personal Trainer', zip:'33101', city:'Miami, FL', sector:'Fitness'},
+  {name:'Maya Chen', title:'Colorist', zip:'33101', city:'Miami, FL', sector:'Beauty'},
+  {name:'Jordan Lee', title:'Yoga Instructor', zip:'78701', city:'Austin, TX', sector:'Wellness'},
+  {name:'Sam Ortiz', title:'Strength Coach', zip:'60614', city:'Chicago, IL', sector:'Fitness'},
+];
+const PHOTO_SRC={
+  bio:'https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&q=80',
+  '1':'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80',
+  '2':'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&q=80',
+  '3':'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80',
+};
 let bracketId='1.5h', category='Wellness', availability='Flexible · By appointment', active=true;
+let role='provider';
+let sectors=[];
+let photos={bio:false,'1':false,'2':false,'3':false};
+let certName='';
 
 function fitDevice(){
   const device=document.getElementById('device');
@@ -551,30 +790,139 @@ function showNotes(id){
   document.getElementById('noteAbout').textContent=n.about;
   document.getElementById('noteDoes').textContent=n.does;
 }
+function renderTabs(){
+  document.querySelectorAll('.tabs').forEach(el=>{
+    const active=el.dataset.tabs;
+    const agreed=document.getElementById('agree')?.checked;
+    el.innerHTML=['terms','signup','details'].map((id,i)=>{
+      const label=['1. Terms','2. Sign up','3. Details'][i];
+      const on=active===id || (id==='details' && ['details','about','cert'].includes(active));
+      const done=(id==='terms' && agreed && active!=='terms') || (id==='signup' && ['details','about','cert'].includes(active));
+      return `<button type="button" class="tab ${on?'on':''} ${done?'done':''}" onclick="goTab('${id}')">${label}</button>`;
+    }).join('');
+  });
+}
+function goTab(id){
+  if(id==='signup' || id==='details'){
+    if(!document.getElementById('agree').checked){
+      alert('Please agree to Terms and Privacy first.');
+      return;
+    }
+  }
+  if(id==='details'){
+    const first=document.getElementById('first').value.trim();
+    const last=document.getElementById('last').value.trim();
+    const email=document.getElementById('email').value.trim();
+    const phone=document.getElementById('phone').value.trim();
+    const password=document.getElementById('password').value.trim();
+    if(!first||!last||!email||!phone||!password){
+      alert('Please finish Sign up first: first name, last name, email, phone, and password.');
+      return;
+    }
+  }
+  go(id==='details'?'details':id);
+}
 function go(id){
+  if(id==='signupStart') id='terms';
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.dataset.screen===id));
   const i=ORDER.indexOf(id);
   const p=i>=0?i:ORDER.indexOf('home');
   document.getElementById('progress').innerHTML=ORDER.map((_,n)=>`<i class="${n<=p?'on':''}"></i>`).join('');
   document.querySelector('.phone .screen.on .body')?.scrollTo(0,0);
   showNotes(id);
+  renderTabs();
+  if(id==='home') syncHome();
+  if(id==='find'){
+    const z=document.getElementById('zip').value.trim()||'33101';
+    document.getElementById('findZip').value=z;
+    renderFind();
+  }
+  if(id==='offer') renderOffer();
+  closeMenu();
+}
+function submitTerms(){
+  if(!document.getElementById('agree').checked){
+    alert('Please agree to the Terms and Privacy statement.');
+    return;
+  }
+  go('signup');
 }
 function nextSignup(){
   const first=document.getElementById('first').value.trim();
   const last=document.getElementById('last').value.trim();
   const email=document.getElementById('email').value.trim();
+  const phone=document.getElementById('phone').value.trim();
   const password=document.getElementById('password').value.trim();
-  if(!first||!last||!email||!password){alert('Please fill first name, last name, email, and password.');return;}
-  go('terms');
+  if(!first||!last||!email||!phone||!password){
+    alert('Please fill first name, last name, email, phone, and password.');
+    return;
+  }
+  go('details');
 }
-function submitTerms(){
-  if(!document.getElementById('agree').checked){alert('Please agree to Terms and Privacy to continue.');return;}
+function nextDetails(){
+  if(!document.getElementById('social').value.trim()){
+    alert('Social media URL is required.');
+    return;
+  }
+  go('about');
+}
+function nextAbout(){
+  if(!document.getElementById('zip').value.trim()){
+    alert('Please add a zip code.');
+    return;
+  }
+  if(!document.getElementById('aboutMe').value.trim()){
+    alert('Please add About Me.');
+    return;
+  }
+  go('cert');
+}
+function nextCert(){
+  if(!sectors.length){
+    alert('Choose at least one professional sector.');
+    return;
+  }
   go('otp');
+}
+function verifyPhone(){
+  const code=[...document.querySelectorAll('.otp input')].map(i=>i.value).join('');
+  if(code && code!=='1234'){
+    alert('For this tap-through, use 1234.');
+    return;
+  }
+  go('offer');
 }
 function otpJump(el,i){
   el.value=el.value.replace(/\D/g,'').slice(0,1);
   const boxes=[...document.querySelectorAll('.otp input')];
   if(el.value && boxes[i+1]) boxes[i+1].focus();
+}
+function togglePhoto(id){
+  photos[id]=!photos[id];
+  const el=document.getElementById(id==='bio'?'bioPhoto':'photo'+id);
+  el.classList.toggle('on', photos[id]);
+  el.style.backgroundImage=photos[id]?`url('${PHOTO_SRC[id]}')`:'';
+  el.textContent=photos[id]?'':(id==='bio'?'Tap to upload bio photo':'Photo '+id);
+}
+function pickCert(){
+  certName=certName?'':'Yoga Alliance RYT-200.pdf';
+  document.getElementById('certBtn').textContent=certName
+    ? 'Certificate: '+certName+' · tap to remove'
+    : 'Certificate file · optional · tap to attach';
+}
+function toggleDd(){
+  document.getElementById('sectorDd').classList.toggle('open');
+}
+function renderSectors(){
+  document.getElementById('sectorList').innerHTML=SECTORS.map(s=>`
+    <div class="dd-item ${sectors.includes(s)?'on':''}" onclick="toggleSector('${s}')">
+      ${s}<span>${sectors.includes(s)?'✓':''}</span>
+    </div>`).join('');
+  document.getElementById('sectorLabel').textContent=sectors.length?sectors.join(', '):'Select sector';
+}
+function toggleSector(s){
+  sectors=sectors.includes(s)?sectors.filter(x=>x!==s):sectors.concat(s);
+  renderSectors();
 }
 function renderHome(){
   document.getElementById('homeCats').innerHTML=CATEGORIES.map(c=>`
@@ -583,21 +931,47 @@ function renderHome(){
       <span class="copy"><span class="ttl">${c.title}</span><span class="sub">${c.subtitle}</span><span class="act">EXPLORE →</span></span>
     </button>`).join('');
 }
+function syncHome(){
+  const zip=document.getElementById('zip').value.trim()||'33101';
+  const first=document.getElementById('first').value.trim()||'Raquel';
+  const last=document.getElementById('last').value.trim()||'Rodriguez';
+  document.getElementById('homeRole').textContent='Viewing as '+(role==='provider'?'Provider':'Trade')+' · switch in the menu';
+  document.getElementById('homeZip').textContent='Showing providers near zip '+zip;
+  document.getElementById('menuName').textContent=first+' '+last;
+  document.getElementById('menuRole').textContent=(role==='provider'?'Provider':'Trade')+' · Elite';
+  document.getElementById('viewAsBtn').textContent=role==='provider'?'View as Trade':'View as Provider';
+}
+function openMenu(){document.getElementById('drawer').classList.add('on');syncHome();}
+function closeMenu(){document.getElementById('drawer').classList.remove('on');}
+function switchView(){
+  role=role==='provider'?'trader':'provider';
+  syncHome();
+}
 function openCat(id){
   const cat=CATEGORIES.find(c=>c.id===id);
   document.getElementById('subTitle').textContent=cat.title;
   document.getElementById('subList').innerHTML=(SUBS[id]||[]).map(s=>`
-    <button type="button" class="sub-card" style="background-image:url('${s.image}')" onclick="pickSub('${s.title.replace(/'/g,'')}','${cat.title}')">
+    <button type="button" class="sub-card" style="background-image:url('${s.image}')" onclick="go('find')">
       <span class="shade"></span>
       <span class="copy"><span class="ttl">${s.title}</span><span class="sub">${s.providers} providers nearby</span></span>
     </button>`).join('');
   go('subs');
 }
-function pickSub(name, sector){
-  category=sector==='BEAUTY'?'Beauty':sector==='FITNESS'?'Fitness':sector==='WELLNESS'?'Wellness':'Business Affiliates';
-  document.getElementById('offerName').value=name;
-  renderOffer();
-  go('offer');
+function renderFind(){
+  const zip=(document.getElementById('findZip').value.trim()||document.getElementById('zip').value.trim()||'33101');
+  const list=PEOPLE.filter(p=>!zip || p.zip.startsWith(zip) || zip.startsWith(p.zip));
+  document.getElementById('findHint').textContent=list.length
+    ? list.length+' provider'+(list.length===1?'':'s')+' in this zip. Street address stays hidden until a trade is accepted.'
+    : 'No providers in that zip yet. Try 33101, 78701, or 60614.';
+  document.getElementById('findList').innerHTML=list.map(p=>`
+    <div class="pcard">
+      <div class="av">${p.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div>
+      <div>
+        <b>${p.name}</b>
+        <div class="meta">${p.sector} · ${p.city} ${p.zip}</div>
+        <div class="meta">${p.title}</div>
+      </div>
+    </div>`).join('');
 }
 function chips(el, items, getLabel, isOn, onPick){
   el.innerHTML=items.map(item=>`<button type="button" class="chip ${isOn(item)?'on':''}">${getLabel(item)}</button>`).join('');
@@ -628,6 +1002,7 @@ function renderOffer(rebuild=true){
 }
 window.addEventListener('resize', fitDevice);
 renderHome();
+renderSectors();
 go('start');
 renderOffer();
 fitDevice();
