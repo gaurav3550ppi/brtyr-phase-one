@@ -287,20 +287,105 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
 .drawer .dim{position:absolute;inset:0;background:rgba(0,0,0,.55)}
 .drawer .panel{
   position:absolute;left:0;top:0;bottom:0;width:78%;
-  background:var(--bg2);padding:64px 18px 24px;
+  background:var(--bg);padding:0 0 20px;
   box-shadow:12px 0 40px rgba(0,0,0,.4);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
 }
-.drawer .who{font-size:18px;font-weight:800;margin-bottom:4px}
-.drawer .role{color:var(--faint);font-size:13px;margin-bottom:16px}
+.dhead{
+  padding:58px 20px 16px;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+}
+.davatar{
+  width:72px;height:72px;border-radius:36px;background:var(--lime);color:var(--on);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px;
+  margin-bottom:12px;
+}
+.drawer .who{font-size:20px;font-weight:800;margin-bottom:4px}
+.drawer .role{color:#aaa;font-size:14px}
+.drawer .role .plan{color:var(--lime);font-weight:600}
 .view-as{
-  width:100%;border:1px solid var(--lime);background:transparent;color:var(--lime);
-  border-radius:20px;padding:10px 12px;font-weight:700;font-size:13px;
-  cursor:pointer;font-family:inherit;margin-bottom:18px;
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--lime);background:transparent;color:var(--lime);
+  border-radius:20px;padding:8px 14px;font-weight:600;font-size:13px;
+  cursor:pointer;font-family:inherit;margin-top:14px;
 }
+.view-as svg{width:20px;height:20px;flex-shrink:0}
+.dnav{padding-top:12px}
 .ditem{
-  display:block;width:100%;text-align:left;border:0;background:transparent;
-  color:#fff;font-weight:700;font-size:15px;padding:12px 0;cursor:pointer;font-family:inherit;
+  display:flex;align-items:center;gap:4px;width:100%;text-align:left;border:0;
+  background:transparent;color:#fff;font-weight:600;font-size:15px;
+  padding:14px 20px;cursor:pointer;font-family:inherit;letter-spacing:.04em;
 }
+.ditem .di{width:40px;display:flex;align-items:flex-start}
+.ditem svg{width:22px;height:22px}
+.ditem.on{background:rgba(226,255,80,.08);color:var(--lime)}
+.ditem.dimmed{opacity:.38;pointer-events:none}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin:6px 0 12px}
+.cal-head .mo{font-size:14px;font-weight:800}
+.cal-head .nav{display:flex;gap:8px}
+.cal-head .nav span{
+  width:28px;height:28px;border-radius:8px;background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;
+  border:1px solid var(--border);
+}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:6px}
+.cal-dow{text-align:center;font-size:9px;color:var(--faint);font-weight:700;padding:2px 0;text-transform:uppercase}
+.cal-day{
+  aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:9px;font-size:12px;cursor:pointer;background:var(--bg2);color:var(--text);
+  border:1px solid transparent;position:relative;
+}
+.cal-day.muted{color:var(--faint);background:transparent;cursor:default}
+.cal-day.has-slots{border-color:var(--lime)}
+.cal-day.off{opacity:.45}
+.cal-day.selected{background:var(--lime);color:var(--on);font-weight:800}
+.cal-day .d-dot{width:4px;height:4px;border-radius:50%;background:var(--lime);margin-top:3px}
+.cal-day.selected .d-dot{background:var(--on)}
+.slot-chip{
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  padding:11px 13px;margin-bottom:8px;font-size:13px;
+}
+.slot-chip .rm{color:#f87171;cursor:pointer;font-size:18px;line-height:1}
+.cal-legend{display:flex;gap:14px;font-size:10px;color:var(--dim);margin:4px 2px 12px}
+.cal-legend span{display:flex;align-items:center;gap:5px}
+.cal-legend i{width:10px;height:10px;border-radius:3px;display:inline-block;background:var(--bg2)}
+.day-row{
+  display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--border);
+  border-radius:14px;padding:12px;margin-bottom:8px;cursor:pointer;
+}
+.day-row.editing{border-color:var(--lime)}
+.day-row .dn{font-weight:800;min-width:86px}
+.day-row .dh{flex:1;font-size:12px;color:var(--dim);line-height:1.35}
+.day-row .dh.off{color:#f87171;font-weight:700}
+.plan-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:10px}
+.plan-card.cur{border-color:var(--lime)}
+.plan-card h3{font-size:16px;margin-bottom:4px;display:flex;justify-content:space-between;align-items:center}
+.plan-card .pr{font-size:22px;font-weight:800;color:var(--lime);margin:4px 0 8px}
+.plan-card .feat{font-size:12px;color:var(--dim);line-height:1.55}
+.pill{
+  display:inline-block;background:rgba(226,255,80,.16);color:var(--lime);
+  font-size:10px;font-weight:800;padding:3px 8px;border-radius:99px;
+}
+.srow{
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--bg2);border:1px solid var(--border);border-radius:14px;
+  padding:14px;margin-bottom:8px;font-size:14px;font-weight:700;cursor:pointer;
+}
+.srow span{color:var(--faint);font-weight:600}
+.tcard{background:var(--card);border-radius:16px;padding:12px;margin-bottom:10px}
+.tcard .st{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.tcard .st.pending{color:#fbbf24}
+.tcard .st.ok{color:#4ade80}
+.tcard .st.done{color:var(--faint)}
+.bio-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:18px;text-align:center}
+.bio-av{
+  width:72px;height:72px;border-radius:36px;background:var(--lime);color:var(--on);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;margin:0 auto 10px;
+}
+.off-card{background:var(--card);border-radius:16px;padding:14px;margin-bottom:10px;cursor:pointer}
+.off-card .meta{font-size:12px;color:var(--faint);margin-top:4px}
 .pcard{
   display:flex;gap:12px;align-items:center;background:var(--card);
   border-radius:18px;padding:12px;margin-bottom:10px;
@@ -359,7 +444,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
 <body>
 <div class="shell">
   <div class="banner">
-    <strong>For Raquel:</strong> this tap-through now follows your NEW BUSINESS note. Provider details come first. No Provider / Trade tab on create account. The live app is unchanged until you say this order is right.
+    <strong>For Raquel:</strong> the menu now matches your 4 Sep screenshot — initials, name, Provider • Elite, View as Provider / View as Trade, and the locked row list. Calendar and Availability are aligned to original V-2. Signup stays Terms → Sign up → Provider details (no role tab). The live app is unchanged until you say this is right.
   </div>
   <div class="stage">
     <aside class="notes" id="notes">
@@ -387,13 +472,13 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr"/>
         <div class="kicker">NEW BUSINESS</div>
         <h1 class="center">Provider details first</h1>
-        <p class="center">Same path as your last note. No Provider / Trade tab on create account. Switch later in the menu.</p>
+        <p class="center">Same NEW BUSINESS path. No Provider / Trade tab on create account. The home menu is locked to your approved list. Calendar and Availability match original V-2.</p>
         <ol class="steps">
           <li><b>1</b> Splash and login (logo stays above the keyboard)</li>
           <li><b>2</b> Create account tabs: Terms → Sign up → Provider details</li>
           <li><b>3</b> Verify phone, then set up offer and bio</li>
-          <li><b>4</b> Home menu: View as Provider / View as Trade</li>
-          <li><b>5</b> Find providers by zip · Wallet CP / TC explained</li>
+          <li><b>4</b> Locked menu: HOME · PROFILE · TRADES · WALLET · CALENDAR · AVAILABILITY · MY OFFERS · SUBSCRIPTION · SETTINGS · LOGOUT</li>
+          <li><b>5</b> View as Provider / View as Trade · Calendar + Availability from V-2 · Find by zip · Wallet</li>
         </ol>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('welcome')">Start</button></div>
@@ -425,7 +510,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
         <input id="loginPhone" type="tel" placeholder="+1 (555) 000-0000" inputmode="tel"/>
         <label>Password</label>
         <input id="loginPass" type="password" placeholder="••••••••"/>
-        <p class="muted" style="margin-top:10px">Demo: any phone works. OTP is 1234.</p>
+        <p class="muted" style="margin-top:10px">Demo: any phone works. OTP is 1234. Log in opens Home so you can check the locked menu.</p>
       </div>
       <div class="foot">
         <button class="btn primary" onclick="go('home')">Log in</button>
@@ -552,7 +637,7 @@ We use the details you provide to show your profile, match by city / zip, and ke
 
     <section class="screen" data-screen="offer">
       <div class="body">
-        <div class="topbar"><div class="back" onclick="go('otp')">‹</div><div class="t">SET UP OFFER AND BIO</div><div style="width:32px"></div></div>
+        <div class="topbar"><div class="back" onclick="go(offerReturn)">‹</div><div class="t">SET UP OFFER AND BIO</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
         <div class="kicker" style="text-align:left">After phone verify</div>
         <p>Your bio is already saved. Name the service, pick a duration, and CP fills in from the platform schedule.</p>
         <p class="muted" style="margin:8px 0 12px">Pricing currency: CP · you do not type a custom price</p>
@@ -606,7 +691,7 @@ We use the details you provide to show your profile, match by city / zip, and ke
 
     <section class="screen" data-screen="subs">
       <div class="body">
-        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t" id="subTitle">SECTOR</div><div style="width:32px"></div></div>
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t" id="subTitle">SECTOR</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
         <p class="muted">Tap a service, then filter providers by zip.</p>
         <div id="subList"></div>
       </div>
@@ -615,7 +700,7 @@ We use the details you provide to show your profile, match by city / zip, and ke
 
     <section class="screen" data-screen="find">
       <div class="body">
-        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">FIND PROVIDERS</div><div style="width:32px"></div></div>
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">FIND PROVIDERS</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
         <h2>View by zip</h2>
         <p>Defaults to the zip from signup. Change it to look in another area. City and zip only — not the street.</p>
         <div class="zipbar">
@@ -630,7 +715,7 @@ We use the details you provide to show your profile, match by city / zip, and ke
 
     <section class="screen" data-screen="wallet">
       <div class="body">
-        <div class="topbar"><div class="back" onclick="go('find')">‹</div><div class="t">WALLET</div><div style="width:32px"></div></div>
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">WALLET</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
         <h2>CP explained</h2>
         <div class="wcard">
           <p>Community Points are earned after a service is completed. Duration selects the CP. Same table for every member.</p>
@@ -652,6 +737,121 @@ We use the details you provide to show your profile, match by city / zip, and ke
       <div class="foot"><button class="btn primary" onclick="go('done')">Finish this path</button></div>
     </section>
 
+    <section class="screen" data-screen="profile">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">PROFILE</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="bio-card">
+          <div class="bio-av" id="profAv">RR</div>
+          <h2 id="profName" style="margin-bottom:4px">Raquel Rodriguez</h2>
+          <p class="muted" id="profRole">Provider • Elite</p>
+          <p id="profHeadline" style="margin-top:8px;color:var(--text);font-weight:700">Personal Trainer</p>
+          <p id="profBio" style="margin-top:10px">I help busy women stay strong. I want to grow a local trade circle in Miami.</p>
+          <p class="muted" id="profMeta" style="margin-top:10px">Miami · 33101</p>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('home')">Back to Home</button></div>
+    </section>
+
+    <section class="screen" data-screen="trades">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">TRADES</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <p class="muted">A short list so you can open Trades from the menu. Full chat and confirm flow stays in the live app later.</p>
+        <div class="tcard">
+          <div class="st pending">Pending</div>
+          <b>Maya Chen · Hair Color &amp; Cut</b>
+          <div class="meta">Fri Sep 12 · 11:00 AM · 150 CP</div>
+        </div>
+        <div class="tcard">
+          <div class="st ok">Confirmed</div>
+          <b>Jordan Lee · Yoga &amp; Mobility</b>
+          <div class="meta">Tue Sep 16 · 2:00 PM · 200 CP</div>
+        </div>
+        <div class="tcard">
+          <div class="st done">Completed</div>
+          <b>Sam Ortiz · Personal Training</b>
+          <div class="meta">Aug 28 · reviewed ⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('home')">Back to Home</button></div>
+    </section>
+
+    <section class="screen" data-screen="calendar">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">CALENDAR</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="hint-box">Same V-2 provider calendar. Tap a day to see the hours traders can book.</div>
+        <div class="cal-head"><div class="mo" id="availMo">September 2026</div><div class="nav"><span onclick="availMonthShift(-1)">‹</span><span onclick="availMonthShift(1)">›</span></div></div>
+        <div class="cal-grid" style="margin-bottom:3px"><div class="cal-dow">M</div><div class="cal-dow">T</div><div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div><div class="cal-dow">S</div></div>
+        <div class="cal-grid" id="availDays"></div>
+        <div class="cal-legend">
+          <span><i style="border:1px solid var(--lime)"></i> Available</span>
+          <span><i style="opacity:.45"></i> Off</span>
+          <span><i style="background:var(--lime)"></i> Selected</span>
+        </div>
+        <h2 id="availDayTitle" style="font-size:16px;margin:10px 0 8px">Monday, Sep 1</h2>
+        <div id="availSlots"></div>
+        <button class="btn ghost" type="button" onclick="addAvailSlot()">+ Add time slot</button>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('availability')">Open Availability</button></div>
+    </section>
+
+    <section class="screen" data-screen="availability">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">AVAILABILITY</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="hint-box">V-2 Availability Manager. Turn days on or off, then edit hours. The month calendar repeats these unless you change a specific day.</div>
+        <div id="weekDays"></div>
+        <h2 style="font-size:16px;margin:14px 0 8px" id="weekSlotTitle">Monday hours</h2>
+        <div id="weekSlots"></div>
+        <button class="btn ghost" type="button" onclick="addWeekSlot()">+ Add time slot</button>
+        <p class="muted" style="margin-top:14px">One-off blocks live on the month calendar.</p>
+        <button class="btn ghost" type="button" onclick="go('calendar')">Block specific dates</button>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('calendar')">View month calendar</button></div>
+    </section>
+
+    <section class="screen" data-screen="offers">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">MY OFFERS</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div id="offerList"></div>
+        <button class="btn ghost" type="button" onclick="openOfferEdit()">+ Create new offer</button>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('home')">Back to Home</button></div>
+    </section>
+
+    <section class="screen" data-screen="subscription">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">SUBSCRIPTION</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <p class="center muted" style="margin-bottom:12px">Free / Elite / Premium. Elite is the current demo plan.</p>
+        <div class="plan-card">
+          <h3>Free</h3>
+          <div class="pr">$0</div>
+          <div class="feat">✓ 3 trades/month • ✓ 1 offer listing<br>✓ Standard placement • ✓ Signup bonus: 25 CP</div>
+        </div>
+        <div class="plan-card cur">
+          <h3>Elite <span class="pill">Current</span></h3>
+          <div class="pr">$12.99<span style="font-size:12px;font-weight:600;color:var(--dim)">/mo</span></div>
+          <div class="feat">✓ 15 trades/month • ✓ Unlimited offers<br>✓ Priority placement • ✓ Elite Badge<br>✓ Signup bonus: 50 CP • ✓ 5% TC bonus</div>
+        </div>
+        <div class="plan-card">
+          <h3>Premium</h3>
+          <div class="pr">$159<span style="font-size:12px;font-weight:600;color:var(--dim)">/yr</span></div>
+          <div class="feat">✓ Unlimited trades • ✓ Premium placement<br>✓ Premium Badge • ✓ Featured in Top Providers<br>✓ Signup bonus: 75 CP • ✓ 10% TC bonus</div>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('home')">Keep Elite</button></div>
+    </section>
+
+    <section class="screen" data-screen="settings">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">SETTINGS</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="srow" onclick="go('subscription')">Subscription plan <span>Elite ›</span></div>
+        <div class="srow" onclick="alert('Demo only. Password reset is not wired in this tap-through.')">Reset password <span>›</span></div>
+        <div class="srow" onclick="alert('Demo only. Notifications stay in the live app.')">Notifications <span>On ›</span></div>
+        <div class="srow" onclick="alert('Demo only. Same Terms of Use you agreed to on create account.')">Terms of Use <span>›</span></div>
+        <div class="srow" onclick="alert('Demo only. Same Privacy Statement you agreed to on create account.')">Privacy Statement <span>›</span></div>
+      </div>
+      <div class="foot"><button class="btn ghost" onclick="logOut()">Log out</button></div>
+    </section>
+
     <section class="screen" data-screen="done">
       <div class="body">
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr"/>
@@ -664,7 +864,8 @@ We use the details you provide to show your profile, match by city / zip, and ke
             <li>Create account tabs: Terms → Sign up (first / last) → Provider details</li>
             <li>Photos, two extra URLs, zip, About Me, optional cert, sector dropdown</li>
             <li>Verify phone → set up offer and bio (duration fills CP)</li>
-            <li>Menu: View as Provider / View as Trade</li>
+            <li>Locked menu: HOME, PROFILE, TRADES, WALLET, CALENDAR, AVAILABILITY, MY OFFERS, SUBSCRIPTION, SETTINGS, LOGOUT</li>
+            <li>View as Provider / View as Trade · Calendar + Availability from V-2</li>
             <li>Find by zip · Wallet CP / TC explained</li>
           </ol>
         </div>
@@ -676,14 +877,27 @@ We use the details you provide to show your profile, match by city / zip, and ke
           <div class="drawer" id="drawer">
             <div class="dim" onclick="closeMenu()"></div>
             <div class="panel">
-              <div class="who" id="menuName">Raquel Rodriguez</div>
-              <div class="role" id="menuRole">Provider · Elite</div>
-              <button class="view-as" id="viewAsBtn" type="button" onclick="switchView()"></button>
-              <button class="ditem" type="button" onclick="closeMenu()">Home</button>
-              <button class="ditem" type="button" onclick="closeMenu();go('find')">Find providers</button>
-              <button class="ditem" type="button" onclick="closeMenu();go('wallet')">Wallet</button>
-              <button class="ditem" type="button" onclick="closeMenu();go('offer')">My Offers</button>
-              <button class="ditem" type="button" onclick="alert('Demo only. The live app is not changed.')">Log out</button>
+              <div class="dhead">
+                <div class="davatar" id="menuAv">RR</div>
+                <div class="who" id="menuName">Raquel Rodriguez</div>
+                <div class="role" id="menuRole">Provider • <span class="plan">Elite</span></div>
+                <button class="view-as" id="viewAsBtn" type="button" onclick="switchView()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 0112.8-5.3L19 8.5"/><path d="M19.5 4.5v4h-4"/><path d="M19.5 12a7.5 7.5 0 01-12.8 5.3L5 15.5"/><path d="M4.5 19.5v-4h4"/></svg>
+                  <span id="viewAsLabel">View as Trade</span>
+                </button>
+              </div>
+              <div class="dnav">
+                <button class="ditem" data-nav="home" type="button" onclick="menuGo('home')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-6h4v6"/></svg></span>HOME</button>
+                <button class="ditem" data-nav="profile" type="button" onclick="menuGo('profile')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 19.5c1.5-3.2 4-4.8 7-4.8s5.5 1.6 7 4.8" stroke-linecap="round"/></svg></span>PROFILE</button>
+                <button class="ditem" data-nav="trades" type="button" onclick="menuGo('trades')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h12M16 5l3 3-3 3"/><path d="M17 16H5M8 13l-3 3 3 3"/></svg></span>TRADES</button>
+                <button class="ditem" data-nav="wallet" type="button" onclick="menuGo('wallet')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18" stroke-linecap="round"/><circle cx="16.5" cy="14.5" r="1.25" fill="currentColor" stroke="none"/></svg></span>WALLET</button>
+                <button class="ditem prov" data-nav="calendar" type="button" onclick="menuGo('calendar')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17"/><path d="M8 3.5v3M16 3.5v3"/></svg></span>CALENDAR</button>
+                <button class="ditem prov" data-nav="availability" type="button" onclick="menuGo('availability')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17"/><path d="M8 3.5v3M16 3.5v3"/><path d="M8 14h3M13 17h3"/></svg></span>AVAILABILITY</button>
+                <button class="ditem prov" data-nav="offers" type="button" onclick="menuGo('offers')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h12M16 5l3 3-3 3"/><path d="M17 16H5M8 13l-3 3 3 3"/></svg></span>MY OFFERS</button>
+                <button class="ditem" data-nav="subscription" type="button" onclick="menuGo('subscription')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5L20 9.5l-8 11-8-11 8-6z"/><path d="M4 9.5h16M12 3.5v17"/></svg></span>SUBSCRIPTION</button>
+                <button class="ditem" data-nav="settings" type="button" onclick="menuGo('settings')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 3.5v2.2M12 18.3v2.2M4.9 6.5l1.6 1.6M17.5 16l1.6 1.6M3.5 12h2.2M18.3 12h2.2M4.9 17.5l1.6-1.6M17.5 8l1.6-1.6" stroke-linecap="round"/></svg></span>SETTINGS</button>
+                <button class="ditem" data-nav="logout" type="button" onclick="logOut()"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4.5H6.5A2.5 2.5 0 004 7v10a2.5 2.5 0 002.5 2.5H10"/><path d="M14 12h7M17.5 8.5L21 12l-3.5 3.5"/></svg></span>LOGOUT</button>
+              </div>
             </div>
           </div>
           <div class="home-ind"></div>
@@ -695,7 +909,7 @@ We use the details you provide to show your profile, match by city / zip, and ke
 <script>
 const ORDER=['start','welcome','terms','signup','details','about','cert','otp','offer','home','find','wallet','done'];
 const NOTES={
-  start:{tag:'1 · Map', title:'Provider details first', about:'This is not an app screen. It shows the NEW BUSINESS order: Terms, then signup, then provider admin. No Provider / Trade tab on create account.', does:'Lets you confirm the path before we change the iPhone build.'},
+  start:{tag:'1 · Map', title:'Provider details first', about:'This is not an app screen. It shows the NEW BUSINESS order plus the locked 4 Sep menu. No Provider / Trade tab on create account. Calendar and Availability match original V-2.', does:'Lets you confirm the path and menu before we change the iPhone build.'},
   welcome:{tag:'2 · Splash', title:'Splash / Welcome', about:'First branded screen. Logo on the salon photo, same as the phone app.', does:'New members tap Sign up. Returning members tap Log in.'},
   login:{tag:'3 · Login', title:'Log in', about:'Logo on the page. Phone and password. The lime button stays at the bottom so the keyboard cannot cover Log in.', does:'Returning members enter the app. Create account is one tap away.'},
   terms:{tag:'4 · Terms tab', title:'Agree to Terms and Privacy', about:'First create-account tab, as you asked. Agree here before signing up.', does:'Locks in Terms of Use and Privacy Statement.'},
@@ -705,11 +919,18 @@ const NOTES={
   cert:{tag:'8 · Next', title:'Certificate and sector', about:'Certificate upload is optional on this page, required later before a listing goes live. Sector is one arrow dropdown. Choose one or more.', does:'Beauty, Fitness, Wellness, Business Affiliates.'},
   otp:{tag:'9 · Verify', title:'Verify phone', about:'Confirms the phone from signup. Demo code is 1234.', does:'After verify, the next page is set up offer and bio — not Home.'},
   offer:{tag:'10 · Offer + bio', title:'Set up offer and bio', about:'The page after phone verify. Duration select auto-fills locked CP from the platform table.', does:'Saves the first offer. Members see it when Active is on.'},
-  home:{tag:'11 · Home', title:'Home and menu', about:'Menu is the same, with View as Provider and View as Trade. No role tab on signup.', does:'Calendar, Availability, and My Offers show in Provider view.'},
+  home:{tag:'11 · Home', title:'Home and locked menu', about:'Hamburger opens the approved drawer: initials, name, Provider • Elite, then View as Provider / View as Trade. Rows match your screenshot.', does:'Calendar, Availability, and My Offers show only in Provider view.'},
+  profile:{tag:'11c · Profile', title:'Profile', about:'Simple bio card from signup: name, role, About Me, city / zip.', does:'Same account whether you are viewing as Provider or Trade.'},
+  trades:{tag:'11d · Trades', title:'Trades', about:'A short pending / confirmed / completed list so the menu row has a place to land.', does:'Full accept, chat, and review stay for the live build.'},
+  calendar:{tag:'11e · Calendar', title:'Provider calendar', about:'V-2 month calendar. Days with slots get a lime border. Tap a day to see or add hours.', does:'Traders can only book inside these windows.'},
+  availability:{tag:'11f · Hours', title:'Availability Manager', about:'V-2 weekly hours. Turn a day on or off, then edit the slot list. Month view repeats these defaults.', does:'One-off date changes live on Calendar.'},
+  offers:{tag:'11g · Offers', title:'My Offers', about:'Provider-only list of the offer you just set up. Hidden in Trade view.', does:'Tap an offer to edit name, duration, and locked CP.'},
+  subscription:{tag:'11h · Plan', title:'Subscription', about:'Free, Elite, and Premium cards. Elite is the current demo plan shown in the menu.', does:'Membership changes visibility and top-up bonus later.'},
+  settings:{tag:'11i · Settings', title:'Settings', about:'A few rows: plan, password, notifications, legal.', does:'Logout returns to splash. Live app is not changed.'},
   subs:{tag:'11b · Sector', title:'Services in this sector', about:'After a sector tap, this list shows the services inside it.', does:'Continue to the zip-filtered provider list.'},
   find:{tag:'12 · Zip', title:'Find providers by zip', about:'Defaults to the zip from signup. Type another zip to look in a different area. Street address stays hidden.', does:'Answers your question: yes, browse and filter by zip.'},
   wallet:{tag:'13 · Wallet', title:'CP and TC explained', about:'Wallet copy for the developer screens you asked for. CP from duration. TC from paid packs.', does:'Same numbers as the 8.2 schedule and top-up table.'},
-  done:{tag:'14 · Confirm', title:'Is this the order?', about:'End of the tap-through. Nothing is written to the iPhone app yet.', does:'Reply yes if this path is right, or tell Gaurav which screen to move.'}
+  done:{tag:'14 · Confirm', title:'Is this the order?', about:'End of the tap-through. Menu is locked to your screenshot. Calendar and Availability match V-2. Nothing is written to the iPhone app yet.', does:'Reply yes if this path and menu are right, or tell Gaurav which screen to move.'}
 };
 const CATEGORIES=[
   {id:'cat-beauty', title:'BEAUTY', subtitle:'Hair, makeup, nails', image:'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'},
@@ -770,6 +991,28 @@ let role='provider';
 let sectors=[];
 let photos={bio:false,'1':false,'2':false,'3':false};
 let certName='';
+let offerReturn='otp';
+let currentScreen='start';
+const MENU_ALIAS={offer:'offers',subs:'home',find:'home',done:'home',welcome:'home',start:'home'};
+const WEEK_DAYS=[
+  {dow:1,name:'Monday'},
+  {dow:2,name:'Tuesday'},
+  {dow:3,name:'Wednesday'},
+  {dow:4,name:'Thursday'},
+  {dow:5,name:'Friday'},
+  {dow:6,name:'Saturday'},
+  {dow:0,name:'Sunday'},
+];
+let availMonthDate=new Date(2026,8,1);
+let availSelKey=null;
+let weekSel=1;
+const availSlotsByDow={1:['8:00 AM – 9:30 AM','2:00 PM – 5:00 PM'],2:['9:00 AM – 7:00 PM'],3:[],4:['9:00 AM – 5:00 PM'],5:['8:00 AM – 12:00 PM'],6:[],0:[]};
+const availOverrides={};
+const MO_NAMES=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DOW_NAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+function dayKey(y,m,d){return y+'-'+m+'-'+d;}
+function slotsFor(y,m,d){const k=dayKey(y,m,d);if(availOverrides[k])return availOverrides[k];return availSlotsByDow[new Date(y,m,d).getDay()].slice();}
+function hoursLabel(slots){return slots.length?slots.join(', '):'Off';}
 
 function fitDevice(){
   const device=document.getElementById('device');
@@ -824,6 +1067,10 @@ function goTab(id){
 }
 function go(id){
   if(id==='signupStart') id='terms';
+  if(role!=='provider' && ['calendar','availability','offers','offer'].includes(id)){
+    id='home';
+  }
+  currentScreen=id;
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.dataset.screen===id));
   const i=ORDER.indexOf(id);
   const p=i>=0?i:ORDER.indexOf('home');
@@ -831,13 +1078,17 @@ function go(id){
   document.querySelector('.phone .screen.on .body')?.scrollTo(0,0);
   showNotes(id);
   renderTabs();
-  if(id==='home') syncHome();
+  syncMenu();
   if(id==='find'){
     const z=document.getElementById('zip').value.trim()||'33101';
     document.getElementById('findZip').value=z;
     renderFind();
   }
   if(id==='offer') renderOffer();
+  if(id==='profile') renderProfile();
+  if(id==='offers') renderOffers();
+  if(id==='calendar') renderAvailCal();
+  if(id==='availability') renderAvailWeek();
   closeMenu();
 }
 function submitTerms(){
@@ -890,6 +1141,7 @@ function verifyPhone(){
     alert('For this tap-through, use 1234.');
     return;
   }
+  offerReturn='otp';
   go('offer');
 }
 function otpJump(el,i){
@@ -931,21 +1183,151 @@ function renderHome(){
       <span class="copy"><span class="ttl">${c.title}</span><span class="sub">${c.subtitle}</span><span class="act">EXPLORE →</span></span>
     </button>`).join('');
 }
-function syncHome(){
-  const zip=document.getElementById('zip').value.trim()||'33101';
+function displayName(){
   const first=document.getElementById('first').value.trim()||'Raquel';
   const last=document.getElementById('last').value.trim()||'Rodriguez';
-  document.getElementById('homeRole').textContent='Viewing as '+(role==='provider'?'Provider':'Trade')+' · switch in the menu';
-  document.getElementById('homeZip').textContent='Showing providers near zip '+zip;
-  document.getElementById('menuName').textContent=first+' '+last;
-  document.getElementById('menuRole').textContent=(role==='provider'?'Provider':'Trade')+' · Elite';
-  document.getElementById('viewAsBtn').textContent=role==='provider'?'View as Trade':'View as Provider';
+  return first+' '+last;
 }
-function openMenu(){document.getElementById('drawer').classList.add('on');syncHome();}
+function initialsOf(name){
+  return name.split(' ').map(p=>p[0]).join('').slice(0,2).toUpperCase();
+}
+function roleLabel(){return role==='provider'?'Provider':'Trade';}
+function syncMenu(){
+  const zip=document.getElementById('zip').value.trim()||'33101';
+  const name=displayName();
+  const initials=initialsOf(name);
+  document.getElementById('homeRole').textContent='Viewing as '+roleLabel()+' · switch in the menu';
+  document.getElementById('homeZip').textContent='Showing providers near zip '+zip;
+  document.getElementById('menuName').textContent=name;
+  document.getElementById('menuAv').textContent=initials;
+  document.getElementById('menuRole').innerHTML=roleLabel()+' • <span class="plan">Elite</span>';
+  document.getElementById('viewAsLabel').textContent=role==='provider'?'View as Trade':'View as Provider';
+  document.querySelectorAll('.ditem.prov').forEach(el=>{
+    el.style.display=role==='provider'?'flex':'none';
+  });
+  const active=MENU_ALIAS[currentScreen]||currentScreen;
+  document.querySelectorAll('.ditem[data-nav]').forEach(el=>{
+    el.classList.toggle('on', el.dataset.nav===active);
+  });
+}
+function openMenu(){document.getElementById('drawer').classList.add('on');syncMenu();}
 function closeMenu(){document.getElementById('drawer').classList.remove('on');}
+function menuGo(id){
+  closeMenu();
+  go(id);
+}
 function switchView(){
   role=role==='provider'?'trader':'provider';
-  syncHome();
+  syncMenu();
+  if(role!=='provider' && ['calendar','availability','offers','offer'].includes(currentScreen)){
+    go('home');
+    openMenu();
+  }
+}
+function logOut(){
+  closeMenu();
+  role='provider';
+  go('welcome');
+}
+function renderProfile(){
+  const name=displayName();
+  document.getElementById('profAv').textContent=initialsOf(name);
+  document.getElementById('profName').textContent=name;
+  document.getElementById('profRole').textContent=roleLabel()+' • Elite';
+  const sector=sectors.length?sectors.join(', '):category;
+  document.getElementById('profHeadline').textContent=sector;
+  document.getElementById('profBio').textContent=document.getElementById('aboutMe').value.trim()||'Add About Me on provider details.';
+  const zip=document.getElementById('zip').value.trim()||'33101';
+  document.getElementById('profMeta').textContent='City / zip · '+zip;
+}
+function renderOffers(){
+  const b=BRACKETS.find(x=>x.id===bracketId);
+  const name=document.getElementById('offerName').value||'Your offer name';
+  document.getElementById('offerList').innerHTML=`
+    <div class="off-card" onclick="openOfferEdit()">
+      <b>${name}</b>
+      <div class="meta">${category} · ${b.duration} · <b style="color:var(--lime)">${b.cp} CP</b> · ${active?'Active':'Hidden'}</div>
+    </div>
+    <div class="off-card" onclick="openOfferEdit()">
+      <b>HIIT 30-min</b>
+      <div class="meta">Fitness · 30 minutes · <b style="color:var(--lime)">100 CP</b> · Paused</div>
+    </div>`;
+}
+function openOfferEdit(){
+  offerReturn='offers';
+  go('offer');
+}
+function renderAvailCal(){
+  const y=availMonthDate.getFullYear(), m=availMonthDate.getMonth();
+  document.getElementById('availMo').textContent=MO_NAMES[m]+' '+y;
+  const first=new Date(y,m,1); const lead=(first.getDay()+6)%7;
+  const dim=new Date(y,m+1,0).getDate();
+  let html='';
+  for(let i=0;i<lead;i++) html+='<div class="cal-day muted"></div>';
+  if(!availSelKey || Number(availSelKey.split('-')[1])!==m) availSelKey=dayKey(y,m,1);
+  for(let d=1;d<=dim;d++){
+    const k=dayKey(y,m,d), has=slotsFor(y,m,d).length>0;
+    const cls=['cal-day']; if(!has)cls.push('off'); if(has)cls.push('has-slots'); if(k===availSelKey)cls.push('selected');
+    html+='<div class="'+cls.join(' ')+'" onclick="selectAvailDay('+y+','+m+','+d+')">'+d+(has?'<div class="d-dot"></div>':'')+'</div>';
+  }
+  document.getElementById('availDays').innerHTML=html;
+  renderAvailSlots();
+}
+function selectAvailDay(y,m,d){ availSelKey=dayKey(y,m,d); renderAvailCal(); }
+function renderAvailSlots(){
+  if(!availSelKey) return;
+  const [y,m,d]=availSelKey.split('-').map(Number);
+  document.getElementById('availDayTitle').textContent=DOW_NAMES[new Date(y,m,d).getDay()]+', '+MO_NAMES[m].slice(0,3)+' '+d;
+  const slots=slotsFor(y,m,d);
+  let html='';
+  if(slots.length===0){ html='<div class="wcard" style="text-align:center;color:var(--dim);font-size:12px">Day off — no bookings. Tap “Add time slot” to open it up.</div>'; }
+  else slots.forEach((s,i)=>{ html+='<div class="slot-chip"><span>🕒 '+s+'</span><span class="rm" onclick="removeAvailSlot('+i+')">×</span></div>'; });
+  document.getElementById('availSlots').innerHTML=html;
+}
+function addAvailSlot(){
+  const [y,m,d]=availSelKey.split('-').map(Number);
+  const cur=slotsFor(y,m,d); cur.push('10:00 AM – 11:00 AM');
+  availOverrides[availSelKey]=cur; renderAvailCal();
+}
+function removeAvailSlot(i){
+  const [y,m,d]=availSelKey.split('-').map(Number);
+  const cur=slotsFor(y,m,d); cur.splice(i,1); availOverrides[availSelKey]=cur; renderAvailCal();
+}
+function availMonthShift(n){ availMonthDate=new Date(availMonthDate.getFullYear(),availMonthDate.getMonth()+n,1); renderAvailCal(); }
+function renderAvailWeek(){
+  document.getElementById('weekDays').innerHTML=WEEK_DAYS.map(day=>{
+    const slots=availSlotsByDow[day.dow];
+    const on=slots.length>0;
+    return `<div class="day-row ${weekSel===day.dow?'editing':''}" onclick="selectWeekDay(${day.dow})">
+      <div class="dn">${day.name}</div>
+      <div class="dh ${on?'':'off'}">${hoursLabel(slots)}</div>
+      <div class="switch ${on?'on':''}" onclick="event.stopPropagation();toggleWeekDay(${day.dow})"><i></i></div>
+    </div>`;
+  }).join('');
+  renderWeekSlots();
+}
+function selectWeekDay(dow){ weekSel=dow; renderAvailWeek(); }
+function toggleWeekDay(dow){
+  availSlotsByDow[dow]=availSlotsByDow[dow].length?[]:['9:00 AM – 5:00 PM'];
+  weekSel=dow;
+  renderAvailWeek();
+}
+function renderWeekSlots(){
+  const day=WEEK_DAYS.find(d=>d.dow===weekSel);
+  document.getElementById('weekSlotTitle').textContent=day.name+' hours';
+  const slots=availSlotsByDow[weekSel];
+  let html='';
+  if(!slots.length){ html='<div class="wcard" style="text-align:center;color:var(--dim);font-size:12px">Day off. Toggle it on or add a time slot.</div>'; }
+  else slots.forEach((s,i)=>{ html+='<div class="slot-chip"><span>🕒 '+s+'</span><span class="rm" onclick="removeWeekSlot('+i+')">×</span></div>'; });
+  document.getElementById('weekSlots').innerHTML=html;
+}
+function addWeekSlot(){
+  availSlotsByDow[weekSel].push('10:00 AM – 11:00 AM');
+  renderAvailWeek();
+}
+function removeWeekSlot(i){
+  availSlotsByDow[weekSel].splice(i,1);
+  renderAvailWeek();
 }
 function openCat(id){
   const cat=CATEGORIES.find(c=>c.id===id);
