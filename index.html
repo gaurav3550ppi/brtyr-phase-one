@@ -113,7 +113,8 @@ body{
 }
 .island{
   position:absolute;top:11px;left:50%;transform:translateX(-50%);
-  width:108px;height:30px;background:#000;border-radius:20px;z-index:30;box-shadow:0 0 0 3px #000;
+  width:108px;height:30px;background:#000;border-radius:20px;z-index:80;pointer-events:none;
+  box-shadow:0 0 0 3px #000;
 }
 .phone{
   width:384px;height:820px;background:var(--bg);
@@ -276,18 +277,20 @@ select:focus{outline:none;border-color:var(--lime)}
   display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;
 }
 .dd.open .dd-btn{border-color:var(--lime)}
+.dd-btn > span:first-child{flex:1;min-width:0;line-height:1.35;padding-right:8px}
 .dd-list{
   display:none;margin-top:6px;background:var(--card);border:1px solid var(--border);
-  border-radius:12px;overflow:hidden;
+  border-radius:12px;overflow:auto;max-height:220px;
 }
 .dd.open .dd-list{display:block}
 .dd-item{
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:8px;
   padding:12px 14px;border-bottom:1px solid var(--border);cursor:pointer;font-size:14px;
 }
+.dd-item .lab{flex:1;min-width:0;line-height:1.35;color:inherit}
 .dd-item:last-child{border-bottom:0}
 .dd-item.on{color:var(--lime)}
-.dd-item span{color:var(--faint);font-size:16px}
+.dd-item span{color:var(--faint);font-size:16px;flex-shrink:0}
 .dd-item.on span{color:var(--lime)}
 .ham{
   width:36px;height:36px;border:0;background:transparent;cursor:pointer;
@@ -436,22 +439,33 @@ select:focus{outline:none;border-color:var(--lime)}
   .stage{flex-direction:column;justify-content:flex-start}
   .notes{width:min(408px,100%)}
 }
-@media (max-width:768px){
+@media (max-width:480px){
+  html,body{height:100%;overflow:hidden}
+  .shell{height:100vh;height:100dvh;min-height:0;overflow:hidden}
   .banner{display:none}
-  .stage{padding:0;gap:0;align-items:stretch}
+  .stage{padding:0;gap:0;align-items:stretch;min-height:0;overflow:hidden}
   .notes{
     width:100%;border-radius:0;border-left:0;border-right:0;border-top:0;
-    padding:12px 16px;max-height:28vh;overflow:auto;
+    padding:12px 16px;max-height:28vh;overflow:auto;flex-shrink:0;
   }
   .device{
-    width:100%;height:auto;flex:1;padding:0;border-radius:0;box-shadow:none;background:#000;
-    transform:none !important;
+    width:100%;height:auto;flex:1;min-height:0;padding:0;border-radius:0;box-shadow:none;background:#000;
+    transform:none !important;margin-bottom:0 !important;
+    display:flex;flex-direction:column;
   }
   .hw{display:none}
-  .bezel,.phone{width:100%;height:100%;min-height:72vh;border-radius:0}
+  .bezel{flex:1;min-height:0;width:100%;height:auto;border-radius:0;display:flex;flex-direction:column}
+  .phone{flex:1;min-height:0;width:100%;height:auto;border-radius:0}
   .island{top:max(8px, env(safe-area-inset-top))}
   .status{padding-top:max(18px, env(safe-area-inset-top))}
   .foot{padding-bottom:max(28px, env(safe-area-inset-bottom))}
+}
+@media (min-width:481px){
+  .device{
+    width:408px;height:844px;border-radius:58px;flex:0 0 auto;padding:12px;
+  }
+  .hw{display:block}
+  .bezel,.phone{width:384px;height:820px;min-height:0;border-radius:46px}
 }
 
 .seg{display:flex;gap:4px;margin:0 0 12px;background:var(--bg2);border-radius:14px;padding:4px;border:1px solid var(--border)}
@@ -485,6 +499,15 @@ select:focus{outline:none;border-color:var(--lime)}
 .stat-row .s span{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em}
 .toast{position:absolute;left:18px;right:18px;bottom:88px;background:var(--lime);color:var(--on);font-weight:800;font-size:13px;padding:12px 14px;border-radius:14px;z-index:50;display:none;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .toast.on{display:block}
+.phone-alert{display:none;position:absolute;inset:0;z-index:60}
+.phone-alert.on{display:block}
+.phone-alert .dim{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+.phone-alert .card{
+  position:absolute;left:18px;right:18px;top:50%;transform:translateY(-50%);
+  background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:16px;
+  box-shadow:0 16px 40px rgba(0,0,0,.4);
+}
+.phone-alert .card p{color:var(--text);font-size:14px;margin:0 0 12px}
 .alert-box{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.4);border-radius:14px;padding:12px;font-size:13px;color:var(--dim);margin-bottom:12px;line-height:1.45}
 .alert-box.err{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.4)}
 .stars{color:#fbbf24;letter-spacing:2px;font-size:22px;cursor:pointer;text-align:center;margin:10px 0}
@@ -719,7 +742,13 @@ select:focus{outline:none;border-color:var(--lime)}
         <div class="chips" id="offerCats"></div>
         <label>Duration</label>
         <p class="muted">Pick a length from the dropdown. CP fills in from the platform schedule and stays locked.</p>
-        <select id="durSelect" onchange="setDuration(this.value)" style="margin-top:4px"></select>
+        <div class="dd" id="durDd">
+          <button type="button" class="dd-btn" onclick="toggleDur()">
+            <span id="durLabel">Over 1 hour up to 1.5 hours · 200 CP</span>
+            <span>▾</span>
+          </button>
+          <div class="dd-list" id="durList"></div>
+        </div>
         <label>CP price (locked)</label>
         <div class="locked"><span class="n" id="cpN">200</span><span class="u">CP</span></div>
         <p class="muted" id="cpLabel">Over 1 hour up to 1.5 hours</p>
@@ -1032,7 +1061,13 @@ select:focus{outline:none;border-color:var(--lime)}
         <label>Recipient phone or email</label>
         <input id="giftTo" placeholder="maya@email.com"/>
         <label>TC amount</label>
-        <select id="giftAmt"><option value="10">10 TC</option><option value="25" selected>25 TC</option><option value="50">50 TC</option></select>
+        <div class="dd" id="giftDd">
+          <button type="button" class="dd-btn" onclick="toggleGift()">
+            <span id="giftLabel">25 TC</span>
+            <span>▾</span>
+          </button>
+          <div class="dd-list" id="giftList"></div>
+        </div>
         <label>Note</label>
         <textarea id="giftNote" rows="2" placeholder="Happy birthday!">Thanks for the intro.</textarea>
       </div>
@@ -1207,9 +1242,9 @@ select:focus{outline:none;border-color:var(--lime)}
     <section class="screen" data-screen="notifications">
       <div class="body">
         <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">NOTIFICATIONS</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
-        <div class="tcard" onclick="openTrade('t1')"><div class="st pending">Booking</div><b>Maya requested Hair Color &amp; Cut</div><div class="meta">Pending your Accept / Reject · 150 CP</div></div>
-        <div class="tcard" onclick="go('wallet')"><div class="st ok">Wallet</div><b>Review bonus ready</div><div class="meta">+5 CP when you leave a review on a completed trade</div></div>
-        <div class="tcard" onclick="go('subscription')"><div class="st done">Membership</div><b>Elite · 5% off TC packs</div><div class="meta">Renews next month</div></div>
+        <div class="tcard" onclick="openTrade('t1')"><div class="st pending">Booking</div><b>Maya requested Hair Color &amp; Cut</b><div class="meta">Pending your Accept / Reject · 150 CP</div></div>
+        <div class="tcard" onclick="go('wallet')"><div class="st ok">Wallet</div><b>Review bonus ready</b><div class="meta">+5 CP when you leave a review on a completed trade</div></div>
+        <div class="tcard" onclick="go('subscription')"><div class="st done">Membership</div><b>Elite · 5% off TC packs</b><div class="meta">Renews next month</div></div>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('settings')">Notification settings</button></div>
     </section>
@@ -1251,6 +1286,13 @@ select:focus{outline:none;border-color:var(--lime)}
                 <button class="ditem" data-nav="settings" type="button" onclick="menuGo('settings')"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 3.5v2.2M12 18.3v2.2M4.9 6.5l1.6 1.6M17.5 16l1.6 1.6M3.5 12h2.2M18.3 12h2.2M4.9 17.5l1.6-1.6M17.5 8l1.6-1.6" stroke-linecap="round"/></svg></span>SETTINGS</button>
                 <button class="ditem" data-nav="logout" type="button" onclick="logOut()"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4.5H6.5A2.5 2.5 0 004 7v10a2.5 2.5 0 002.5 2.5H10"/><path d="M14 12h7M17.5 8.5L21 12l-3.5 3.5"/></svg></span>LOGOUT</button>
               </div>
+            </div>
+          </div>
+          <div class="phone-alert" id="phoneAlert">
+            <div class="dim" onclick="closePhoneAlert()"></div>
+            <div class="card">
+              <p id="phoneAlertMsg"></p>
+              <button class="btn primary" type="button" onclick="closePhoneAlert()">OK</button>
             </div>
           </div>
           <div class="toast" id="toast"></div>
@@ -1430,13 +1472,22 @@ function fitDevice(){
   const device=document.getElementById('device');
   const stage=document.querySelector('.stage');
   if(!device||!stage) return;
-  if(window.innerWidth<=1100){
+  if(window.innerWidth<=480){
     device.style.transform='none';
+    device.style.marginBottom='';
     return;
   }
-  const notesW=(document.getElementById('notes')?.offsetWidth||300)+28;
-  const scale=Math.min(1,(stage.clientWidth-notesW-16)/408,(stage.clientHeight-8)/844);
-  device.style.transform=`scale(${Math.max(0.62,scale)})`;
+  device.style.transform='none';
+  device.style.marginBottom='';
+  const top=device.getBoundingClientRect().top;
+  const availH=Math.max(220, window.innerHeight-top-12);
+  const stacked=window.innerWidth<=1100;
+  const notesW=stacked?0:(document.getElementById('notes')?.offsetWidth||300)+28;
+  const availW=Math.max(220, (stacked?window.innerWidth:stage.clientWidth)-notesW-(stacked?16:28));
+  const scale=Math.min(1, availW/408, availH/844);
+  device.style.transformOrigin='top center';
+  device.style.marginBottom=(844*(scale-1))+'px';
+  device.style.transform=`scale(${scale})`;
 }
 function showNotes(id){
   const n=NOTES[id]||NOTES.home;
@@ -1460,7 +1511,7 @@ function renderTabs(){
 function goTab(id){
   if(id==='details'){
     if(!document.getElementById('agree').checked){
-      alert('Please agree to the Terms of Use and Privacy Statement first.');
+      phoneAlert('Please agree to the Terms of Use and Privacy Statement first.');
       return;
     }
     const first=document.getElementById('first').value.trim();
@@ -1470,7 +1521,7 @@ function goTab(id){
     const password=document.getElementById('password').value.trim();
     const zip=document.getElementById('zip').value.trim();
     if(!first||!last||!email||!phone||!password||!zip){
-      alert('Please finish Sign up first: first name, last name, email, phone, password, and zip.');
+      phoneAlert('Please finish Sign up first: first name, last name, email, phone, password, and zip.');
       return;
     }
   }
@@ -1517,6 +1568,8 @@ function go(id){
   if(id==='profileComplete') renderCompletion();
   if(id==='certs') renderCerts();
   if(id==='verification') renderVerification();
+  document.querySelectorAll('.dd.open').forEach(el=>el.classList.remove('open'));
+  closePhoneAlert();
   closeMenu();
 }
 function nextSignup(){
@@ -1527,32 +1580,32 @@ function nextSignup(){
   const password=document.getElementById('password').value.trim();
   const zip=document.getElementById('zip').value.trim();
   if(!first||!last||!email||!phone||!password||!zip){
-    alert('Please fill first name, last name, email, phone, password, and zip.');
+    phoneAlert('Please fill first name, last name, email, phone, password, and zip.');
     return;
   }
   if(!document.getElementById('agree').checked){
-    alert('Please agree to the Terms of Use and Privacy Statement.');
+    phoneAlert('Please agree to the Terms of Use and Privacy Statement.');
     return;
   }
   go('details');
 }
 function nextDetails(){
   if(!document.getElementById('social').value.trim()){
-    alert('Instagram or Facebook URL is required.');
+    phoneAlert('Instagram or Facebook URL is required.');
     return;
   }
   go('about');
 }
 function nextAbout(){
   if(!document.getElementById('aboutMe').value.trim()){
-    alert('Please add About Me.');
+    phoneAlert('Please add About Me.');
     return;
   }
   go('cert');
 }
 function nextCert(){
   if(!sectors.length){
-    alert('Choose at least one professional sector.');
+    phoneAlert('Choose at least one professional sector.');
     return;
   }
   go('otp');
@@ -1561,7 +1614,7 @@ function openOtpFromVerification(){ offerReturn='verification'; go('otp'); }
 function verifyPhone(){
   const code=[...document.querySelectorAll('.otp input')].map(i=>i.value).join('');
   if(code && code!=='1234'){
-    alert('For this tap-through, use 1234.');
+    phoneAlert('For this tap-through, use 1234.');
     return;
   }
   if(offerReturn==='verification'){ toastMsg('Phone verified'); go('verification'); return; }
@@ -1790,17 +1843,24 @@ function chips(el, items, getLabel, isOn, onPick){
     btn.onclick=()=>{onPick(items[idx]); renderOffer();}
   });
 }
+function toggleDur(){
+  document.getElementById('durDd').classList.toggle('open');
+}
 function setDuration(id){
   bracketId=id;
+  document.getElementById('durDd')?.classList.remove('open');
   renderOffer(false);
-  const sel=document.getElementById('durSelect');
-  if(sel) sel.value=bracketId;
 }
 function fillDurSelect(){
-  const sel=document.getElementById('durSelect');
-  if(!sel) return;
-  sel.innerHTML=BRACKETS.map(b=>`<option value="${b.id}">${b.label} · ${b.cp} CP</option>`).join('');
-  sel.value=bracketId;
+  const list=document.getElementById('durList');
+  const label=document.getElementById('durLabel');
+  if(!list||!label) return;
+  const cur=BRACKETS.find(b=>b.id===bracketId)||BRACKETS[0];
+  label.textContent=cur.label+' · '+cur.cp+' CP';
+  list.innerHTML=BRACKETS.map(b=>`
+    <div class="dd-item ${b.id===bracketId?'on':''}" onclick="setDuration('${b.id}')">
+      <span class="lab">${b.label}</span><span>${b.cp} CP</span>
+    </div>`).join('');
 }
 function toggleActive(){active=!active;renderOffer();}
 function syncPreview(){renderOffer(false);}
@@ -1838,9 +1898,38 @@ function setPlan(p){
   syncMenu(); syncWalletUI();
   toastMsg(planLabel()+' selected');
 }
+let giftAmt=25;
+function toggleGift(){
+  document.getElementById('giftDd').classList.toggle('open');
+}
+function setGiftAmt(n){
+  giftAmt=+n;
+  document.getElementById('giftDd')?.classList.remove('open');
+  renderGiftAmt();
+}
+function renderGiftAmt(){
+  const label=document.getElementById('giftLabel');
+  const list=document.getElementById('giftList');
+  if(label) label.textContent=giftAmt+' TC';
+  if(!list) return;
+  list.innerHTML=[10,25,50].map(n=>`
+    <div class="dd-item ${n===giftAmt?'on':''}" onclick="setGiftAmt(${n})">
+      <span class="lab">${n} TC</span><span>${n===giftAmt?'✓':''}</span>
+    </div>`).join('');
+}
+function phoneAlert(msg){
+  const el=document.getElementById('phoneAlert');
+  const text=document.getElementById('phoneAlertMsg');
+  if(!el||!text) return;
+  text.textContent=msg;
+  el.classList.add('on');
+}
+function closePhoneAlert(){
+  document.getElementById('phoneAlert')?.classList.remove('on');
+}
 function toastMsg(msg){
   const el=document.getElementById('toast');
-  if(!el){ alert(msg); return; }
+  if(!el){ phoneAlert(msg); return; }
   el.textContent=msg; el.classList.add('on');
   clearTimeout(toastMsg._t);
   toastMsg._t=setTimeout(()=>el.classList.remove('on'),2200);
@@ -1932,6 +2021,8 @@ function startBook(){
   go('book');
 }
 function renderBook(){
+  if(!selectedProvider) selectedProvider=PEOPLE[1];
+  if(!selectedOffer) selectedOffer=selectedProvider.offers[0];
   const p=selectedProvider, o=selectedOffer;
   document.getElementById('bookSummary').innerHTML=`
     <div class="pk" style="color:var(--lime);font-size:10px;font-weight:800;letter-spacing:.1em;margin-bottom:6px">BOOKING WITH</div>
@@ -2010,7 +2101,7 @@ function purchasePack(){
   else go('wallet');
 }
 function sendGift(){
-  const amt=+document.getElementById('giftAmt').value;
+  const amt=+giftAmt;
   const to=document.getElementById('giftTo').value.trim()||'maya@email.com';
   if(amt>tcBal){ toastMsg('Not enough TC'); return; }
   tcBal-=amt;
@@ -2172,6 +2263,7 @@ function submitReview(){
 window.addEventListener('resize', fitDevice);
 renderHome();
 renderSectors();
+renderGiftAmt();
 renderHomeFeat();
 syncWalletUI();
 syncHomeRole();
