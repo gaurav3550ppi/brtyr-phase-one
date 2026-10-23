@@ -551,7 +551,7 @@ select:focus{outline:none;border-color:var(--lime)}
         <input id="password" type="password" placeholder="Create a password"/>
         <label>Zip code <span class="req">required</span></label>
         <input id="zip" inputmode="numeric" placeholder="33101" value="33101"/>
-        <p class="muted">Used so members can find you in an area. City and zip only — not your street.</p>
+        <p class="muted">Used so members can find you in an area. City and zip only, not your street.</p>
         <label class="check"><input type="checkbox" id="remember"/> Remember Me</label>
         <label style="margin-top:6px">Terms of Use and Privacy</label>
         <div class="legal-scroll" id="legalBox">
@@ -610,7 +610,7 @@ select:focus{outline:none;border-color:var(--lime)}
         <h2>About Me and city</h2>
         <label>City</label>
         <input id="city" placeholder="Miami, FL" value="Miami, FL"/>
-        <p class="muted">Shown with your zip from signup. City and zip only — not your street.</p>
+        <p class="muted">Shown with your zip from signup. City and zip only, not your street.</p>
         <label>About Me</label>
         <textarea id="aboutMe" rows="5" placeholder="Share your audience or what you hope to grow.">I help busy women stay strong. I want to grow a local trade circle in Miami.</textarea>
       </div>
@@ -650,7 +650,7 @@ select:focus{outline:none;border-color:var(--lime)}
           <input maxlength="1" inputmode="numeric" oninput="otpJump(this,2)"/>
           <input maxlength="1" inputmode="numeric" oninput="otpJump(this,3)"/>
         </div>
-        <p class="muted">Next screen is set up offer and bio — not Home.</p>
+        <p class="muted">Next screen is set up offer and bio, not Home.</p>
       </div>
       <div class="foot"><button class="btn primary" onclick="verifyPhone()">Verify</button></div>
     </section>
@@ -722,7 +722,7 @@ select:focus{outline:none;border-color:var(--lime)}
       <div class="body">
         <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">FIND PROVIDERS</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
         <h2>View by zip</h2>
-        <p>Defaults to the zip from signup. Change it to look in another area. City and zip only — not the street.</p>
+        <p>Defaults to the zip from signup. Change it to look in another area. City and zip only, not the street.</p>
         <div class="zipbar">
           <input id="findZip" inputmode="numeric" placeholder="Zip code" oninput="renderFind()"/>
           <button type="button" onclick="renderFind()">Filter</button>
@@ -946,11 +946,11 @@ const NOTES={
   start:{tag:'1 · Map', title:'Beta V-3 locked path', about:'This is not an app screen. It shows the locked Beta V-3 order for Raquel approval: click-wrap signup, provider details first, then OTP, offer, home.', does:'Lets you confirm the path and menu before we change the iPhone build.'},
   welcome:{tag:'2 · Splash', title:'Splash / Welcome', about:'First branded screen. Logo stays. Pronunciation line: Brtyr pronounced bärtər / barter.', does:'New members tap Sign up. Returning members tap Log in.'},
   login:{tag:'3 · Login', title:'Log in', about:'Logo on the page. Phone and password. The lime button stays at the bottom so the keyboard cannot cover Log in.', does:'Returning members enter the app. Create account is one tap away.'},
-  signup:{tag:'4 · Sign up', title:'Create account', about:'First / last, email, phone, password, zip on this page. Remember Me optional. Terms are click-wrap with a scrollable legal box — no separate Terms tab.', does:'Save and continue opens provider details after you agree.'},
+  signup:{tag:'4 · Sign up', title:'Create account', about:'First / last, email, phone, password, zip on this page. Remember Me optional. Terms are click-wrap with a scrollable legal box, no separate Terms tab.', does:'Save and continue opens provider details after you agree.'},
   details:{tag:'5 · Details', title:'Provider details · photos and URLs', about:'Instagram or Facebook URL is required. Business URL and a second professional URL are optional. Bio photo plus up to 3 profile photos.', does:'Builds the public provider profile (admin page).'},
   about:{tag:'6 · About', title:'About Me and city', about:'City for the profile card. Zip already saved on create account. About Me is where you share your audience or what you hope to grow.', does:'Shows city / zip on profile without street address.'},
   cert:{tag:'7 · Sector', title:'Certificate and sector', about:'Certificate upload is optional on this page, required later before a listing goes live. Sector is one arrow multi-select dropdown.', does:'Beauty, Fitness, Wellness, Business Affiliates.'},
-  otp:{tag:'8 · Verify', title:'Verify phone', about:'Confirms the phone from signup. Demo code is 1234. Verification is after signup / profile — not on Subscription.', does:'After verify, the next page is set up offer and bio — not Home.'},
+  otp:{tag:'8 · Verify', title:'Verify phone', about:'Confirms the phone from signup. Demo code is 1234. Verification is after signup / profile, not on Subscription.', does:'After verify, the next page is set up offer and bio, not Home.'},
   offer:{tag:'9 · Offer + bio', title:'Set up offer and bio', about:'Duration is a dropdown (not chips). CP auto-fills from the platform schedule and stays locked. Currency is CP.', does:'Saves the first offer. Members see it when Active is on.'},
   home:{tag:'10 · Home', title:'Home and locked menu', about:'Hamburger opens the approved drawer: initials, name, Provider • Elite, then View as Provider / View as Trade. Rows match the locked list.', does:'Calendar, Availability, and My Offers show only in Provider view.'},
   profile:{tag:'10c · Profile', title:'Profile', about:'Simple bio card from signup: name, role, About Me, city / zip.', does:'Same account whether you are viewing as Provider or Trade.'},
@@ -1307,7 +1307,7 @@ function renderAvailSlots(){
   document.getElementById('availDayTitle').textContent=DOW_NAMES[new Date(y,m,d).getDay()]+', '+MO_NAMES[m].slice(0,3)+' '+d;
   const slots=slotsFor(y,m,d);
   let html='';
-  if(slots.length===0){ html='<div class="wcard" style="text-align:center;color:var(--dim);font-size:12px">Day off — no bookings. Tap “Add time slot” to open it up.</div>'; }
+  if(slots.length===0){ html='<div class="wcard" style="text-align:center;color:var(--dim);font-size:12px">Day off. No bookings. Tap “Add time slot” to open it up.</div>'; }
   else slots.forEach((s,i)=>{ html+='<div class="slot-chip"><span>🕒 '+s+'</span><span class="rm" onclick="removeAvailSlot('+i+')">×</span></div>'; });
   document.getElementById('availSlots').innerHTML=html;
 }
