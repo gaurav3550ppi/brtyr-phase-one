@@ -178,6 +178,20 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
 .check{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-size:13px;color:var(--dim)}
 .check input{width:18px;height:18px;margin-top:2px;accent-color:var(--lime)}
 .legal{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;font-size:13px;color:var(--dim);line-height:1.55;white-space:pre-wrap}
+.legal-scroll{
+  max-height:168px;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  background:var(--bg2);border:1px solid var(--border);border-radius:14px;
+  padding:12px 14px;font-size:12px;color:var(--dim);line-height:1.55;margin:8px 0 4px;
+}
+.legal-scroll h4{color:var(--lime);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin:12px 0 6px}
+.legal-scroll h4:first-child{margin-top:0}
+.legal-scroll p{margin:0 0 8px;font-size:12px;color:var(--dim)}
+.pronounce{text-align:center;color:var(--lime);font-size:13px;font-weight:600;margin:4px 0 10px;letter-spacing:.01em}
+select:focus{outline:none;border-color:var(--lime)}
+.pack-tier{font-size:11px;color:var(--faint);margin-top:2px}
+.pack-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;gap:10px}
+.pack-row:last-child{border-bottom:0}
+.pack-row b{color:var(--lime);white-space:nowrap}
 .otp{display:flex;gap:10px;justify-content:center;margin:22px 0}
 .otp input{width:52px;height:56px;text-align:center;font-size:22px;font-weight:800;padding:0}
 .cat-card{
@@ -444,7 +458,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
 <body>
 <div class="shell">
   <div class="banner">
-    <strong>For Raquel:</strong> the menu now matches your 4 Sep screenshot — initials, name, Provider • Elite, View as Provider / View as Trade, and the locked row list. Calendar and Availability are aligned to original V-2. Signup stays Terms → Sign up → Provider details (no role tab). The live app is unchanged until you say this is right.
+    <strong>For Raquel · Beta V-3 locked path:</strong> pronunciation on splash, Terms as click-wrap on signup (no separate Terms tab), zip on create account, duration dropdown with locked CP, beta TC packs (25=$12 · 50=$24 · 100=$48 · 250=$100), review bonus +5 CP to the service recipient. Menu, Calendar, and Availability stay locked. Live app unchanged until you approve.
   </div>
   <div class="stage">
     <aside class="notes" id="notes">
@@ -470,15 +484,15 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
     <section class="screen on" data-screen="start">
       <div class="body">
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr"/>
-        <div class="kicker">NEW BUSINESS</div>
+        <div class="kicker">BETA V-3 · FOR RAQUEL</div>
         <h1 class="center">Provider details first</h1>
-        <p class="center">Same NEW BUSINESS path. No Provider / Trade tab on create account. The home menu is locked to your approved list. Calendar and Availability match original V-2.</p>
+        <p class="center">Locked Beta V-3 path for your approval. No Provider / Trade tab on create account. Terms sit on signup as click-wrap. Menu, Calendar, and Availability stay as locked.</p>
         <ol class="steps">
-          <li><b>1</b> Splash and login (logo stays above the keyboard)</li>
-          <li><b>2</b> Create account tabs: Terms → Sign up → Provider details</li>
-          <li><b>3</b> Verify phone, then set up offer and bio</li>
+          <li><b>1</b> Splash (with pronunciation) and login</li>
+          <li><b>2</b> Create account: form + click-wrap Terms → Provider details</li>
+          <li><b>3</b> Verify phone (OTP 1234), then set up offer and bio</li>
           <li><b>4</b> Locked menu: HOME · PROFILE · TRADES · WALLET · CALENDAR · AVAILABILITY · MY OFFERS · SUBSCRIPTION · SETTINGS · LOGOUT</li>
-          <li><b>5</b> View as Provider / View as Trade · Calendar + Availability from V-2 · Find by zip · Wallet</li>
+          <li><b>5</b> View as Provider / View as Trade · Find by zip · Wallet CP / TC</li>
         </ol>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('welcome')">Start</button></div>
@@ -490,13 +504,14 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
           <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:120px;height:120px"/>
           <div>
             <div class="kicker">Splash</div>
+            <p class="pronounce">Brtyr pronounced bärtər / barter</p>
             <h1 class="center">Make time for what matters.</h1>
             <p class="center">Book with Community Points. Offer your service. Same account.</p>
           </div>
         </div>
       </div>
       <div class="foot">
-        <button class="btn primary" onclick="go('signupStart')">Sign up</button>
+        <button class="btn primary" onclick="go('signup')">Sign up</button>
         <button class="btn ghost" onclick="go('login')">Log in</button>
       </div>
     </section>
@@ -514,49 +529,54 @@ input:focus,textarea:focus{outline:none;border-color:var(--lime)}
       </div>
       <div class="foot">
         <button class="btn primary" onclick="go('home')">Log in</button>
-        <button class="btn ghost" onclick="go('signupStart')">Create account</button>
+        <button class="btn ghost" onclick="go('signup')">Create account</button>
       </div>
-    </section>
-
-    <section class="screen" data-screen="terms">
-      <div class="body">
-        <div class="topbar"><div class="back" onclick="go('welcome')">‹</div><div class="t">CREATE ACCOUNT</div><div style="width:32px"></div></div>
-        <div class="tabs" data-tabs="terms"></div>
-        <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:64px;height:64px"/>
-        <div class="kicker" style="text-align:left">Tab 1 · Agree here</div>
-        <h2>Terms and Privacy</h2>
-        <div class="legal">By creating a Brtyr account you agree to use the app as a service-exchange community.
-
-Bookings use Community Points (CP) and Top-up Credits (TC). They are in-app currency only. They have no cash value and cannot be withdrawn.
-
-CP is awarded after a service is completed and confirmed. During a session, CP shows as Pending. After completion it shows as Earned.
-
-Keep booking, chat, and reviews in the app.
-
-We use the details you provide to show your profile, match by city / zip, and keep the wallet ledger. We do not sell your personal data.</div>
-        <label class="check"><input type="checkbox" id="agree"/> I agree to the Terms of Use and Privacy Statement</label>
-      </div>
-      <div class="foot"><button class="btn primary" onclick="submitTerms()">Agree and continue</button></div>
     </section>
 
     <section class="screen" data-screen="signup">
       <div class="body">
-        <div class="topbar"><div class="back" onclick="go('terms')">‹</div><div class="t">CREATE ACCOUNT</div><div style="width:32px"></div></div>
+        <div class="topbar"><div class="back" onclick="go('welcome')">‹</div><div class="t">CREATE ACCOUNT</div><div style="width:32px"></div></div>
         <div class="tabs" data-tabs="signup"></div>
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:56px;height:56px"/>
-        <p class="center muted">First name and last name are separate. Provider / Trade is not on this page. Switch later in the menu.</p>
+        <p class="center muted">First name and last name are separate. Zip is on this page. No Provider / Trade tab. Switch role later in the menu.</p>
         <div class="row2">
           <div><label>First name</label><input id="first" placeholder="Raquel"/></div>
           <div><label>Last name</label><input id="last" placeholder="Rodriguez"/></div>
         </div>
         <label>Email</label>
         <input id="email" type="email" placeholder="you@email.com"/>
-        <label>Phone number <span class="req">· verify next</span></label>
+        <label>Phone number <span class="req">· verify after profile</span></label>
         <input id="phone" type="tel" placeholder="+1 (555) 000-0000" inputmode="tel"/>
         <label>Password</label>
         <input id="password" type="password" placeholder="Create a password"/>
+        <label>Zip code <span class="req">required</span></label>
+        <input id="zip" inputmode="numeric" placeholder="33101" value="33101"/>
+        <p class="muted">Used so members can find you in an area. City and zip only — not your street.</p>
+        <label class="check"><input type="checkbox" id="remember"/> Remember Me</label>
+        <label style="margin-top:6px">Terms of Use and Privacy</label>
+        <div class="legal-scroll" id="legalBox">
+          <h4>1. Marketplace nature</h4>
+          <p>Brtyr is a service-exchange community and marketplace. Members may act as a Provider (offer services) and as Trade (book services) on the same account. Brtyr facilitates introductions, booking, and in-app credits. Brtyr is not the employer, agent, or guarantor of any member, and does not itself perform the services listed.</p>
+          <h4>2. Eligibility</h4>
+          <p>You must be 18 years of age or older to create an account and use Brtyr. By tapping Save and continue you confirm you meet this requirement.</p>
+          <h4>3. Community Points (CP) and Top-up Credits (TC)</h4>
+          <p>Bookings use Community Points (CP) and Top-up Credits (TC). They are in-app currency only. They have no cash value, cannot be withdrawn, and are not redeemable for money. CP is awarded after a service is completed and confirmed. During a session, CP may show as Pending; after completion it shows as Earned. Providers earn session CP on completion only.</p>
+          <h4>4. Fees and membership</h4>
+          <p>Optional paid memberships (Elite, Premium) and TC packs may be offered. Pack prices and membership discounts shown in Beta may change. Free members pay full pack price. Elite members receive 5% off TC packs. Premium members receive 10% off TC packs. Operating costs for third-party tools stay with the member where noted in-app.</p>
+          <h4>5. Reviews</h4>
+          <p>+5 CP is awarded once to the person who received the service when they leave a review. The provider earns the session CP for the completed booking separately.</p>
+          <h4>6.A Client / Trade responsibilities</h4>
+          <p>As Trade, you agree to book and communicate in the app, arrive (or join) as scheduled, treat Providers with respect, and raise issues through Brtyr’s problem-resolution path. Do not take payments, disputes, or reviews outside the platform when the booking started on Brtyr.</p>
+          <h4>6.B Provider responsibilities</h4>
+          <p>As Provider, you agree that listings, credentials, and photos are accurate; you only accept bookings you can fulfill; you keep availability current; and you resolve service issues in good faith through Brtyr. Off-platform solicitation to avoid fees or credits may result in account action.</p>
+          <h4>7. Problem resolution / disputes</h4>
+          <p>If a trade goes wrong, both sides should first try to resolve it in-app. If that fails, contact Brtyr support with the booking details. Brtyr may pause pending CP, request evidence, and decide a fair outcome (including adjusting or reversing credits). This tap-through does not include a full dispute state machine; the live product will expand this path.</p>
+          <h4>8. Privacy</h4>
+          <p>We use the details you provide to show your profile, match by city / zip, and keep the wallet ledger. We do not sell your personal data. Keep booking, chat, and reviews in the app.</p>
+        </div>
+        <label class="check"><input type="checkbox" id="agree"/> I agree to the Terms of Use and Privacy Statement</label>
       </div>
-      <div class="foot"><button class="btn primary" onclick="nextSignup()">Continue to provider details</button></div>
+      <div class="foot"><button class="btn primary" onclick="nextSignup()">Save and continue</button></div>
     </section>
 
     <section class="screen" data-screen="details">
@@ -564,8 +584,8 @@ We use the details you provide to show your profile, match by city / zip, and ke
         <div class="topbar"><div class="back" onclick="go('signup')">‹</div><div class="t">PROVIDER DETAILS</div><div style="width:32px"></div></div>
         <div class="tabs" data-tabs="details"></div>
         <p class="muted">Admin page. Members see this when your offer is active.</p>
-        <label>Social media URL <span class="req">required</span></label>
-        <input id="social" placeholder="https://instagram.com/you" autocapitalize="none"/>
+        <label>Instagram or Facebook URL <span class="req">required</span></label>
+        <input id="social" placeholder="https://instagram.com/you or https://facebook.com/you" autocapitalize="none"/>
         <label>Recommended business URL <span class="muted">optional</span></label>
         <input id="business" placeholder="https://yourstudio.com" autocapitalize="none"/>
         <label>Additional professional URL <span class="muted">optional</span></label>
@@ -579,7 +599,7 @@ We use the details you provide to show your profile, match by city / zip, and ke
           <div class="photo" id="photo3" onclick="togglePhoto('3')">Photo 3</div>
         </div>
       </div>
-      <div class="foot"><button class="btn primary" onclick="nextDetails()">Next · Zip and About Me</button></div>
+      <div class="foot"><button class="btn primary" onclick="nextDetails()">Next · About Me</button></div>
     </section>
 
     <section class="screen" data-screen="about">
@@ -587,10 +607,10 @@ We use the details you provide to show your profile, match by city / zip, and ke
         <div class="topbar"><div class="back" onclick="go('details')">‹</div><div class="t">PROVIDER DETAILS</div><div style="width:32px"></div></div>
         <div class="tabs" data-tabs="details"></div>
         <div class="kicker" style="text-align:left">Next page</div>
-        <h2>Zip and About Me</h2>
-        <label>Zip code <span class="req">required</span></label>
-        <input id="zip" inputmode="numeric" placeholder="33101" value="33101"/>
-        <p class="muted">Used so members can find you in an area. City and zip only — not your street.</p>
+        <h2>About Me and city</h2>
+        <label>City</label>
+        <input id="city" placeholder="Miami, FL" value="Miami, FL"/>
+        <p class="muted">Shown with your zip from signup. City and zip only — not your street.</p>
         <label>About Me</label>
         <textarea id="aboutMe" rows="5" placeholder="Share your audience or what you hope to grow.">I help busy women stay strong. I want to grow a local trade circle in Miami.</textarea>
       </div>
@@ -646,8 +666,8 @@ We use the details you provide to show your profile, match by city / zip, and ke
         <label>Service category</label>
         <div class="chips" id="offerCats"></div>
         <label>Duration</label>
-        <p class="muted">Tap a length. CP updates automatically.</p>
-        <div class="chips" id="durs" style="margin-top:8px"></div>
+        <p class="muted">Pick a length from the dropdown. CP fills in from the platform schedule and stays locked.</p>
+        <select id="durSelect" onchange="setDuration(this.value)" style="margin-top:4px"></select>
         <label>CP price (locked)</label>
         <div class="locked"><span class="n" id="cpN">200</span><span class="u">CP</span></div>
         <p class="muted" id="cpLabel">Over 1 hour up to 1.5 hours</p>
@@ -716,22 +736,34 @@ We use the details you provide to show your profile, match by city / zip, and ke
     <section class="screen" data-screen="wallet">
       <div class="body">
         <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">WALLET</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
-        <h2>CP explained</h2>
+        <h2>CP Explained</h2>
         <div class="wcard">
-          <p>Community Points are earned after a service is completed. Duration selects the CP. Same table for every member.</p>
+          <p>Community Points are earned after a service is completed. Duration selects the CP. Same table for every member. Providers earn session CP on completion only.</p>
           <div class="wrow"><span>Up to 30 min</span><b>100 CP</b></div>
           <div class="wrow"><span>Over 30 min – 1 hr</span><b>150 CP</b></div>
           <div class="wrow"><span>Over 1 – 1.5 hr</span><b>200 CP</b></div>
+          <div class="wrow"><span>Over 4.5 – 5 hr</span><b>550 CP</b></div>
           <div class="wrow"><span>Over 5 – 6 hr</span><b>650 CP</b></div>
           <p class="muted" style="margin-top:8px">Pending during the session. Earned after both sides confirm. Providers do not type a custom price.</p>
+          <div class="hint-box" style="margin-top:10px"><strong style="color:var(--lime)">Review bonus:</strong> +5 CP to the person who received the service, once, when they leave a review. Provider still earns the session CP on completion only.</div>
+          <p class="muted" style="margin-top:8px">Full dispute flow is not in this tap-through. Raise issues in-app; support can pause or adjust pending CP.</p>
         </div>
-        <h2>TC explained</h2>
+        <h2>TC Explained</h2>
         <div class="wcard">
-          <p>Top-up Credits are purchased if you need more booking power. They never expire. Bookings spend CP first, then TC.</p>
+          <p>Top-up Credits are purchased if you need more booking power. They never expire. Bookings spend CP first, then TC. Beta packs only (400 / 600 removed).</p>
           <div class="wrow"><span>25 TC</span><b>$12</b></div>
-          <div class="wrow"><span>50 TC</span><b>$22</b></div>
-          <div class="wrow"><span>100 TC</span><b>$42</b></div>
+          <div class="wrow"><span>50 TC</span><b>$24</b></div>
+          <div class="wrow"><span>100 TC</span><b>$48</b></div>
           <div class="wrow"><span>250 TC</span><b>$100</b></div>
+        </div>
+        <h2>Buy Credits</h2>
+        <div class="wcard">
+          <p>Membership changes what you pay for the same beta packs.</p>
+          <div class="pack-row"><div><b style="color:var(--text)">Free</b><div class="pack-tier">Full pack price</div></div><b>100%</b></div>
+          <div class="pack-row"><div><b style="color:var(--text)">Elite</b><div class="pack-tier">5% off TC packs</div></div><b>−5%</b></div>
+          <div class="pack-row"><div><b style="color:var(--text)">Premium</b><div class="pack-tier">10% off TC packs</div></div><b>−10%</b></div>
+          <p class="muted" style="margin-top:10px">Example · 100 TC ($48): Free $48 · Elite $45.60 · Premium $43.20</p>
+          <button class="btn ghost" type="button" style="margin-top:8px" onclick="alert('Demo only. Checkout is not wired in this tap-through.')">Buy TC pack</button>
         </div>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('done')">Finish this path</button></div>
@@ -746,7 +778,7 @@ We use the details you provide to show your profile, match by city / zip, and ke
           <p class="muted" id="profRole">Provider • Elite</p>
           <p id="profHeadline" style="margin-top:8px;color:var(--text);font-weight:700">Personal Trainer</p>
           <p id="profBio" style="margin-top:10px">I help busy women stay strong. I want to grow a local trade circle in Miami.</p>
-          <p class="muted" id="profMeta" style="margin-top:10px">Miami · 33101</p>
+          <p class="muted" id="profMeta" style="margin-top:10px">City / zip · Miami, FL · 33101</p>
         </div>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('home')">Back to Home</button></div>
@@ -778,7 +810,7 @@ We use the details you provide to show your profile, match by city / zip, and ke
     <section class="screen" data-screen="calendar">
       <div class="body">
         <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">CALENDAR</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
-        <div class="hint-box">Same V-2 provider calendar. Tap a day to see the hours traders can book.</div>
+        <div class="hint-box">Same V-2 provider calendar. Tap a day to see the hours Trade members can book.</div>
         <div class="cal-head"><div class="mo" id="availMo">September 2026</div><div class="nav"><span onclick="availMonthShift(-1)">‹</span><span onclick="availMonthShift(1)">›</span></div></div>
         <div class="cal-grid" style="margin-bottom:3px"><div class="cal-dow">M</div><div class="cal-dow">T</div><div class="cal-dow">W</div><div class="cal-dow">T</div><div class="cal-dow">F</div><div class="cal-dow">S</div><div class="cal-dow">S</div></div>
         <div class="cal-grid" id="availDays"></div>
@@ -820,22 +852,23 @@ We use the details you provide to show your profile, match by city / zip, and ke
     <section class="screen" data-screen="subscription">
       <div class="body">
         <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">SUBSCRIPTION</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
-        <p class="center muted" style="margin-bottom:12px">Free / Elite / Premium. Elite is the current demo plan.</p>
+        <p class="center muted" style="margin-bottom:12px">Free / Elite / Premium. Elite is the current demo plan. Phone verification stays on the signup path, not here.</p>
         <div class="plan-card">
           <h3>Free</h3>
           <div class="pr">$0</div>
-          <div class="feat">✓ 3 trades/month • ✓ 1 offer listing<br>✓ Standard placement • ✓ Signup bonus: 25 CP</div>
+          <div class="feat">✓ 3 trades/month • ✓ 1 offer listing<br>✓ Standard placement • ✓ Signup bonus: 25 CP<br>✓ TC packs at full price</div>
         </div>
         <div class="plan-card cur">
           <h3>Elite <span class="pill">Current</span></h3>
           <div class="pr">$12.99<span style="font-size:12px;font-weight:600;color:var(--dim)">/mo</span></div>
-          <div class="feat">✓ 15 trades/month • ✓ Unlimited offers<br>✓ Priority placement • ✓ Elite Badge<br>✓ Signup bonus: 50 CP • ✓ 5% TC bonus</div>
+          <div class="feat">✓ 15 trades/month • ✓ Unlimited offers<br>✓ Priority placement • ✓ Elite Badge<br>✓ Signup bonus: 50 CP • ✓ 5% off TC packs</div>
         </div>
         <div class="plan-card">
           <h3>Premium</h3>
           <div class="pr">$159<span style="font-size:12px;font-weight:600;color:var(--dim)">/yr</span></div>
-          <div class="feat">✓ Unlimited trades • ✓ Premium placement<br>✓ Premium Badge • ✓ Featured in Top Providers<br>✓ Signup bonus: 75 CP • ✓ 10% TC bonus</div>
+          <div class="feat">✓ Unlimited trades • ✓ Premium placement<br>✓ Premium Badge • ✓ Featured in Top Providers<br>✓ Signup bonus: 75 CP • ✓ 10% off TC packs</div>
         </div>
+        <div class="hint-box">Beta TC packs: 25=$12 · 50=$24 · 100=$48 · 250=$100. Free = full price · Elite = 5% off · Premium = 10% off.</div>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('home')">Keep Elite</button></div>
     </section>
@@ -855,19 +888,20 @@ We use the details you provide to show your profile, match by city / zip, and ke
     <section class="screen" data-screen="done">
       <div class="body">
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr"/>
-        <div class="kicker">That’s the path</div>
-        <h2 class="center">Does this match NEW BUSINESS?</h2>
+        <div class="kicker">BETA V-3 · THAT’S THE PATH</div>
+        <h2 class="center">Does this match for approval?</h2>
         <div class="done-box">
-          <p>You just walked:</p>
+          <p>You just walked the locked Beta V-3 path:</p>
           <ol>
-            <li>Splash + login (logo, keyboard-safe button)</li>
-            <li>Create account tabs: Terms → Sign up (first / last) → Provider details</li>
-            <li>Photos, two extra URLs, zip, About Me, optional cert, sector dropdown</li>
-            <li>Verify phone → set up offer and bio (duration fills CP)</li>
-            <li>Locked menu: HOME, PROFILE, TRADES, WALLET, CALENDAR, AVAILABILITY, MY OFFERS, SUBSCRIPTION, SETTINGS, LOGOUT</li>
-            <li>View as Provider / View as Trade · Calendar + Availability from V-2</li>
-            <li>Find by zip · Wallet CP / TC explained</li>
+            <li>Splash with pronunciation + login</li>
+            <li>Create account: form (incl. zip) + click-wrap Terms → Provider details</li>
+            <li>Social (IG/FB), photos, About Me, city, optional cert, sector multi-select</li>
+            <li>Verify phone (1234) → set up offer (duration dropdown → locked CP)</li>
+            <li>Locked menu + View as Provider / View as Trade</li>
+            <li>Find by zip · Wallet CP / TC · review bonus +5 CP to recipient</li>
+            <li>Beta packs 25=$12 · 50=$24 · 100=$48 · 250=$100 · Free / Elite 5% / Premium 10%</li>
           </ol>
+          <p class="muted" style="margin-top:10px">Dispute state machine is not in this tap-through; one-line note is on Wallet.</p>
         </div>
         <p class="muted" style="margin-top:16px">Reply to Gaurav: <strong style="color:var(--text)">yes</strong> if this is right, or tell him which screen to move.</p>
       </div>
@@ -907,30 +941,29 @@ We use the details you provide to show your profile, match by city / zip, and ke
   </div>
 </div>
 <script>
-const ORDER=['start','welcome','terms','signup','details','about','cert','otp','offer','home','find','wallet','done'];
+const ORDER=['start','welcome','signup','details','about','cert','otp','offer','home','find','wallet','done'];
 const NOTES={
-  start:{tag:'1 · Map', title:'Provider details first', about:'This is not an app screen. It shows the NEW BUSINESS order plus the locked 4 Sep menu. No Provider / Trade tab on create account. Calendar and Availability match original V-2.', does:'Lets you confirm the path and menu before we change the iPhone build.'},
-  welcome:{tag:'2 · Splash', title:'Splash / Welcome', about:'First branded screen. Logo on the salon photo, same as the phone app.', does:'New members tap Sign up. Returning members tap Log in.'},
+  start:{tag:'1 · Map', title:'Beta V-3 locked path', about:'This is not an app screen. It shows the locked Beta V-3 order for Raquel approval: click-wrap signup, provider details first, then OTP, offer, home.', does:'Lets you confirm the path and menu before we change the iPhone build.'},
+  welcome:{tag:'2 · Splash', title:'Splash / Welcome', about:'First branded screen. Logo stays. Pronunciation line: Brtyr pronounced bärtər / barter.', does:'New members tap Sign up. Returning members tap Log in.'},
   login:{tag:'3 · Login', title:'Log in', about:'Logo on the page. Phone and password. The lime button stays at the bottom so the keyboard cannot cover Log in.', does:'Returning members enter the app. Create account is one tap away.'},
-  terms:{tag:'4 · Terms tab', title:'Agree to Terms and Privacy', about:'First create-account tab, as you asked. Agree here before signing up.', does:'Locks in Terms of Use and Privacy Statement.'},
-  signup:{tag:'5 · Sign up tab', title:'Create account', about:'First name and last name are split. Email, phone, password. No Provider / Trade toggle.', does:'Creates the account, then opens provider details.'},
-  details:{tag:'6 · Details', title:'Provider details · photos and URLs', about:'Social URL is required. Business URL and a second professional URL are optional. Bio photo plus up to 3 profile photos.', does:'Builds the public provider profile (admin page).'},
-  about:{tag:'7 · Next', title:'Zip and About Me', about:'Next page after photos. Zip is required so members can find you in an area. About Me is where you share your audience or what you hope to grow.', does:'Saves location at city / zip level only.'},
-  cert:{tag:'8 · Next', title:'Certificate and sector', about:'Certificate upload is optional on this page, required later before a listing goes live. Sector is one arrow dropdown. Choose one or more.', does:'Beauty, Fitness, Wellness, Business Affiliates.'},
-  otp:{tag:'9 · Verify', title:'Verify phone', about:'Confirms the phone from signup. Demo code is 1234.', does:'After verify, the next page is set up offer and bio — not Home.'},
-  offer:{tag:'10 · Offer + bio', title:'Set up offer and bio', about:'The page after phone verify. Duration select auto-fills locked CP from the platform table.', does:'Saves the first offer. Members see it when Active is on.'},
-  home:{tag:'11 · Home', title:'Home and locked menu', about:'Hamburger opens the approved drawer: initials, name, Provider • Elite, then View as Provider / View as Trade. Rows match your screenshot.', does:'Calendar, Availability, and My Offers show only in Provider view.'},
-  profile:{tag:'11c · Profile', title:'Profile', about:'Simple bio card from signup: name, role, About Me, city / zip.', does:'Same account whether you are viewing as Provider or Trade.'},
-  trades:{tag:'11d · Trades', title:'Trades', about:'A short pending / confirmed / completed list so the menu row has a place to land.', does:'Full accept, chat, and review stay for the live build.'},
-  calendar:{tag:'11e · Calendar', title:'Provider calendar', about:'V-2 month calendar. Days with slots get a lime border. Tap a day to see or add hours.', does:'Traders can only book inside these windows.'},
-  availability:{tag:'11f · Hours', title:'Availability Manager', about:'V-2 weekly hours. Turn a day on or off, then edit the slot list. Month view repeats these defaults.', does:'One-off date changes live on Calendar.'},
-  offers:{tag:'11g · Offers', title:'My Offers', about:'Provider-only list of the offer you just set up. Hidden in Trade view.', does:'Tap an offer to edit name, duration, and locked CP.'},
-  subscription:{tag:'11h · Plan', title:'Subscription', about:'Free, Elite, and Premium cards. Elite is the current demo plan shown in the menu.', does:'Membership changes visibility and top-up bonus later.'},
-  settings:{tag:'11i · Settings', title:'Settings', about:'A few rows: plan, password, notifications, legal.', does:'Logout returns to splash. Live app is not changed.'},
-  subs:{tag:'11b · Sector', title:'Services in this sector', about:'After a sector tap, this list shows the services inside it.', does:'Continue to the zip-filtered provider list.'},
-  find:{tag:'12 · Zip', title:'Find providers by zip', about:'Defaults to the zip from signup. Type another zip to look in a different area. Street address stays hidden.', does:'Answers your question: yes, browse and filter by zip.'},
-  wallet:{tag:'13 · Wallet', title:'CP and TC explained', about:'Wallet copy for the developer screens you asked for. CP from duration. TC from paid packs.', does:'Same numbers as the 8.2 schedule and top-up table.'},
-  done:{tag:'14 · Confirm', title:'Is this the order?', about:'End of the tap-through. Menu is locked to your screenshot. Calendar and Availability match V-2. Nothing is written to the iPhone app yet.', does:'Reply yes if this path and menu are right, or tell Gaurav which screen to move.'}
+  signup:{tag:'4 · Sign up', title:'Create account', about:'First / last, email, phone, password, zip on this page. Remember Me optional. Terms are click-wrap with a scrollable legal box — no separate Terms tab.', does:'Save and continue opens provider details after you agree.'},
+  details:{tag:'5 · Details', title:'Provider details · photos and URLs', about:'Instagram or Facebook URL is required. Business URL and a second professional URL are optional. Bio photo plus up to 3 profile photos.', does:'Builds the public provider profile (admin page).'},
+  about:{tag:'6 · About', title:'About Me and city', about:'City for the profile card. Zip already saved on create account. About Me is where you share your audience or what you hope to grow.', does:'Shows city / zip on profile without street address.'},
+  cert:{tag:'7 · Sector', title:'Certificate and sector', about:'Certificate upload is optional on this page, required later before a listing goes live. Sector is one arrow multi-select dropdown.', does:'Beauty, Fitness, Wellness, Business Affiliates.'},
+  otp:{tag:'8 · Verify', title:'Verify phone', about:'Confirms the phone from signup. Demo code is 1234. Verification is after signup / profile — not on Subscription.', does:'After verify, the next page is set up offer and bio — not Home.'},
+  offer:{tag:'9 · Offer + bio', title:'Set up offer and bio', about:'Duration is a dropdown (not chips). CP auto-fills from the platform schedule and stays locked. Currency is CP.', does:'Saves the first offer. Members see it when Active is on.'},
+  home:{tag:'10 · Home', title:'Home and locked menu', about:'Hamburger opens the approved drawer: initials, name, Provider • Elite, then View as Provider / View as Trade. Rows match the locked list.', does:'Calendar, Availability, and My Offers show only in Provider view.'},
+  profile:{tag:'10c · Profile', title:'Profile', about:'Simple bio card from signup: name, role, About Me, city / zip.', does:'Same account whether you are viewing as Provider or Trade.'},
+  trades:{tag:'10d · Trades', title:'Trades', about:'A short pending / confirmed / completed list so the menu row has a place to land.', does:'Full accept, chat, and review stay for the live build.'},
+  calendar:{tag:'10e · Calendar', title:'Provider calendar', about:'V-2 month calendar. Days with slots get a lime border. Tap a day to see or add hours.', does:'Trade members can only book inside these windows.'},
+  availability:{tag:'10f · Hours', title:'Availability Manager', about:'V-2 weekly hours. Turn a day on or off, then edit the slot list. Month view repeats these defaults.', does:'One-off date changes live on Calendar.'},
+  offers:{tag:'10g · Offers', title:'My Offers', about:'Provider-only list of the offer you just set up. Hidden in Trade view.', does:'Tap an offer to edit name, duration, and locked CP.'},
+  subscription:{tag:'10h · Plan', title:'Subscription', about:'Free, Elite, and Premium. Shows Free full price / Elite 5% / Premium 10% on TC packs. No verification path here.', does:'Membership changes visibility and TC pack discount.'},
+  settings:{tag:'10i · Settings', title:'Settings', about:'A few rows: plan, password, notifications, legal.', does:'Logout returns to splash. Live app is not changed.'},
+  subs:{tag:'10b · Sector', title:'Services in this sector', about:'After a sector tap, this list shows the services inside it.', does:'Continue to the zip-filtered provider list.'},
+  find:{tag:'11 · Zip', title:'Find providers by zip', about:'Defaults to the zip from signup. Type another zip to look in a different area. Street address stays hidden.', does:'Browse and filter by zip.'},
+  wallet:{tag:'12 · Wallet', title:'CP Explained and TC Explained', about:'CP from duration schedule. TC beta packs 25=$12 · 50=$24 · 100=$48 · 250=$100. Review bonus +5 CP to the service recipient once.', does:'Buy Credits shows Free full / Elite 5% / Premium 10%.'},
+  done:{tag:'13 · Confirm', title:'Beta V-3 approval?', about:'End of the tap-through for Raquel. Nothing is written to the iPhone app yet.', does:'Reply yes if this path is right, or tell Gaurav which screen to move.'}
 };
 const CATEGORIES=[
   {id:'cat-beauty', title:'BEAUTY', subtitle:'Hair, makeup, nails', image:'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'},
@@ -1037,36 +1070,35 @@ function renderTabs(){
   document.querySelectorAll('.tabs').forEach(el=>{
     const active=el.dataset.tabs;
     const agreed=document.getElementById('agree')?.checked;
-    el.innerHTML=['terms','signup','details'].map((id,i)=>{
-      const label=['1. Terms','2. Sign up','3. Details'][i];
+    el.innerHTML=['signup','details'].map((id,i)=>{
+      const label=['1. Sign up','2. Details'][i];
       const on=active===id || (id==='details' && ['details','about','cert'].includes(active));
-      const done=(id==='terms' && agreed && active!=='terms') || (id==='signup' && ['details','about','cert'].includes(active));
+      const done=(id==='signup' && ['details','about','cert'].includes(active) && agreed);
       return `<button type="button" class="tab ${on?'on':''} ${done?'done':''}" onclick="goTab('${id}')">${label}</button>`;
     }).join('');
   });
 }
 function goTab(id){
-  if(id==='signup' || id==='details'){
+  if(id==='details'){
     if(!document.getElementById('agree').checked){
-      alert('Please agree to Terms and Privacy first.');
+      alert('Please agree to the Terms of Use and Privacy Statement first.');
       return;
     }
-  }
-  if(id==='details'){
     const first=document.getElementById('first').value.trim();
     const last=document.getElementById('last').value.trim();
     const email=document.getElementById('email').value.trim();
     const phone=document.getElementById('phone').value.trim();
     const password=document.getElementById('password').value.trim();
-    if(!first||!last||!email||!phone||!password){
-      alert('Please finish Sign up first: first name, last name, email, phone, and password.');
+    const zip=document.getElementById('zip').value.trim();
+    if(!first||!last||!email||!phone||!password||!zip){
+      alert('Please finish Sign up first: first name, last name, email, phone, password, and zip.');
       return;
     }
   }
   go(id==='details'?'details':id);
 }
 function go(id){
-  if(id==='signupStart') id='terms';
+  if(id==='signupStart' || id==='terms') id='signup';
   if(role!=='provider' && ['calendar','availability','offers','offer'].includes(id)){
     id='home';
   }
@@ -1091,37 +1123,31 @@ function go(id){
   if(id==='availability') renderAvailWeek();
   closeMenu();
 }
-function submitTerms(){
-  if(!document.getElementById('agree').checked){
-    alert('Please agree to the Terms and Privacy statement.');
-    return;
-  }
-  go('signup');
-}
 function nextSignup(){
   const first=document.getElementById('first').value.trim();
   const last=document.getElementById('last').value.trim();
   const email=document.getElementById('email').value.trim();
   const phone=document.getElementById('phone').value.trim();
   const password=document.getElementById('password').value.trim();
-  if(!first||!last||!email||!phone||!password){
-    alert('Please fill first name, last name, email, phone, and password.');
+  const zip=document.getElementById('zip').value.trim();
+  if(!first||!last||!email||!phone||!password||!zip){
+    alert('Please fill first name, last name, email, phone, password, and zip.');
+    return;
+  }
+  if(!document.getElementById('agree').checked){
+    alert('Please agree to the Terms of Use and Privacy Statement.');
     return;
   }
   go('details');
 }
 function nextDetails(){
   if(!document.getElementById('social').value.trim()){
-    alert('Social media URL is required.');
+    alert('Instagram or Facebook URL is required.');
     return;
   }
   go('about');
 }
 function nextAbout(){
-  if(!document.getElementById('zip').value.trim()){
-    alert('Please add a zip code.');
-    return;
-  }
   if(!document.getElementById('aboutMe').value.trim()){
     alert('Please add About Me.');
     return;
@@ -1238,7 +1264,8 @@ function renderProfile(){
   document.getElementById('profHeadline').textContent=sector;
   document.getElementById('profBio').textContent=document.getElementById('aboutMe').value.trim()||'Add About Me on provider details.';
   const zip=document.getElementById('zip').value.trim()||'33101';
-  document.getElementById('profMeta').textContent='City / zip · '+zip;
+  const city=document.getElementById('city').value.trim()||'Miami, FL';
+  document.getElementById('profMeta').textContent='City / zip · '+city+' · '+zip;
 }
 function renderOffers(){
   const b=BRACKETS.find(x=>x.id===bracketId);
@@ -1361,6 +1388,18 @@ function chips(el, items, getLabel, isOn, onPick){
     btn.onclick=()=>{onPick(items[idx]); renderOffer();}
   });
 }
+function setDuration(id){
+  bracketId=id;
+  renderOffer(false);
+  const sel=document.getElementById('durSelect');
+  if(sel) sel.value=bracketId;
+}
+function fillDurSelect(){
+  const sel=document.getElementById('durSelect');
+  if(!sel) return;
+  sel.innerHTML=BRACKETS.map(b=>`<option value="${b.id}">${b.label} · ${b.cp} CP</option>`).join('');
+  sel.value=bracketId;
+}
 function toggleActive(){active=!active;renderOffer();}
 function syncPreview(){renderOffer(false);}
 function renderOffer(rebuild=true){
@@ -1377,9 +1416,9 @@ function renderOffer(rebuild=true){
   document.getElementById('pvPrice').textContent=b.cp+' CP';
   document.getElementById('pvNotes').textContent=notes;
   document.getElementById('activeSw').classList.toggle('on', active);
+  fillDurSelect();
   if(!rebuild) return;
   chips(document.getElementById('offerCats'), SECTORS, s=>s, s=>s===category, s=>category=s);
-  chips(document.getElementById('durs'), BRACKETS, s=>s.duration, s=>s.id===bracketId, s=>bracketId=s.id);
   chips(document.getElementById('avails'), AVAILS, s=>s, s=>s===availability, s=>availability=s);
 }
 window.addEventListener('resize', fitDevice);
