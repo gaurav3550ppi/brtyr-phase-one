@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-<title>Brtyr · Phase one tap-through</title>
+<title>Brtyr · Full Beta V-3 tap-through</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -453,12 +453,63 @@ select:focus{outline:none;border-color:var(--lime)}
   .status{padding-top:max(18px, env(safe-area-inset-top))}
   .foot{padding-bottom:max(28px, env(safe-area-inset-bottom))}
 }
+
+.seg{display:flex;gap:4px;margin:0 0 12px;background:var(--bg2);border-radius:14px;padding:4px;border:1px solid var(--border)}
+.seg-btn{flex:1;border:0;background:transparent;color:var(--faint);border-radius:10px;padding:8px 4px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;line-height:1.25;text-align:center}
+.seg-btn.on{background:var(--lime);color:var(--on)}
+.day-chip{min-width:56px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;flex-shrink:0}
+.day-chip.on{background:var(--lime);color:var(--on);border-color:var(--lime)}
+.day-chip .d{font-size:9px;font-weight:700;opacity:.8}
+.day-chip .n{font-size:18px;font-weight:800;margin-top:2px}
+.time-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.time-chip{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center;font-size:12px;font-weight:700;cursor:pointer}
+.time-chip.on{background:var(--lime);color:var(--on);border-color:var(--lime)}
+.time-chip.off{opacity:.35;text-decoration:line-through;pointer-events:none}
+.chat-log{display:flex;flex-direction:column;gap:8px;padding:8px 0 16px}
+.bubble{max-width:78%;padding:10px 12px;border-radius:14px;font-size:13px;line-height:1.45}
+.bubble.them{align-self:flex-start;background:var(--bg2);border:1px solid var(--border)}
+.bubble.me{align-self:flex-end;background:rgba(226,255,80,.18);border:1px solid rgba(226,255,80,.35);color:var(--text)}
+.bubble .when{display:block;font-size:10px;color:var(--faint);margin-top:4px}
+.bal-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.bal{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:14px;text-align:center}
+.bal .lbl{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.bal .amt{font-size:28px;font-weight:800;color:var(--lime);margin-top:4px}
+.feat-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;-webkit-overflow-scrolling:touch}
+.feat-card{min-width:132px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;cursor:pointer;flex-shrink:0}
+.feat-card .av{width:40px;height:40px;border-radius:20px;background:var(--lime);color:var(--on);display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:8px;font-size:14px}
+.photo-strip{display:flex;gap:8px;overflow-x:auto;margin:10px 0 14px}
+.photo-strip img{width:88px;height:88px;border-radius:12px;object-fit:cover;flex-shrink:0;background:var(--bg2)}
+.stat-row{display:flex;justify-content:space-around;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:12px 0}
+.stat-row .s{text-align:center}
+.stat-row .s b{display:block;font-size:16px}
+.stat-row .s span{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em}
+.toast{position:absolute;left:18px;right:18px;bottom:88px;background:var(--lime);color:var(--on);font-weight:800;font-size:13px;padding:12px 14px;border-radius:14px;z-index:50;display:none;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.toast.on{display:block}
+.alert-box{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.4);border-radius:14px;padding:12px;font-size:13px;color:var(--dim);margin-bottom:12px;line-height:1.45}
+.alert-box.err{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.4)}
+.stars{color:#fbbf24;letter-spacing:2px;font-size:22px;cursor:pointer;text-align:center;margin:10px 0}
+.pack-pick{display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer}
+.pack-pick.on{border-color:var(--lime);background:rgba(226,255,80,.1)}
+.pack-pick .p{font-weight:800}
+.pack-pick .pr{color:var(--lime);font-weight:800}
+.inbox-card{background:var(--card);border-radius:16px;padding:14px;margin-bottom:10px}
+.act-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.btn.sm{padding:10px 12px;font-size:13px;border-radius:20px}
+.btn.danger{background:transparent;color:#f87171;border:2px solid #f87171}
+.prov-hero{text-align:center;padding:8px 0 4px}
+.prov-hero .bio-av{margin-bottom:8px}
+.follow-btn{display:inline-block;border:0;border-radius:20px;padding:8px 22px;font-weight:800;font-size:12px;cursor:pointer;font-family:inherit;background:var(--lime);color:var(--on);margin:8px 0}
+.follow-btn.on{background:var(--bg2);color:var(--lime);border:1px solid var(--lime)}
+.linkish{color:var(--lime);font-weight:700;cursor:pointer;font-size:13px}
+.home-prov{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:14px}
+.home-prov h3{font-size:15px;margin-bottom:6px}
+
 </style>
 </head>
 <body>
 <div class="shell">
   <div class="banner">
-    <strong>For Raquel · Beta V-3 locked path:</strong> pronunciation on splash, Terms as click-wrap on signup (no separate Terms tab), zip on create account, duration dropdown with locked CP, beta TC packs (25=$12 · 50=$24 · 100=$48 · 250=$100), review bonus +5 CP to the service recipient. Menu, Calendar, and Availability stay locked. Live app unchanged until you approve.
+    <strong>For Raquel · Beta V-3 locked path:</strong> pronunciation on splash, Terms as click-wrap on signup (no separate Terms tab), zip on create account, duration dropdown with locked CP, beta TC packs (25=$12 · 50=$24 · 100=$48 · 250=$100), review bonus +5 CP to the service recipient. Menu, Calendar, and Availability stay locked. Full tap-through for approval: discovery, provider profiles, book, trades, wallet, provider tools. Live app unchanged until you approve.
   </div>
   <div class="stage">
     <aside class="notes" id="notes">
@@ -485,8 +536,8 @@ select:focus{outline:none;border-color:var(--lime)}
       <div class="body">
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr"/>
         <div class="kicker">BETA V-3 · FOR RAQUEL</div>
-        <h1 class="center">Provider details first</h1>
-        <p class="center">Locked Beta V-3 path for your approval. No Provider / Trade tab on create account. Terms sit on signup as click-wrap. Menu, Calendar, and Availability stay as locked.</p>
+        <h1 class="center">Full Beta V-3 tap-through</h1>
+        <p class="center">Locked Beta V-3 rules stay. Now includes provider profiles, book, trades, chat, wallet, and provider tools for approval.</p>
         <ol class="steps">
           <li><b>1</b> Splash (with pronunciation) and login</li>
           <li><b>2</b> Create account: form + click-wrap Terms → Provider details</li>
@@ -526,6 +577,7 @@ select:focus{outline:none;border-color:var(--lime)}
         <label>Password</label>
         <input id="loginPass" type="password" placeholder="••••••••"/>
         <p class="muted" style="margin-top:10px">Demo: any phone works. OTP is 1234. Log in opens Home so you can check the locked menu.</p>
+        <p class="linkish" style="margin-top:12px;text-align:right" onclick="go('forgot')">Forgot password?</p>
       </div>
       <div class="foot">
         <button class="btn primary" onclick="go('home')">Log in</button>
@@ -540,15 +592,15 @@ select:focus{outline:none;border-color:var(--lime)}
         <img class="logo" src="brtyr-logo-clear.png" alt="brtyr" style="width:56px;height:56px"/>
         <p class="center muted">First name and last name are separate. Zip is on this page. No Provider / Trade tab. Switch role later in the menu.</p>
         <div class="row2">
-          <div><label>First name</label><input id="first" placeholder="Raquel"/></div>
-          <div><label>Last name</label><input id="last" placeholder="Rodriguez"/></div>
+          <div><label>First name</label><input id="first" placeholder="Raquel" value="Raquel"/></div>
+          <div><label>Last name</label><input id="last" placeholder="Rodriguez" value="Rodriguez"/></div>
         </div>
         <label>Email</label>
-        <input id="email" type="email" placeholder="you@email.com"/>
+        <input id="email" type="email" placeholder="you@email.com" value="raquel@brtyr.demo"/>
         <label>Phone number <span class="req">· verify after profile</span></label>
-        <input id="phone" type="tel" placeholder="+1 (555) 000-0000" inputmode="tel"/>
+        <input id="phone" type="tel" placeholder="+1 (555) 000-0000" inputmode="tel" value="+1 (305) 555-0142"/>
         <label>Password</label>
-        <input id="password" type="password" placeholder="Create a password"/>
+        <input id="password" type="password" placeholder="Create a password" value="demo1234"/>
         <label>Zip code <span class="req">required</span></label>
         <input id="zip" inputmode="numeric" placeholder="33101" value="33101"/>
         <p class="muted">Used so members can find you in an area. City and zip only, not your street.</p>
@@ -698,15 +750,24 @@ select:focus{outline:none;border-color:var(--lime)}
         <div class="home-head">
           <button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button>
           <img src="brtyr-logo-clear.png" alt="brtyr"/>
-          <div style="width:36px"></div>
+          <button type="button" class="ham" onclick="go('notifications')" aria-label="Notifications" style="font-size:16px;color:var(--lime);padding:0;display:flex;align-items:center;justify-content:center">🔔</button>
         </div>
         <p class="muted" id="homeRole">Viewing as Provider · switch in the menu</p>
         <p class="muted" id="homeZip">Showing providers near zip 33101</p>
-        <h2>Browse sectors</h2>
-        <button class="featured" type="button" onclick="go('find')">Find providers by zip →</button>
+        <p class="muted" id="homeBal" style="margin-bottom:8px">Wallet · 120 CP · 40 TC</p>
+        <div id="homeProvBlock" class="home-prov" style="display:none">
+          <h3>Provider desk</h3>
+          <p class="muted" style="margin-bottom:10px">Pending booking requests and this week's earnings.</p>
+          <button class="btn primary sm" type="button" onclick="go('inbox')">Open bookings inbox</button>
+          <button class="btn ghost sm" type="button" style="margin-top:8px" onclick="go('offers')">Manage My Offers</button>
+        </div>
+        <h2 id="homeBrowseTitle">Browse sectors</h2>
+        <button class="featured" type="button" onclick="go('featured')">Featured providers →</button>
+        <button class="featured" type="button" onclick="go('find')" style="margin-top:0">Find providers by zip →</button>
+        <div class="feat-row" id="homeFeat"></div>
         <div id="homeCats"></div>
       </div>
-      <div class="foot"><button class="btn primary" onclick="go('find')">Find providers by zip</button></div>
+      <div class="foot"><button class="btn primary" id="homeFootBtn" onclick="go('find')">Find providers by zip</button></div>
     </section>
 
     <section class="screen" data-screen="subs">
@@ -730,43 +791,26 @@ select:focus{outline:none;border-color:var(--lime)}
         <p class="muted" id="findHint"></p>
         <div id="findList"></div>
       </div>
-      <div class="foot"><button class="btn primary" onclick="go('wallet')">Wallet · CP and TC explained</button></div>
+      <div class="foot"><button class="btn primary" onclick="go('featured')">See featured providers</button></div>
     </section>
 
     <section class="screen" data-screen="wallet">
       <div class="body">
         <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">WALLET</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
-        <h2>CP Explained</h2>
-        <div class="wcard">
-          <p>Community Points are earned after a service is completed. Duration selects the CP. Same table for every member. Providers earn session CP on completion only.</p>
-          <div class="wrow"><span>Up to 30 min</span><b>100 CP</b></div>
-          <div class="wrow"><span>Over 30 min – 1 hr</span><b>150 CP</b></div>
-          <div class="wrow"><span>Over 1 – 1.5 hr</span><b>200 CP</b></div>
-          <div class="wrow"><span>Over 4.5 – 5 hr</span><b>550 CP</b></div>
-          <div class="wrow"><span>Over 5 – 6 hr</span><b>650 CP</b></div>
-          <p class="muted" style="margin-top:8px">Pending during the session. Earned after both sides confirm. Providers do not type a custom price.</p>
-          <div class="hint-box" style="margin-top:10px"><strong style="color:var(--lime)">Review bonus:</strong> +5 CP to the person who received the service, once, when they leave a review. Provider still earns the session CP on completion only.</div>
-          <p class="muted" style="margin-top:8px">Full dispute flow is not in this tap-through. Raise issues in-app; support can pause or adjust pending CP.</p>
+        <div class="bal-row">
+          <div class="bal"><div class="lbl">Community Points</div><div class="amt" id="walCp">120</div></div>
+          <div class="bal"><div class="lbl">Top-up Credits</div><div class="amt" id="walTc">40</div></div>
         </div>
-        <h2>TC Explained</h2>
-        <div class="wcard">
-          <p>Top-up Credits are purchased if you need more booking power. They never expire. Bookings spend CP first, then TC. Beta packs only (400 / 600 removed).</p>
-          <div class="wrow"><span>25 TC</span><b>$12</b></div>
-          <div class="wrow"><span>50 TC</span><b>$24</b></div>
-          <div class="wrow"><span>100 TC</span><b>$48</b></div>
-          <div class="wrow"><span>250 TC</span><b>$100</b></div>
-        </div>
-        <h2>Buy Credits</h2>
-        <div class="wcard">
-          <p>Membership changes what you pay for the same beta packs.</p>
-          <div class="pack-row"><div><b style="color:var(--text)">Free</b><div class="pack-tier">Full pack price</div></div><b>100%</b></div>
-          <div class="pack-row"><div><b style="color:var(--text)">Elite</b><div class="pack-tier">5% off TC packs</div></div><b>−5%</b></div>
-          <div class="pack-row"><div><b style="color:var(--text)">Premium</b><div class="pack-tier">10% off TC packs</div></div><b>−10%</b></div>
-          <p class="muted" style="margin-top:10px">Example · 100 TC ($48): Free $48 · Elite $45.60 · Premium $43.20</p>
-          <button class="btn ghost" type="button" style="margin-top:8px" onclick="alert('Demo only. Checkout is not wired in this tap-through.')">Buy TC pack</button>
-        </div>
+        <p class="muted" id="walPlan" style="margin-bottom:10px">Plan · Elite · 5% off TC packs</p>
+        <div class="srow" onclick="go('buy')">Buy Credits <span>Beta packs ›</span></div>
+        <div class="srow" onclick="go('gift')">Gift TC <span>›</span></div>
+        <div class="srow" onclick="go('refer')">Refer &amp; Earn <span>›</span></div>
+        <div class="srow" onclick="go('ledger')">Ledger / history <span>›</span></div>
+        <div class="srow" onclick="go('cpExplained')">CP Explained <span>›</span></div>
+        <div class="srow" onclick="go('tcExplained')">TC Explained <span>›</span></div>
+        <div class="hint-box"><strong style="color:var(--lime)">Review bonus:</strong> +5 CP once to the person who received the service when they leave a review.</div>
       </div>
-      <div class="foot"><button class="btn primary" onclick="go('done')">Finish this path</button></div>
+      <div class="foot"><button class="btn primary" onclick="go('buy')">Buy Credits</button></div>
     </section>
 
     <section class="screen" data-screen="profile">
@@ -780,29 +824,25 @@ select:focus{outline:none;border-color:var(--lime)}
           <p id="profBio" style="margin-top:10px">I help busy women stay strong. I want to grow a local trade circle in Miami.</p>
           <p class="muted" id="profMeta" style="margin-top:10px">City / zip · Miami, FL · 33101</p>
         </div>
+        <div class="srow" style="margin-top:12px" onclick="go('editProfile')">Edit profile <span>›</span></div>
+        <div class="srow" onclick="go('profileComplete')">Profile completion <span>72% ›</span></div>
+        <div class="srow" onclick="go('certs')">Certifications <span>›</span></div>
+        <div class="srow" onclick="go('reputation')">Reputation <span>›</span></div>
+        <div class="srow" onclick="go('verification')">Verification <span>›</span></div>
       </div>
-      <div class="foot"><button class="btn primary" onclick="go('home')">Back to Home</button></div>
+      <div class="foot"><button class="btn primary" onclick="go('editProfile')">Edit profile</button></div>
     </section>
 
     <section class="screen" data-screen="trades">
       <div class="body">
         <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">TRADES</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
-        <p class="muted">A short list so you can open Trades from the menu. Full chat and confirm flow stays in the live app later.</p>
-        <div class="tcard">
-          <div class="st pending">Pending</div>
-          <b>Maya Chen · Hair Color &amp; Cut</b>
-          <div class="meta">Fri Sep 12 · 11:00 AM · 150 CP</div>
+        <div class="seg" id="tradeSeg">
+          <button type="button" class="seg-btn on" data-tab="pending" onclick="setTradeTab('pending')">Pending</button>
+          <button type="button" class="seg-btn" data-tab="accepted" onclick="setTradeTab('accepted')">Accepted</button>
+          <button type="button" class="seg-btn" data-tab="completed" onclick="setTradeTab('completed')">Completed</button>
         </div>
-        <div class="tcard">
-          <div class="st ok">Confirmed</div>
-          <b>Jordan Lee · Yoga &amp; Mobility</b>
-          <div class="meta">Tue Sep 16 · 2:00 PM · 200 CP</div>
-        </div>
-        <div class="tcard">
-          <div class="st done">Completed</div>
-          <b>Sam Ortiz · Personal Training</b>
-          <div class="meta">Aug 28 · reviewed ⭐⭐⭐⭐⭐</div>
-        </div>
+        <p class="muted" id="tradesHint">Tap a trade for Accept / Reject / Complete and chat.</p>
+        <div id="tradeList"></div>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('home')">Back to Home</button></div>
     </section>
@@ -846,41 +886,47 @@ select:focus{outline:none;border-color:var(--lime)}
         <div id="offerList"></div>
         <button class="btn ghost" type="button" onclick="openOfferEdit()">+ Create new offer</button>
       </div>
-      <div class="foot"><button class="btn primary" onclick="go('home')">Back to Home</button></div>
+      <div class="foot"><button class="btn primary" onclick="openOfferEdit()">Create / edit offer</button></div>
     </section>
 
     <section class="screen" data-screen="subscription">
       <div class="body">
         <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">SUBSCRIPTION</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
         <p class="center muted" style="margin-bottom:12px">Free / Elite / Premium. Elite is the current demo plan. Phone verification stays on the signup path, not here.</p>
-        <div class="plan-card">
+        <div class="plan-card" id="planFree" onclick="setPlan('free')" style="cursor:pointer">
           <h3>Free</h3>
           <div class="pr">$0</div>
           <div class="feat">✓ 3 trades/month • ✓ 1 offer listing<br>✓ Standard placement • ✓ Signup bonus: 25 CP<br>✓ TC packs at full price</div>
         </div>
-        <div class="plan-card cur">
+        <div class="plan-card cur" id="planElite" onclick="setPlan('elite')" style="cursor:pointer">
           <h3>Elite <span class="pill">Current</span></h3>
           <div class="pr">$12.99<span style="font-size:12px;font-weight:600;color:var(--dim)">/mo</span></div>
           <div class="feat">✓ 15 trades/month • ✓ Unlimited offers<br>✓ Priority placement • ✓ Elite Badge<br>✓ Signup bonus: 50 CP • ✓ 5% off TC packs</div>
         </div>
-        <div class="plan-card">
+        <div class="plan-card" id="planPremium" onclick="setPlan('premium')" style="cursor:pointer">
           <h3>Premium</h3>
           <div class="pr">$159<span style="font-size:12px;font-weight:600;color:var(--dim)">/yr</span></div>
           <div class="feat">✓ Unlimited trades • ✓ Premium placement<br>✓ Premium Badge • ✓ Featured in Top Providers<br>✓ Signup bonus: 75 CP • ✓ 10% off TC packs</div>
         </div>
         <div class="hint-box">Beta TC packs: 25=$12 · 50=$24 · 100=$48 · 250=$100. Free = full price · Elite = 5% off · Premium = 10% off.</div>
+        <div class="act-row" style="margin-top:10px">
+          <button class="btn ghost sm" type="button" onclick="setPlan('free')">Choose Free</button>
+          <button class="btn ghost sm" type="button" onclick="setPlan('elite')">Choose Elite</button>
+        </div>
+        <button class="btn ghost" type="button" onclick="setPlan('premium')" style="margin-top:8px">Choose Premium</button>
       </div>
-      <div class="foot"><button class="btn primary" onclick="go('home')">Keep Elite</button></div>
+      <div class="foot"><button class="btn primary" onclick="go('home')">Done</button></div>
     </section>
 
     <section class="screen" data-screen="settings">
       <div class="body">
         <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">SETTINGS</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
         <div class="srow" onclick="go('subscription')">Subscription plan <span>Elite ›</span></div>
-        <div class="srow" onclick="alert('Demo only. Password reset is not wired in this tap-through.')">Reset password <span>›</span></div>
-        <div class="srow" onclick="alert('Demo only. Notifications stay in the live app.')">Notifications <span>On ›</span></div>
-        <div class="srow" onclick="alert('Demo only. Same Terms of Use you agreed to on create account.')">Terms of Use <span>›</span></div>
-        <div class="srow" onclick="alert('Demo only. Same Privacy Statement you agreed to on create account.')">Privacy Statement <span>›</span></div>
+        <div class="srow" onclick="go('forgot')">Reset password <span>›</span></div>
+        <div class="srow" onclick="go('notifications')">Notifications <span>On ›</span></div>
+        <div class="srow" onclick="go('profile')">My profile <span>›</span></div>
+        <div class="srow" onclick="toastMsg('Same Terms of Use you agreed to on create account (click-wrap).')">Terms of Use <span>›</span></div>
+        <div class="srow" onclick="toastMsg('Same Privacy Statement you agreed to on create account.')">Privacy Statement <span>›</span></div>
       </div>
       <div class="foot"><button class="btn ghost" onclick="logOut()">Log out</button></div>
     </section>
@@ -898,15 +944,288 @@ select:focus{outline:none;border-color:var(--lime)}
             <li>Social (IG/FB), photos, About Me, city, optional cert, sector multi-select</li>
             <li>Verify phone (1234) → set up offer (duration dropdown → locked CP)</li>
             <li>Locked menu + View as Provider / View as Trade</li>
-            <li>Find by zip · Wallet CP / TC · review bonus +5 CP to recipient</li>
-            <li>Beta packs 25=$12 · 50=$24 · 100=$48 · 250=$100 · Free / Elite 5% / Premium 10%</li>
+            <li>Find by zip · Featured · Provider profile · Book slot · Buy Credits if short</li>
+            <li>Trades Accept / Reject / Complete · Chat · Review +5 CP</li>
+            <li>Wallet hub · Gift · Refer · Ledger · Free / Elite 5% / Premium 10%</li>
+            <li>Provider: Calendar · Availability · My Offers · Bookings inbox</li>
           </ol>
-          <p class="muted" style="margin-top:10px">Dispute state machine is not in this tap-through; one-line note is on Wallet.</p>
+          <p class="muted" style="margin-top:10px">Dispute state machine is still a one-line note only, not a full flow.</p>
         </div>
         <p class="muted" style="margin-top:16px">Reply to Gaurav: <strong style="color:var(--text)">yes</strong> if this is right, or tell him which screen to move.</p>
       </div>
       <div class="foot"><button class="btn primary" onclick="go('start')">Start again</button></div>
     </section>
+
+
+    <section class="screen" data-screen="forgot">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('login')">‹</div><div class="t">FORGOT PASSWORD</div><div style="width:32px"></div></div>
+        <h2>Reset your password</h2>
+        <p class="muted">Enter the phone on your account. Demo always succeeds.</p>
+        <label>Phone number</label>
+        <input id="forgotPhone" type="tel" placeholder="+1 (555) 000-0000" inputmode="tel"/>
+      </div>
+      <div class="foot">
+        <button class="btn primary" onclick="toastMsg('Reset link sent (demo). Use any password on Log in.');go('login')">Send reset link</button>
+        <button class="btn ghost" onclick="go('login')">Back to Log in</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="featured">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">FEATURED</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <p class="muted">Top-rated providers near your zip this week.</p>
+        <div id="featuredList"></div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('find')">Browse all by zip</button></div>
+    </section>
+
+    <section class="screen" data-screen="provider">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go(providerBack)">‹</div><div class="t">PROVIDER</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div id="providerBody"></div>
+      </div>
+      <div class="foot"><button class="btn primary" id="bookCta" onclick="startBook()">Book a slot</button></div>
+    </section>
+
+    <section class="screen" data-screen="book">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('provider')">‹</div><div class="t">BOOK SLOT</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="wcard" id="bookSummary"></div>
+        <h2 style="font-size:15px;margin:12px 0 8px">Pick a day</h2>
+        <div class="feat-row" id="bookDays"></div>
+        <h2 style="font-size:15px;margin:4px 0 8px" id="bookTimesTitle">Available times</h2>
+        <div class="time-grid" id="bookTimes"></div>
+        <h2 style="font-size:15px;margin:8px 0">Cost</h2>
+        <div class="wcard" id="bookCost"></div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="confirmBook()">Confirm booking</button></div>
+    </section>
+
+    <section class="screen" data-screen="bookLow">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('book')">‹</div><div class="t">NEED CREDITS</div><div style="width:32px"></div></div>
+        <div class="alert-box" id="bookLowMsg">You need more credits to complete this booking.</div>
+        <div class="wcard" id="bookLowSummary"></div>
+        <p class="muted" style="margin:10px 0">Buy a beta TC pack, then return to confirm.</p>
+      </div>
+      <div class="foot">
+        <button class="btn primary" onclick="go('buy')">Buy Credits</button>
+        <button class="btn ghost" onclick="go('subscription')">View membership discounts</button>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="buy">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go(buyBack)">‹</div><div class="t">BUY CREDITS</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <p class="muted" id="buyPlanNote">Elite · 5% off TC packs</p>
+        <div id="buyPacks"></div>
+        <div class="hint-box">Beta packs only: 25=$12 · 50=$24 · 100=$48 · 250=$100. Free full price · Elite 5% · Premium 10%.</div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="purchasePack()">Purchase selected pack</button></div>
+    </section>
+
+    <section class="screen" data-screen="gift">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('wallet')">‹</div><div class="t">GIFT TC</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <p class="muted">Send Top-up Credits to another member. Demo deducts from your TC.</p>
+        <label>Recipient phone or email</label>
+        <input id="giftTo" placeholder="maya@email.com"/>
+        <label>TC amount</label>
+        <select id="giftAmt"><option value="10">10 TC</option><option value="25" selected>25 TC</option><option value="50">50 TC</option></select>
+        <label>Note</label>
+        <textarea id="giftNote" rows="2" placeholder="Happy birthday!">Thanks for the intro.</textarea>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="sendGift()">Send gift</button></div>
+    </section>
+
+    <section class="screen" data-screen="refer">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('wallet')">‹</div><div class="t">REFER &amp; EARN</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="wcard">
+          <h3>Your invite code</h3>
+          <p style="font-size:22px;font-weight:800;color:var(--lime);letter-spacing:.08em;margin:8px 0">BRTYR-RAQ</p>
+          <p class="muted">Friends get a signup bonus. You earn 25 CP when they complete their first trade.</p>
+        </div>
+        <button class="btn ghost" type="button" onclick="toastMsg('Invite link copied (demo).')">Copy invite link</button>
+        <div class="hint-box" style="margin-top:12px">Demo ledger will show a pending referral reward after you copy.</div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('wallet')">Back to Wallet</button></div>
+    </section>
+
+    <section class="screen" data-screen="ledger">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('wallet')">‹</div><div class="t">LEDGER</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <p class="muted">CP and TC movement. Newest first.</p>
+        <div id="ledgerList"></div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('wallet')">Back to Wallet</button></div>
+    </section>
+
+    <section class="screen" data-screen="cpExplained">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('wallet')">‹</div><div class="t">CP EXPLAINED</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="wcard">
+          <p>Community Points are earned after a service is completed. Duration selects the CP. Same table for every member. Providers earn session CP on completion only.</p>
+          <div class="wrow"><span>Up to 30 min</span><b>100 CP</b></div>
+          <div class="wrow"><span>Over 30 min – 1 hr</span><b>150 CP</b></div>
+          <div class="wrow"><span>Over 1 – 1.5 hr</span><b>200 CP</b></div>
+          <div class="wrow"><span>Over 4.5 – 5 hr</span><b>550 CP</b></div>
+          <div class="wrow"><span>Over 5 – 6 hr</span><b>650 CP</b></div>
+          <div class="hint-box" style="margin-top:10px"><strong style="color:var(--lime)">Review bonus:</strong> +5 CP to the person who received the service, once, when they leave a review.</div>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('wallet')">Back to Wallet</button></div>
+    </section>
+
+    <section class="screen" data-screen="tcExplained">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('wallet')">‹</div><div class="t">TC EXPLAINED</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="wcard">
+          <p>Top-up Credits are purchased if you need more booking power. They never expire. Bookings spend CP first, then TC.</p>
+          <div class="wrow"><span>25 TC</span><b>$12</b></div>
+          <div class="wrow"><span>50 TC</span><b>$24</b></div>
+          <div class="wrow"><span>100 TC</span><b>$48</b></div>
+          <div class="wrow"><span>250 TC</span><b>$100</b></div>
+          <p class="muted" style="margin-top:8px">Free = full price · Elite = 5% off · Premium = 10% off.</p>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('buy')">Buy Credits</button></div>
+    </section>
+
+    <section class="screen" data-screen="tradeDetail">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('trades')">‹</div><div class="t">TRADE DETAIL</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div id="tradeDetailBody"></div>
+      </div>
+      <div class="foot" id="tradeDetailFoot"></div>
+    </section>
+
+    <section class="screen" data-screen="chat">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('tradeDetail')">‹</div><div class="t">CHAT</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <p class="muted" id="chatWith">Demo messages</p>
+        <div class="chat-log" id="chatLog"></div>
+        <label>Message</label>
+        <input id="chatInput" placeholder="Type a message…"/>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="sendChat()">Send</button></div>
+    </section>
+
+    <section class="screen" data-screen="inbox">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">BOOKINGS INBOX</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="wcard">
+          <h3>This week</h3>
+          <div class="wrow"><span>Pending requests</span><b id="earnPending">1</b></div>
+          <div class="wrow"><span>Accepted</span><b id="earnAccepted">1</b></div>
+          <div class="wrow"><span>CP to earn if completed</span><b id="earnCp">150 CP</b></div>
+        </div>
+        <h2 style="font-size:15px;margin:8px 0">Incoming</h2>
+        <div id="inboxList"></div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('calendar')">Open calendar</button></div>
+    </section>
+
+    <section class="screen" data-screen="editProfile">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('profile')">‹</div><div class="t">EDIT PROFILE</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <label>First name</label>
+        <input id="editFirst"/>
+        <label>Last name</label>
+        <input id="editLast"/>
+        <label>City</label>
+        <input id="editCity"/>
+        <label>About Me</label>
+        <textarea id="editAbout" rows="4"></textarea>
+        <label>Instagram / Facebook URL</label>
+        <input id="editSocial"/>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="saveEditProfile()">Save profile</button></div>
+    </section>
+
+    <section class="screen" data-screen="profileComplete">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('profile')">‹</div><div class="t">COMPLETION</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <h2>Profile completion</h2>
+        <div class="wcard">
+          <div class="wrow"><span>Photos</span><b id="compPhotos">—</b></div>
+          <div class="wrow"><span>About Me</span><b>✓ Done</b></div>
+          <div class="wrow"><span>Sector</span><b id="compSector">—</b></div>
+          <div class="wrow"><span>Certificate</span><b id="compCert">—</b></div>
+          <div class="wrow"><span>Active offer</span><b id="compOffer">—</b></div>
+        </div>
+        <p class="muted" id="compPct">About 72% complete. Finish photos and cert to go live faster.</p>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('details')">Add photos / URLs</button></div>
+    </section>
+
+    <section class="screen" data-screen="certs">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('profile')">‹</div><div class="t">CERTIFICATIONS</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="tcard" id="certCard">
+          <div class="st pending" id="certStatus">Optional</div>
+          <b id="certTitle">No certificate attached yet</b>
+          <div class="meta">Required later before a listing goes live.</div>
+        </div>
+        <button class="upload" type="button" onclick="pickCert();renderCerts();toastMsg(certName?'Certificate attached.':'Removed.')">Tap to attach / remove certificate</button>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('profile')">Back to Profile</button></div>
+    </section>
+
+    <section class="screen" data-screen="reputation">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('profile')">‹</div><div class="t">REPUTATION</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="bio-card">
+          <div style="font-size:36px;font-weight:800;color:var(--lime)">4.9</div>
+          <p class="muted">Average from 28 reviews</p>
+          <div class="stars" style="cursor:default">★★★★★</div>
+        </div>
+        <div class="wcard" style="margin-top:12px">
+          <div class="wrow"><span>Completed trades</span><b>28</b></div>
+          <div class="wrow"><span>On-time rate</span><b>98%</b></div>
+          <div class="wrow"><span>Elite badge</span><b>Active</b></div>
+        </div>
+        <div class="tcard"><div class="st ok">Review</div><b>“Pushed me safely. Would book again.”</b><div class="meta">Maya · Fitness · +5 CP review bonus applied to Maya</div></div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('profile')">Back to Profile</button></div>
+    </section>
+
+    <section class="screen" data-screen="verification">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('profile')">‹</div><div class="t">VERIFICATION</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <p class="muted">Phone verification sits after signup / provider details, not on Subscription. You can reopen it here.</p>
+        <div class="wcard">
+          <div class="wrow"><span>Phone</span><b id="verPhone">Pending / verified in demo</b></div>
+          <div class="wrow"><span>Email</span><b>On file</b></div>
+          <div class="wrow"><span>Certificate</span><b id="verCert">Optional</b></div>
+        </div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="offerReturn='verification';go('otp')">Verify phone (OTP)</button></div>
+    </section>
+
+    <section class="screen" data-screen="notifications">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('home')">‹</div><div class="t">NOTIFICATIONS</div><button class="ham" type="button" onclick="openMenu()" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+        <div class="tcard" onclick="openTrade('t1')"><div class="st pending">Booking</div><b>Maya requested Hair Color &amp; Cut</div><div class="meta">Pending your Accept / Reject · 150 CP</div></div>
+        <div class="tcard" onclick="go('wallet')"><div class="st ok">Wallet</div><b>Review bonus ready</div><div class="meta">+5 CP when you leave a review on a completed trade</div></div>
+        <div class="tcard" onclick="go('subscription')"><div class="st done">Membership</div><b>Elite · 5% off TC packs</div><div class="meta">Renews next month</div></div>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="go('settings')">Notification settings</button></div>
+    </section>
+
+    <section class="screen" data-screen="review">
+      <div class="body">
+        <div class="topbar"><div class="back" onclick="go('tradeDetail')">‹</div><div class="t">LEAVE REVIEW</div><div style="width:32px"></div></div>
+        <h2 id="reviewTitle">How was the service?</h2>
+        <p class="muted">+5 CP goes to you (the recipient) once when you submit.</p>
+        <div class="stars" id="starPick" onclick="cycleStars()">★★★★★</div>
+        <label>Comment</label>
+        <textarea id="reviewText" rows="3" placeholder="What stood out?">Great session. On time and clear.</textarea>
+      </div>
+      <div class="foot"><button class="btn primary" onclick="submitReview()">Submit review · +5 CP</button></div>
+    </section>
+
 
           <div class="drawer" id="drawer">
             <div class="dim" onclick="closeMenu()"></div>
@@ -934,6 +1253,7 @@ select:focus{outline:none;border-color:var(--lime)}
               </div>
             </div>
           </div>
+          <div class="toast" id="toast"></div>
           <div class="home-ind"></div>
         </div>
       </div>
@@ -943,27 +1263,48 @@ select:focus{outline:none;border-color:var(--lime)}
 <script>
 const ORDER=['start','welcome','signup','details','about','cert','otp','offer','home','find','wallet','done'];
 const NOTES={
-  start:{tag:'1 · Map', title:'Beta V-3 locked path', about:'This is not an app screen. It shows the locked Beta V-3 order for Raquel approval: click-wrap signup, provider details first, then OTP, offer, home.', does:'Lets you confirm the path and menu before we change the iPhone build.'},
-  welcome:{tag:'2 · Splash', title:'Splash / Welcome', about:'First branded screen. Logo stays. Pronunciation line: Brtyr pronounced bärtər / barter.', does:'New members tap Sign up. Returning members tap Log in.'},
-  login:{tag:'3 · Login', title:'Log in', about:'Logo on the page. Phone and password. The lime button stays at the bottom so the keyboard cannot cover Log in.', does:'Returning members enter the app. Create account is one tap away.'},
-  signup:{tag:'4 · Sign up', title:'Create account', about:'First / last, email, phone, password, zip on this page. Remember Me optional. Terms are click-wrap with a scrollable legal box, no separate Terms tab.', does:'Save and continue opens provider details after you agree.'},
-  details:{tag:'5 · Details', title:'Provider details · photos and URLs', about:'Instagram or Facebook URL is required. Business URL and a second professional URL are optional. Bio photo plus up to 3 profile photos.', does:'Builds the public provider profile (admin page).'},
-  about:{tag:'6 · About', title:'About Me and city', about:'City for the profile card. Zip already saved on create account. About Me is where you share your audience or what you hope to grow.', does:'Shows city / zip on profile without street address.'},
-  cert:{tag:'7 · Sector', title:'Certificate and sector', about:'Certificate upload is optional on this page, required later before a listing goes live. Sector is one arrow multi-select dropdown.', does:'Beauty, Fitness, Wellness, Business Affiliates.'},
-  otp:{tag:'8 · Verify', title:'Verify phone', about:'Confirms the phone from signup. Demo code is 1234. Verification is after signup / profile, not on Subscription.', does:'After verify, the next page is set up offer and bio, not Home.'},
-  offer:{tag:'9 · Offer + bio', title:'Set up offer and bio', about:'Duration is a dropdown (not chips). CP auto-fills from the platform schedule and stays locked. Currency is CP.', does:'Saves the first offer. Members see it when Active is on.'},
-  home:{tag:'10 · Home', title:'Home and locked menu', about:'Hamburger opens the approved drawer: initials, name, Provider • Elite, then View as Provider / View as Trade. Rows match the locked list.', does:'Calendar, Availability, and My Offers show only in Provider view.'},
-  profile:{tag:'10c · Profile', title:'Profile', about:'Simple bio card from signup: name, role, About Me, city / zip.', does:'Same account whether you are viewing as Provider or Trade.'},
-  trades:{tag:'10d · Trades', title:'Trades', about:'A short pending / confirmed / completed list so the menu row has a place to land.', does:'Full accept, chat, and review stay for the live build.'},
-  calendar:{tag:'10e · Calendar', title:'Provider calendar', about:'V-2 month calendar. Days with slots get a lime border. Tap a day to see or add hours.', does:'Trade members can only book inside these windows.'},
-  availability:{tag:'10f · Hours', title:'Availability Manager', about:'V-2 weekly hours. Turn a day on or off, then edit the slot list. Month view repeats these defaults.', does:'One-off date changes live on Calendar.'},
-  offers:{tag:'10g · Offers', title:'My Offers', about:'Provider-only list of the offer you just set up. Hidden in Trade view.', does:'Tap an offer to edit name, duration, and locked CP.'},
-  subscription:{tag:'10h · Plan', title:'Subscription', about:'Free, Elite, and Premium. Shows Free full price / Elite 5% / Premium 10% on TC packs. No verification path here.', does:'Membership changes visibility and TC pack discount.'},
-  settings:{tag:'10i · Settings', title:'Settings', about:'A few rows: plan, password, notifications, legal.', does:'Logout returns to splash. Live app is not changed.'},
-  subs:{tag:'10b · Sector', title:'Services in this sector', about:'After a sector tap, this list shows the services inside it.', does:'Continue to the zip-filtered provider list.'},
-  find:{tag:'11 · Zip', title:'Find providers by zip', about:'Defaults to the zip from signup. Type another zip to look in a different area. Street address stays hidden.', does:'Browse and filter by zip.'},
-  wallet:{tag:'12 · Wallet', title:'CP Explained and TC Explained', about:'CP from duration schedule. TC beta packs 25=$12 · 50=$24 · 100=$48 · 250=$100. Review bonus +5 CP to the service recipient once.', does:'Buy Credits shows Free full / Elite 5% / Premium 10%.'},
-  done:{tag:'13 · Confirm', title:'Beta V-3 approval?', about:'End of the tap-through for Raquel. Nothing is written to the iPhone app yet.', does:'Reply yes if this path is right, or tell Gaurav which screen to move.'}
+  start:{tag:'1 · Map', title:'Beta V-3 locked path', about:'Locked Beta V-3 order for Raquel approval, now with the full product tap-through: profiles, book, trades, wallet, provider tools.', does:'Confirm the path before we change the iPhone build.'},
+  welcome:{tag:'2 · Splash', title:'Splash / Welcome', about:'First branded screen. Pronunciation: Brtyr pronounced bärtər / barter.', does:'Sign up or Log in.'},
+  login:{tag:'3 · Login', title:'Log in', about:'Phone and password. Forgot password is a simple reset demo.', does:'Opens Home with the locked menu.'},
+  forgot:{tag:'3b · Reset', title:'Forgot password', about:'Simple phone reset. Demo always succeeds.', does:'Returns to Log in.'},
+  signup:{tag:'4 · Sign up', title:'Create account', about:'Form + zip + click-wrap Terms. No Provider / Trade tab.', does:'Save and continue → provider details.'},
+  details:{tag:'5 · Details', title:'Provider details · photos and URLs', about:'IG/FB required. Bio + profile photos.', does:'Builds the public provider profile.'},
+  about:{tag:'6 · About', title:'About Me and city', about:'City + About Me. Zip from signup.', does:'Shows on profile card.'},
+  cert:{tag:'7 · Sector', title:'Certificate and sector', about:'Optional cert now. Sector multi-select.', does:'Beauty, Fitness, Wellness, Business Affiliates.'},
+  otp:{tag:'8 · Verify', title:'Verify phone', about:'Demo code 1234. After signup path, also reachable from Verification.', does:'Next: set up offer and bio.'},
+  offer:{tag:'9 · Offer + bio', title:'Set up offer and bio', about:'Duration dropdown → locked CP (incl 550).', does:'Saves first offer.'},
+  home:{tag:'10 · Home', title:'Home', about:'Role framing changes with View as Trade / Provider. Featured + sectors + zip.', does:'Hamburger opens locked menu.'},
+  featured:{tag:'10a · Featured', title:'Featured providers', about:'Seeded top providers near zip.', does:'Opens provider profile.'},
+  provider:{tag:'10b · Profile', title:'Provider profile', about:'Bio, offers, photos, follow, book CTA.', does:'Book slot or follow.'},
+  book:{tag:'10c · Book', title:'Book slot', about:'Pick day/time, see CP cost vs wallet.', does:'Confirm or route to Buy Credits if short.'},
+  bookLow:{tag:'10d · Short', title:'Need credits', about:'Insufficient balance path.', does:'Buy Credits then return.'},
+  buy:{tag:'12a · Buy', title:'Buy Credits', about:'Beta packs with membership discount.', does:'Adds TC to wallet.'},
+  gift:{tag:'12b · Gift', title:'Gift TC', about:'Send TC to another member.', does:'Deducts from your TC.'},
+  refer:{tag:'12c · Refer', title:'Refer & Earn', about:'Invite code BRTYR-RAQ.', does:'Copy invite (demo).'},
+  ledger:{tag:'12d · Ledger', title:'Ledger', about:'CP / TC history.', does:'Newest first.'},
+  cpExplained:{tag:'12e · CP', title:'CP Explained', about:'Duration table + review bonus +5 CP.', does:'Read-only explainer.'},
+  tcExplained:{tag:'12f · TC', title:'TC Explained', about:'Beta packs and membership discounts.', does:'Link to Buy Credits.'},
+  trades:{tag:'11 · Trades', title:'Trades', about:'Pending / Accepted / Completed tabs.', does:'Open detail for actions and chat.'},
+  tradeDetail:{tag:'11b · Detail', title:'Trade detail', about:'Accept / Reject / Complete + chat + review.', does:'Provider and Trade actions.'},
+  chat:{tag:'11c · Chat', title:'Chat', about:'Demo thread for a trade.', does:'Send adds a bubble.'},
+  inbox:{tag:'11d · Inbox', title:'Bookings inbox', about:'Provider earnings / incoming bookings.', does:'Accept from here or Trades.'},
+  calendar:{tag:'10e · Calendar', title:'Provider calendar', about:'Month view with slots.', does:'Trade books inside these windows.'},
+  availability:{tag:'10f · Hours', title:'Availability', about:'Weekly hours manager.', does:'Calendar repeats these defaults.'},
+  offers:{tag:'10g · Offers', title:'My Offers', about:'Provider offer list.', does:'Create / edit via offer screen.'},
+  subscription:{tag:'10h · Plan', title:'Subscription', about:'Free / Elite 5% / Premium 10%.', does:'Membership changes TC discount.'},
+  settings:{tag:'10i · Settings', title:'Settings', about:'Plan, password, notifications, legal, logout.', does:'All rows navigate.'},
+  profile:{tag:'10j · Profile', title:'My Profile', about:'Bio card + trust links.', does:'Edit, completion, certs, reputation, verification.'},
+  editProfile:{tag:'10k · Edit', title:'Edit profile', about:'Name, city, about, social.', does:'Saves into signup fields.'},
+  profileComplete:{tag:'10l · Score', title:'Profile completion', about:'Checklist toward a live listing.', does:'Jump to missing steps.'},
+  certs:{tag:'10m · Certs', title:'Certifications', about:'Attach optional certificate.', does:'Required later before live listing.'},
+  reputation:{tag:'10n · Rep', title:'Reputation', about:'Rating, badges, sample review.', does:'Shows review bonus note.'},
+  verification:{tag:'10o · Verify', title:'Verification', about:'Reopen phone OTP path after signup.', does:'Goes to OTP screen.'},
+  notifications:{tag:'10p · Alerts', title:'Notifications', about:'Booking, wallet, membership samples.', does:'Deep-links into trades / wallet.'},
+  review:{tag:'11e · Review', title:'Leave review', about:'+5 CP once to the service recipient.', does:'Credits wallet and marks trade reviewed.'},
+  subs:{tag:'10q · Sector', title:'Subcategories', about:'Services inside a sector.', does:'Continue to zip list.'},
+  find:{tag:'11 · Zip', title:'Find providers', about:'Zip filter / search. Tap a card for profile.', does:'Browse by zip.'},
+  wallet:{tag:'12 · Wallet', title:'Wallet', about:'Dual balances + Buy / Gift / Refer / Ledger / explainers.', does:'Full wallet hub.'},
+  done:{tag:'13 · Confirm', title:'Approval?', about:'End of locked path summary.', does:'Reply yes or tell Gaurav what to move.'}
 };
 const CATEGORIES=[
   {id:'cat-beauty', title:'BEAUTY', subtitle:'Hair, makeup, nails', image:'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80'},
@@ -1008,10 +1349,48 @@ const BRACKETS=[
 const SECTORS=['Beauty','Fitness','Wellness','Business Affiliates'];
 const AVAILS=['Weekdays · 9:00 AM–5:00 PM','Weekends · 10:00 AM–4:00 PM','Flexible · By appointment','Evenings · 5:00 PM–9:00 PM'];
 const PEOPLE=[
-  {name:'Raquel Rodriguez', title:'Personal Trainer', zip:'33101', city:'Miami, FL', sector:'Fitness'},
-  {name:'Maya Chen', title:'Colorist', zip:'33101', city:'Miami, FL', sector:'Beauty'},
-  {name:'Jordan Lee', title:'Yoga Instructor', zip:'78701', city:'Austin, TX', sector:'Wellness'},
-  {name:'Sam Ortiz', title:'Strength Coach', zip:'60614', city:'Chicago, IL', sector:'Fitness'},
+  {id:'raquel', name:'Raquel Rodriguez', title:'Personal Trainer', zip:'33101', city:'Miami, FL', sector:'Fitness', rating:4.9, trades:28, bio:'I help busy women stay strong. I want to grow a local trade circle in Miami.', featured:true, offers:[{name:'Personal Training 1:1', duration:'1 hour', cp:150, id:'o-pt'},{name:'HIIT 30-min', duration:'30 minutes', cp:100, id:'o-hiit'}], photos:['https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&q=80','https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80']},
+  {id:'maya', name:'Maya Chen', title:'Colorist', zip:'33101', city:'Miami, FL', sector:'Beauty', rating:4.8, trades:64, bio:'Color specialist. Soft blends and healthy hair first.', featured:true, offers:[{name:'Hair Color & Cut', duration:'1 hour', cp:150, id:'o-hair'}], photos:['https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80','https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80']},
+  {id:'jordan', name:'Jordan Lee', title:'Yoga Instructor', zip:'78701', city:'Austin, TX', sector:'Wellness', rating:5.0, trades:22, bio:'RYT-200. Sunrise mobility and breath work.', featured:true, offers:[{name:'Yoga & Mobility', duration:'1.5 hours', cp:200, id:'o-yoga'}], photos:['https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&q=80']},
+  {id:'sam', name:'Sam Ortiz', title:'Strength Coach', zip:'60614', city:'Chicago, IL', sector:'Fitness', rating:4.7, trades:56, bio:'Strength for busy schedules. Progressive, safe loading.', featured:false, offers:[{name:'Strength Session', duration:'1 hour', cp:150, id:'o-str'}], photos:['https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80']},
+];
+const TC_PACKS=[
+  {tc:25, price:12},
+  {tc:50, price:24},
+  {tc:100, price:48},
+  {tc:250, price:100},
+];
+const PLAN_DISC={free:0, elite:0.05, premium:0.10};
+let membership='elite';
+let cpBal=120, tcBal=40;
+let following={};
+let selectedProvider=null, selectedOffer=null;
+let bookDayIdx=1, bookTime='2:00 PM';
+let providerBack='find', buyBack='wallet';
+let tradeTab='pending', selectedTradeId='t1', reviewStars=5, reviewGiven={};
+let selectedPack=1;
+let chatMsgs=[
+  {who:'them', text:'Hi! Looking forward to our session.', when:'Yesterday'},
+  {who:'me', text:'Same here. I will be there at 2.', when:'Yesterday'},
+  {who:'them', text:'Great. Bring water and trainers.', when:'10:12'},
+];
+let trades=[
+  {id:'t1', status:'pending', who:'Maya Chen', providerId:'maya', offer:'Hair Color & Cut', when:'Fri Sep 12 · 11:00 AM', cost:150, role:'provider', note:'Incoming booking request'},
+  {id:'t2', status:'accepted', who:'Jordan Lee', providerId:'jordan', offer:'Yoga & Mobility', when:'Tue Sep 16 · 2:00 PM', cost:200, role:'trader', note:'Confirmed'},
+  {id:'t3', status:'completed', who:'Sam Ortiz', providerId:'sam', offer:'Personal Training', when:'Aug 28 · 9:00 AM', cost:150, role:'trader', note:'Ready for review', reviewed:false},
+  {id:'t4', status:'pending', who:'Alex Rivera', providerId:'maya', offer:'Personal Training 1:1', when:'Mon Sep 15 · 4:00 PM', cost:150, role:'provider', note:'New request'},
+];
+let ledger=[
+  {t:'Opening demo balance', cp:120, tc:40, when:'Today'},
+  {t:'Completed trade · Sam Ortiz', cp:-150, tc:0, when:'Aug 28'},
+  {t:'Session CP earned (as provider)', cp:150, tc:0, when:'Aug 20'},
+];
+const BOOK_DAYS=[
+  {label:'MON', n:14, times:['9:00 AM','10:30 AM','2:00 PM','3:30 PM']},
+  {label:'TUE', n:15, times:['9:00 AM','2:00 PM','6:30 PM']},
+  {label:'WED', n:16, times:['10:00 AM','11:30 AM','4:00 PM']},
+  {label:'THU', n:17, times:['9:00 AM','1:00 PM','3:00 PM','5:00 PM']},
+  {label:'FRI', n:18, times:['11:00 AM','2:00 PM']},
 ];
 const PHOTO_SRC={
   bio:'https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&q=80',
@@ -1026,7 +1405,7 @@ let photos={bio:false,'1':false,'2':false,'3':false};
 let certName='';
 let offerReturn='otp';
 let currentScreen='start';
-const MENU_ALIAS={offer:'offers',subs:'home',find:'home',done:'home',welcome:'home',start:'home'};
+const MENU_ALIAS={offer:'offers',subs:'home',find:'home',featured:'home',provider:'home',book:'home',bookLow:'wallet',buy:'wallet',gift:'wallet',refer:'wallet',ledger:'wallet',cpExplained:'wallet',tcExplained:'wallet',done:'home',welcome:'home',start:'home',forgot:'settings',tradeDetail:'trades',chat:'trades',inbox:'trades',editProfile:'profile',profileComplete:'profile',certs:'profile',reputation:'profile',verification:'profile',notifications:'settings',review:'trades'};
 const WEEK_DAYS=[
   {dow:1,name:'Monday'},
   {dow:2,name:'Tuesday'},
@@ -1099,9 +1478,10 @@ function goTab(id){
 }
 function go(id){
   if(id==='signupStart' || id==='terms') id='signup';
-  if(role!=='provider' && ['calendar','availability','offers','offer'].includes(id)){
+  if(role!=='provider' && ['calendar','availability','offers','offer','inbox'].includes(id)){
     id='home';
   }
+  const prev=currentScreen;
   currentScreen=id;
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.dataset.screen===id));
   const i=ORDER.indexOf(id);
@@ -1121,6 +1501,22 @@ function go(id){
   if(id==='offers') renderOffers();
   if(id==='calendar') renderAvailCal();
   if(id==='availability') renderAvailWeek();
+  if(id==='home'){ renderHome(); syncWalletUI(); renderHomeFeat(); syncHomeRole(); }
+  if(id==='featured') renderFeatured();
+  if(id==='provider') renderProvider();
+  if(id==='book') renderBook();
+  if(id==='bookLow') renderBookLow();
+  if(id==='buy'){ if(['wallet','book','bookLow','tcExplained'].includes(prev)) buyBack=prev==='tcExplained'?'wallet':prev; renderBuy(); }
+  if(id==='wallet') syncWalletUI();
+  if(id==='trades') renderTrades();
+  if(id==='tradeDetail') renderTradeDetail();
+  if(id==='chat') renderChat();
+  if(id==='inbox') renderInbox();
+  if(id==='ledger') renderLedger();
+  if(id==='editProfile') fillEditProfile();
+  if(id==='profileComplete') renderCompletion();
+  if(id==='certs') renderCerts();
+  if(id==='verification') renderVerification();
   closeMenu();
 }
 function nextSignup(){
@@ -1161,12 +1557,14 @@ function nextCert(){
   }
   go('otp');
 }
+function openOtpFromVerification(){ offerReturn='verification'; go('otp'); }
 function verifyPhone(){
   const code=[...document.querySelectorAll('.otp input')].map(i=>i.value).join('');
   if(code && code!=='1234'){
     alert('For this tap-through, use 1234.');
     return;
   }
+  if(offerReturn==='verification'){ toastMsg('Phone verified'); go('verification'); return; }
   offerReturn='otp';
   go('offer');
 }
@@ -1226,7 +1624,7 @@ function syncMenu(){
   document.getElementById('homeZip').textContent='Showing providers near zip '+zip;
   document.getElementById('menuName').textContent=name;
   document.getElementById('menuAv').textContent=initials;
-  document.getElementById('menuRole').innerHTML=roleLabel()+' • <span class="plan">Elite</span>';
+  document.getElementById('menuRole').innerHTML=roleLabel()+' • <span class="plan">'+planLabel()+'</span>';
   document.getElementById('viewAsLabel').textContent=role==='provider'?'View as Trade':'View as Provider';
   document.querySelectorAll('.ditem.prov').forEach(el=>{
     el.style.display=role==='provider'?'flex':'none';
@@ -1245,10 +1643,13 @@ function menuGo(id){
 function switchView(){
   role=role==='provider'?'trader':'provider';
   syncMenu();
-  if(role!=='provider' && ['calendar','availability','offers','offer'].includes(currentScreen)){
+  syncHomeRole();
+  if(role!=='provider' && ['calendar','availability','offers','offer','inbox'].includes(currentScreen)){
     go('home');
     openMenu();
+    return;
   }
+  if(currentScreen==='home'){ renderHome(); renderHomeFeat(); syncHomeRole(); }
 }
 function logOut(){
   closeMenu();
@@ -1259,7 +1660,7 @@ function renderProfile(){
   const name=displayName();
   document.getElementById('profAv').textContent=initialsOf(name);
   document.getElementById('profName').textContent=name;
-  document.getElementById('profRole').textContent=roleLabel()+' • Elite';
+  document.getElementById('profRole').textContent=roleLabel()+' • '+planLabel();
   const sector=sectors.length?sectors.join(', '):category;
   document.getElementById('profHeadline').textContent=sector;
   document.getElementById('profBio').textContent=document.getElementById('aboutMe').value.trim()||'Add About Me on provider details.';
@@ -1368,17 +1769,18 @@ function openCat(id){
 }
 function renderFind(){
   const zip=(document.getElementById('findZip').value.trim()||document.getElementById('zip').value.trim()||'33101');
-  const list=PEOPLE.filter(p=>!zip || p.zip.startsWith(zip) || zip.startsWith(p.zip));
+  const q=zip;
+  const list=PEOPLE.filter(p=>!q || p.zip.startsWith(q) || q.startsWith(p.zip) || p.name.toLowerCase().includes(q.toLowerCase()) || p.sector.toLowerCase().includes(q.toLowerCase()));
   document.getElementById('findHint').textContent=list.length
-    ? list.length+' provider'+(list.length===1?'':'s')+' in this zip. Street address stays hidden until a trade is accepted.'
+    ? list.length+' provider'+(list.length===1?'':'s')+' · tap a card for profile. Street stays hidden until a trade is accepted.'
     : 'No providers in that zip yet. Try 33101, 78701, or 60614.';
   document.getElementById('findList').innerHTML=list.map(p=>`
-    <div class="pcard">
+    <div class="pcard" style="cursor:pointer" onclick="openProvider('${p.id}','find')">
       <div class="av">${p.name.split(' ').map(n=>n[0]).join('').slice(0,2)}</div>
       <div>
         <b>${p.name}</b>
-        <div class="meta">${p.sector} · ${p.city} ${p.zip}</div>
-        <div class="meta">${p.title}</div>
+        <div class="meta">${p.sector} · ${p.city} ${p.zip} · ★ ${p.rating}</div>
+        <div class="meta">${p.title} · from ${p.offers[0].cp} CP</div>
       </div>
     </div>`).join('');
 }
@@ -1421,9 +1823,358 @@ function renderOffer(rebuild=true){
   chips(document.getElementById('offerCats'), SECTORS, s=>s, s=>s===category, s=>category=s);
   chips(document.getElementById('avails'), AVAILS, s=>s, s=>s===availability, s=>availability=s);
 }
+
+function setPlan(p){
+  membership=p;
+  document.querySelectorAll('.plan-card').forEach(c=>c.classList.remove('cur'));
+  const map={free:'planFree',elite:'planElite',premium:'planPremium'};
+  document.getElementById(map[p])?.classList.add('cur');
+  document.querySelectorAll('.plan-card .pill').forEach(el=>el.remove());
+  const cur=document.getElementById(map[p]);
+  if(cur){
+    const h=cur.querySelector('h3');
+    if(h && !h.querySelector('.pill')) h.insertAdjacentHTML('beforeend',' <span class="pill">Current</span>');
+  }
+  syncMenu(); syncWalletUI();
+  toastMsg(planLabel()+' selected');
+}
+function toastMsg(msg){
+  const el=document.getElementById('toast');
+  if(!el){ alert(msg); return; }
+  el.textContent=msg; el.classList.add('on');
+  clearTimeout(toastMsg._t);
+  toastMsg._t=setTimeout(()=>el.classList.remove('on'),2200);
+}
+function planLabel(){return membership==='premium'?'Premium':membership==='elite'?'Elite':'Free';}
+function planDisc(){return PLAN_DISC[membership]||0;}
+function packPrice(base){const d=planDisc();return +(base*(1-d)).toFixed(2);}
+function syncWalletUI(){
+  const cp=document.getElementById('walCp'); if(cp) cp.textContent=cpBal;
+  const tc=document.getElementById('walTc'); if(tc) tc.textContent=tcBal;
+  const plan=document.getElementById('walPlan'); if(plan) plan.textContent='Plan · '+planLabel()+(planDisc()?(' · '+(planDisc()*100)+'% off TC packs'):' · full pack price');
+  const hb=document.getElementById('homeBal'); if(hb) hb.textContent='Wallet · '+cpBal+' CP · '+tcBal+' TC';
+}
+function syncHomeRole(){
+  const block=document.getElementById('homeProvBlock');
+  const title=document.getElementById('homeBrowseTitle');
+  const foot=document.getElementById('homeFootBtn');
+  if(block) block.style.display=role==='provider'?'block':'none';
+  if(title) title.textContent=role==='provider'?'Also browse as Trade':'Browse sectors';
+  if(foot){
+    if(role==='provider'){ foot.textContent='Open bookings inbox'; foot.onclick=()=>go('inbox'); }
+    else { foot.textContent='Find providers by zip'; foot.onclick=()=>go('find'); }
+  }
+}
+function renderHomeFeat(){
+  const el=document.getElementById('homeFeat'); if(!el) return;
+  el.innerHTML=PEOPLE.filter(p=>p.featured).map(p=>`
+    <div class="feat-card" onclick="openProvider('${p.id}','home')">
+      <div class="av">${initialsOf(p.name)}</div>
+      <b style="font-size:13px">${p.name.split(' ')[0]}</b>
+      <div class="meta" style="font-size:11px;color:var(--faint);margin-top:2px">${p.title}</div>
+      <div class="meta" style="font-size:11px;color:var(--lime);margin-top:4px">★ ${p.rating} · ${p.trades} trades</div>
+    </div>`).join('');
+}
+function renderFeatured(){
+  const el=document.getElementById('featuredList'); if(!el) return;
+  el.innerHTML=PEOPLE.filter(p=>p.featured).map(p=>`
+    <div class="pcard" style="cursor:pointer" onclick="openProvider('${p.id}','featured')">
+      <div class="av">${initialsOf(p.name)}</div>
+      <div style="flex:1">
+        <b>${p.name}</b>
+        <div class="meta">${p.sector} · ★ ${p.rating} · ${p.trades} trades</div>
+        <div class="meta">${p.bio.slice(0,72)}…</div>
+      </div>
+    </div>`).join('');
+}
+function openProvider(id, back){
+  selectedProvider=PEOPLE.find(p=>p.id===id)||PEOPLE[0];
+  selectedOffer=selectedProvider.offers[0];
+  providerBack=back||'find';
+  go('provider');
+}
+function renderProvider(){
+  const p=selectedProvider||PEOPLE[0];
+  const followed=!!following[p.id];
+  const body=document.getElementById('providerBody');
+  body.innerHTML=`
+    <div class="prov-hero">
+      <div class="bio-av">${initialsOf(p.name)}</div>
+      <h2 style="margin-bottom:2px">${p.name}</h2>
+      <p class="muted">${p.title} · ${p.city} ${p.zip}</p>
+      <button type="button" class="follow-btn ${followed?'on':''}" onclick="toggleFollow('${p.id}')">${followed?'Following':'Follow'}</button>
+      <p style="margin-top:8px;font-size:13px;color:var(--dim);line-height:1.5">${p.bio}</p>
+    </div>
+    <div class="stat-row">
+      <div class="s"><b>${p.rating}</b><span>Rating</span></div>
+      <div class="s"><b>${p.trades}</b><span>Trades</span></div>
+      <div class="s"><b>${p.offers.length}</b><span>Offers</span></div>
+    </div>
+    <div class="photo-strip">${(p.photos||[]).map(src=>`<img src="${src}" alt=""/>`).join('')}</div>
+    <h2 style="font-size:15px;margin-bottom:8px">Offers</h2>
+    ${p.offers.map(o=>`
+      <div class="off-card" onclick="selectedOffer=PEOPLE.find(x=>x.id==='${p.id}').offers.find(x=>x.id==='${o.id}');renderProvider();">
+        <b>${o.name}</b>
+        <div class="meta">${o.duration} · <b style="color:var(--lime)">${o.cp} CP</b>${selectedOffer&&selectedOffer.id===o.id?' · selected':''}</div>
+      </div>`).join('')}
+  `;
+  document.getElementById('bookCta').textContent='Book · '+(selectedOffer?selectedOffer.cp+' CP':'');
+}
+function toggleFollow(id){
+  following[id]=!following[id];
+  renderProvider();
+  toastMsg(following[id]?'Following':'Unfollowed');
+}
+function startBook(){
+  if(!selectedProvider) selectedProvider=PEOPLE[1];
+  if(!selectedOffer) selectedOffer=selectedProvider.offers[0];
+  bookDayIdx=1; bookTime=(BOOK_DAYS[bookDayIdx].times[1]||BOOK_DAYS[bookDayIdx].times[0]);
+  go('book');
+}
+function renderBook(){
+  const p=selectedProvider, o=selectedOffer;
+  document.getElementById('bookSummary').innerHTML=`
+    <div class="pk" style="color:var(--lime);font-size:10px;font-weight:800;letter-spacing:.1em;margin-bottom:6px">BOOKING WITH</div>
+    <h3 style="font-size:16px;margin-bottom:4px">${p.name} · ${o.name}</h3>
+    <div class="meta">${o.duration} · <b style="color:var(--lime)">${o.cp} CP</b></div>`;
+  document.getElementById('bookDays').innerHTML=BOOK_DAYS.map((d,i)=>`
+    <div class="day-chip ${i===bookDayIdx?'on':''}" onclick="bookDayIdx=${i};bookTime=BOOK_DAYS[${i}].times[0];renderBook();">
+      <div class="d">${d.label}</div><div class="n">${d.n}</div>
+    </div>`).join('');
+  const day=BOOK_DAYS[bookDayIdx];
+  document.getElementById('bookTimesTitle').textContent='Available times · '+day.label+' '+day.n;
+  document.getElementById('bookTimes').innerHTML=day.times.map(t=>`
+    <div class="time-chip ${t===bookTime?'on':''}" onclick="bookTime='${t}';renderBook();">${t}</div>`).join('')
+    +`<div class="time-chip off">5:00 PM</div>`;
+  const need=o.cp;
+  const useCp=Math.min(cpBal, need);
+  const useTc=Math.max(0, need-useCp);
+  document.getElementById('bookCost').innerHTML=`
+    <div class="wrow"><span>Session</span><b>${need} CP</b></div>
+    <div class="wrow"><span>Your CP</span><b>${cpBal} CP</b></div>
+    <div class="wrow"><span>Your TC</span><b>${tcBal} TC</b></div>
+    <div class="wrow"><span>You will pay</span><b>${useCp} CP${useTc?(' + '+useTc+' TC'):''}</b></div>
+    ${useTc>tcBal?'<div class="alert-box" style="margin-top:10px">Short on TC. Confirm will open Buy Credits.</div>':''}`;
+}
+function confirmBook(){
+  const o=selectedOffer, p=selectedProvider;
+  const need=o.cp;
+  const useCp=Math.min(cpBal, need);
+  const useTc=Math.max(0, need-useCp);
+  if(useTc>tcBal){
+    buyBack='bookLow';
+    go('bookLow');
+    return;
+  }
+  cpBal-=useCp; tcBal-=useTc;
+  ledger.unshift({t:'Booked '+p.name+' · '+o.name, cp:-useCp, tc:-useTc, when:'Just now'});
+  const id='t'+Date.now();
+  trades.unshift({id, status:'pending', who:p.name, providerId:p.id, offer:o.name, when:BOOK_DAYS[bookDayIdx].label+' '+BOOK_DAYS[bookDayIdx].n+' · '+bookTime, cost:need, role:'trader', note:'Awaiting provider'});
+  selectedTradeId=id; tradeTab='pending';
+  syncWalletUI();
+  toastMsg('Booking requested');
+  go('trades');
+}
+function renderBookLow(){
+  const o=selectedOffer, p=selectedProvider;
+  const need=o.cp;
+  const useCp=Math.min(cpBal, need);
+  const useTc=Math.max(0, need-useCp);
+  const short=useTc-tcBal;
+  document.getElementById('bookLowMsg').innerHTML=`<b style="color:var(--text)">You are ${short} TC short.</b> This booking needs ${useCp} CP + ${useTc} TC. You have ${cpBal} CP + ${tcBal} TC.`;
+  document.getElementById('bookLowSummary').innerHTML=`
+    <div class="wrow"><span>${p.name} · ${o.name}</span><b>${need} CP</b></div>
+    <div class="wrow"><span>Pay with</span><b>${useCp} CP + ${useTc} TC</b></div>`;
+  buyBack='bookLow';
+}
+function renderBuy(){
+  const note=document.getElementById('buyPlanNote');
+  if(note) note.textContent=planLabel()+' · '+(planDisc()?(planDisc()*100)+'% off TC packs':'full pack price');
+  document.getElementById('buyPacks').innerHTML=TC_PACKS.map((pk,i)=>{
+    const price=packPrice(pk.price);
+    const save=pk.price-price;
+    return `<div class="pack-pick ${i===selectedPack?'on':''}" onclick="selectedPack=${i};renderBuy();">
+      <div><div class="p">${pk.tc} TC</div><div class="muted">${save>0?('Was $'+pk.price.toFixed(2)+' · you save $'+save.toFixed(2)):'Full price'}</div></div>
+      <div class="pr">$${price.toFixed(2)}</div>
+    </div>`;
+  }).join('');
+}
+function purchasePack(){
+  const pk=TC_PACKS[selectedPack];
+  const price=packPrice(pk.price);
+  tcBal+=pk.tc;
+  ledger.unshift({t:'Bought '+pk.tc+' TC · $'+price.toFixed(2), cp:0, tc:pk.tc, when:'Just now'});
+  syncWalletUI();
+  toastMsg('+' + pk.tc + ' TC added');
+  if(buyBack==='bookLow' || buyBack==='book'){ buyBack='wallet'; go('book'); }
+  else go('wallet');
+}
+function sendGift(){
+  const amt=+document.getElementById('giftAmt').value;
+  const to=document.getElementById('giftTo').value.trim()||'maya@email.com';
+  if(amt>tcBal){ toastMsg('Not enough TC'); return; }
+  tcBal-=amt;
+  ledger.unshift({t:'Gifted '+amt+' TC to '+to, cp:0, tc:-amt, when:'Just now'});
+  syncWalletUI();
+  toastMsg('Gift sent');
+  go('wallet');
+}
+function renderLedger(){
+  document.getElementById('ledgerList').innerHTML=ledger.map(row=>`
+    <div class="wrow"><span>${row.t}<br><span class="muted">${row.when}</span></span>
+    <b>${row.cp?((row.cp>0?'+':'')+row.cp+' CP'):''}${row.cp&&row.tc?' · ':''}${row.tc?((row.tc>0?'+':'')+row.tc+' TC'):(!row.cp?'—':'')}</b></div>`).join('');
+}
+function setTradeTab(tab){
+  tradeTab=tab;
+  document.querySelectorAll('#tradeSeg .seg-btn').forEach(b=>b.classList.toggle('on', b.dataset.tab===tab));
+  renderTrades();
+}
+function renderTrades(){
+  const list=trades.filter(t=>t.status===tradeTab);
+  document.getElementById('tradesHint').textContent=role==='provider'
+    ? 'Provider view: Accept / Reject pending requests. Complete accepted trades.'
+    : 'Trade view: track bookings you requested. Chat and review when done.';
+  document.getElementById('tradeList').innerHTML=list.length?list.map(t=>`
+    <div class="tcard" style="cursor:pointer" onclick="openTrade('${t.id}')">
+      <div class="st ${t.status==='pending'?'pending':t.status==='accepted'?'ok':'done'}">${t.status}</div>
+      <b>${t.who} · ${t.offer}</b>
+      <div class="meta">${t.when} · ${t.cost} CP · ${t.note||''}</div>
+    </div>`).join(''):'<div class="wcard" style="text-align:center;color:var(--dim)">No trades in this tab.</div>';
+}
+function openTrade(id){
+  selectedTradeId=id;
+  go('tradeDetail');
+}
+function renderTradeDetail(){
+  const t=trades.find(x=>x.id===selectedTradeId)||trades[0];
+  if(!t) return;
+  selectedTradeId=t.id;
+  const canActProvider=role==='provider' && t.role==='provider';
+  const canComplete=(t.status==='accepted');
+  const canReview=t.status==='completed' && !t.reviewed && t.role==='trader';
+  document.getElementById('tradeDetailBody').innerHTML=`
+    <div class="wcard">
+      <div class="st ${t.status==='pending'?'pending':t.status==='accepted'?'ok':'done'}" style="margin-bottom:8px">${t.status}</div>
+      <h3 style="font-size:18px;margin-bottom:4px">${t.offer}</h3>
+      <p class="muted">${t.who}</p>
+      <div class="wrow" style="margin-top:10px"><span>When</span><b>${t.when}</b></div>
+      <div class="wrow"><span>Cost</span><b>${t.cost} CP</b></div>
+      <div class="wrow"><span>Note</span><b>${t.note||'—'}</b></div>
+    </div>
+    <button class="btn ghost" type="button" onclick="go('chat')">Open chat</button>
+    ${canReview?'<button class="btn ghost" type="button" style="margin-top:8px" onclick="go(\'review\')">Leave review · +5 CP</button>':''}
+    ${t.reviewed?'<div class="hint-box" style="margin-top:10px">Reviewed. +5 CP review bonus already applied.</div>':''}
+  `;
+  let foot='';
+  if(t.status==='pending' && canActProvider){
+    foot=`<div class="act-row"><button class="btn primary sm" onclick="tradeAction('accept')">Accept</button><button class="btn danger sm" onclick="tradeAction('reject')">Reject</button></div>`;
+  } else if(canComplete && (canActProvider || role==='trader')){
+    foot=`<button class="btn primary" onclick="tradeAction('complete')">Mark complete</button>`;
+  } else {
+    foot=`<button class="btn primary" onclick="go('trades')">Back to Trades</button>`;
+  }
+  document.getElementById('tradeDetailFoot').innerHTML=foot;
+}
+function tradeAction(act){
+  const t=trades.find(x=>x.id===selectedTradeId); if(!t) return;
+  if(act==='accept'){ t.status='accepted'; t.note='Accepted'; tradeTab='accepted'; toastMsg('Accepted'); }
+  if(act==='reject'){ t.status='completed'; t.note='Rejected · credits released (demo)'; t.reviewed=true; toastMsg('Rejected'); tradeTab='pending'; go('trades'); return; }
+  if(act==='complete'){
+    t.status='completed'; t.note='Completed · leave a review for +5 CP'; t.reviewed=false;
+    if(role==='provider'){ cpBal+=t.cost; ledger.unshift({t:'Earned session CP · '+t.offer, cp:t.cost, tc:0, when:'Just now'}); }
+    tradeTab='completed'; toastMsg('Marked complete');
+  }
+  syncWalletUI();
+  renderTradeDetail();
+}
+function renderChat(){
+  const t=trades.find(x=>x.id===selectedTradeId);
+  document.getElementById('chatWith').textContent=t?('Chat with '+t.who):'Demo chat';
+  document.getElementById('chatLog').innerHTML=chatMsgs.map(m=>`
+    <div class="bubble ${m.who}"><span>${m.text}</span><span class="when">${m.when}</span></div>`).join('');
+}
+function sendChat(){
+  const inp=document.getElementById('chatInput');
+  const text=(inp.value||'').trim()||'Sounds good.';
+  chatMsgs.push({who:'me', text, when:'Now'});
+  inp.value='';
+  renderChat();
+  const log=document.getElementById('chatLog');
+  const body=log && log.closest ? log.closest('.body') : null;
+  if(body) body.scrollTop=body.scrollHeight;
+}
+function renderInbox(){
+  const pending=trades.filter(t=>t.status==='pending'&&t.role==='provider');
+  const accepted=trades.filter(t=>t.status==='accepted'&&t.role==='provider');
+  document.getElementById('earnPending').textContent=pending.length;
+  document.getElementById('earnAccepted').textContent=accepted.length;
+  document.getElementById('earnCp').textContent=(pending.concat(accepted).reduce((s,t)=>s+t.cost,0))+' CP';
+  document.getElementById('inboxList').innerHTML=pending.concat(accepted).map(t=>`
+    <div class="inbox-card">
+      <div class="st ${t.status==='pending'?'pending':'ok'}">${t.status}</div>
+      <b>${t.who} · ${t.offer}</b>
+      <div class="meta">${t.when} · ${t.cost} CP</div>
+      <div class="act-row">
+        <button class="btn ghost sm" type="button" onclick="openTrade('${t.id}')">Open</button>
+        ${t.status==='pending'?`<button class="btn primary sm" type="button" onclick="selectedTradeId='${t.id}';tradeAction('accept');renderInbox();">Accept</button>`:''}
+      </div>
+    </div>`).join('')||'<div class="wcard" style="text-align:center;color:var(--dim)">No incoming bookings.</div>';
+}
+function fillEditProfile(){
+  document.getElementById('editFirst').value=document.getElementById('first').value||'Raquel';
+  document.getElementById('editLast').value=document.getElementById('last').value||'Rodriguez';
+  document.getElementById('editCity').value=document.getElementById('city').value||'Miami, FL';
+  document.getElementById('editAbout').value=document.getElementById('aboutMe').value||'';
+  document.getElementById('editSocial').value=document.getElementById('social').value||'';
+}
+function saveEditProfile(){
+  document.getElementById('first').value=document.getElementById('editFirst').value.trim()||'Raquel';
+  document.getElementById('last').value=document.getElementById('editLast').value.trim()||'Rodriguez';
+  document.getElementById('city').value=document.getElementById('editCity').value.trim()||'Miami, FL';
+  document.getElementById('aboutMe').value=document.getElementById('editAbout').value.trim();
+  document.getElementById('social').value=document.getElementById('editSocial').value.trim();
+  toastMsg('Profile saved');
+  go('profile');
+}
+function renderCompletion(){
+  const photoOk=Object.values(photos).some(Boolean);
+  document.getElementById('compPhotos').textContent=photoOk?'✓ Done':'Add photos';
+  document.getElementById('compSector').textContent=sectors.length?'✓ '+sectors.join(', '):'Choose sector';
+  document.getElementById('compCert').textContent=certName?'✓ '+certName:'Optional';
+  document.getElementById('compOffer').textContent=active?'✓ Active':'Turn Active on';
+  let pct=40; if(photoOk)pct+=15; if(sectors.length)pct+=15; if(certName)pct+=15; if(active)pct+=15;
+  document.getElementById('compPct').textContent='About '+pct+'% complete.';
+}
+function renderCerts(){
+  document.getElementById('certStatus').textContent=certName?'Attached':'Optional';
+  document.getElementById('certStatus').className='st '+(certName?'ok':'pending');
+  document.getElementById('certTitle').textContent=certName||'No certificate attached yet';
+}
+function renderVerification(){
+  document.getElementById('verPhone').textContent=document.getElementById('phone').value.trim()||'Use signup phone · OTP 1234';
+  document.getElementById('verCert').textContent=certName||'Optional';
+}
+function cycleStars(){
+  reviewStars=reviewStars>=5?1:reviewStars+1;
+  document.getElementById('starPick').textContent='★'.repeat(reviewStars)+'☆'.repeat(5-reviewStars);
+}
+function submitReview(){
+  const t=trades.find(x=>x.id===selectedTradeId);
+  if(t && t.reviewed){ toastMsg('Already reviewed'); go('tradeDetail'); return; }
+  if(t) t.reviewed=true;
+  cpBal+=5;
+  ledger.unshift({t:'Review bonus +5 CP (recipient)', cp:5, tc:0, when:'Just now'});
+  syncWalletUI();
+  toastMsg('+5 CP review bonus');
+  go('tradeDetail');
+}
+
 window.addEventListener('resize', fitDevice);
 renderHome();
 renderSectors();
+renderHomeFeat();
+syncWalletUI();
+syncHomeRole();
 go('start');
 renderOffer();
 fitDevice();
